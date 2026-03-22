@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Showkot Hosen | Portfolio</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 { font-family: "Montserrat", sans-serif }
+        .w3-row-padding img { margin-bottom: 12px }
+        .w3-sidebar { width: 120px; background: #222; }
+        #main { margin-left: 120px }
+        @media only screen and (max-width: 600px) { #main { margin-left: 0 } }
+        .my-custom-color { background-color: #07f1fa; }
+
+        .badge-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 24px; margin-top: 16px; }
+        .badge-box { display: flex; flex-direction: column; align-items: center; max-width: 380px; flex: 1; }
+        html { scroll-behavior: smooth; }
+        footer a { text-decoration: none !important; display: inline-block; }
+
+        /* Light Mode Styles */
+        .light-theme { background-color: #f5f5f5 !important; color: #222 !important; }
+        .light-theme #main, .light-theme .w3-content, .light-theme header { background-color: #f5f5f5 !important; color: #222 !important; }
+        .light-theme .w3-text-white, .light-theme p, .light-theme h4 { color: #222 !important; }
+        .light-theme .w3-card, .light-theme .w3-sidebar { background-color: #fff !important; color: #222 !important; border: 1px solid #ddd !important; }
+        .light-theme .w3-bar-item { color: #222 !important; }
+        #theme-toggle { position: fixed; top: 20px; right: 20px; z-index: 9999; cursor: pointer; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .light-theme h3, .light-theme h4, .light-theme .w3-text-blue, .light-theme [style*="color:#07f1fa"], .light-theme [style*="color:#00e5ff"] { color: #00008B !important; }
+        .light-theme hr { border-top: 1px solid #00008B !important; opacity: 0.6; }
+        .light-theme .w3-button.w3-black { background-color: #e0e0e0 !important; color: #000 !important; border: 1px solid #ccc !important; }
+
+        /* --- ADVANCED CHATBOT UI --- */
+        #bot-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Roboto', sans-serif; }
+        #bot-launcher { width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; border: none; cursor: pointer; box-shadow: 0 5px 20px rgba(7, 241, 250, 0.4); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        #bot-launcher:hover { transform: scale(1.05) rotate(5deg); }
+        #chat-ui { display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 15px; flex-direction: column; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid #333; position: absolute; bottom: 80px; right: 0; }
+        #chat-ui-header { background: #222; padding: 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        #chat-ui-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: thin; }
+        .chat-bubble { padding: 10px 14px; border-radius: 12px; max-width: 85%; font-size: 14px; line-height: 1.5; }
+        .bot-bubble { background: #2c2c2c; color: #efefef; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user-bubble { background: #07f1fa; color: #111; align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 500; }
+        .suggest-chip { display: inline-block; background: transparent; border: 1px solid #07f1fa; color: #07f1fa; padding: 5px 12px; border-radius: 20px; font-size: 12px; margin: 4px 2px; cursor: pointer; transition: 0.2s; }
+        .suggest-chip:hover { background: #07f1fa; color: #111; }
+        #chat-ui-footer { padding: 12px; background: #222; border-top: 1px solid #333; display: flex; align-items: center; gap: 8px; }
+        #chat-input { flex: 1; background: #333; border: none; color: white; padding: 10px; border-radius: 8px; outline: none; }
+    </style>
+</head>
+<body class="w3-black">
+
+<button id="theme-toggle" class="w3-button w3-white w3-text-black" onclick="toggleTheme()">
+    <i id="theme-icon" class="fa fa-sun-o"></i>
+</button>
+
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <a href="#home" class="w3-bar-item w3-button w3-padding-none">
+        <img src="https://i.ibb.co/1fczNTv7/Linkedin-Profile-Picture.webp" style="width:100%">
+    </a>
+    <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-home w3-xlarge"></i><p style="margin: 0;">HOME</p>
+    </a>
+    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-user w3-xlarge"></i><p style="margin: 0;">ABOUT</p>
+    </a>
+    <a href="#publication" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-book w3-xlarge"></i><p style="margin: 0;">PUBLICATION</p>
+    </a>
+    <a href="#experience" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-briefcase w3-xlarge"></i><p style="margin: 0;">EXPERIENCES</p>
+    </a>
+    <a href="#certifications" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-certificate w3-xlarge"></i><p style="margin: 0;">CERTIFICATIONS</p>
+    </a>
+    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-tasks w3-xlarge"></i><p style="margin: 0;">PROJECTS</p>
+    </a>
+    <a href="#community" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-users w3-xlarge"></i><p style="margin: 0;">COMMUNITY</p>
+    </a>
+    <a href="#co-curricular" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
+        <i class="fa fa-plus-square w3-xlarge"></i><p style="margin: 0;">EXTRAS</p>
+    </a>
+</nav>
+
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center" style="display: flex; justify-content: space-around; font-size: 8px !important;">
+    <a href="#home" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">ABOUT</a>
+    <a href="#publication" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">PUB.</a>
+    <a href="#experience" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">EXP.</a>
+    <a href="#certifications" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">CERT.</a>
+    <a href="#projects" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">PROJ.</a>
+    <a href="#community" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">COMM.</a>
+    <a href="#co-curricular" class="w3-bar-item w3-button" style="padding: 8px 2px !important; flex: 1;">EXTRAS</a>
+  </div>
+</div>
+
+<div class="w3-padding-large" id="main">
+    
+    <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+        <h3 style="font-weight:bold; color:#07f1fa;">SHOWKOT HOSEN</h3>
+        <img src="https://i.ibb.co/1fczNTv7/Linkedin-Profile-Picture.webp" alt="Showkot Hosen" class="w3-image" loading="lazy" style="width: 100%; max-width: 300px; height: auto;">
+        <p class="w3-text-white">XAI in Cybersecurity Enthusiast and ML Based Cyber Defence Creator</p>
+    </header>
+
+    <div class="w3-content w3-justify w3-text-white w3-padding-64" id="about">
+        <h3 style="font-weight:bold; color:#07f1fa;">ABOUT ME</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <p>Research-driven Cybersecurity professional with a focus on ML-based intrusion prevention and XAI-powered forensics. I hold a strong academic record (3.63 CGPA) and a portfolio of international publications focusing on satellite imagery detection and interpretable deep learning. My expertise is validated by industry-standard credentials, including Cisco Ethical Hacker and (ISC)² Certified in Cybersecurity (CC), alongside proficiency in Python, Scikit-learn, and advanced network analysis tools. Beyond research, I lead mentorship programs at CUET, fostering a culture of innovation in cybersecurity R&D. I am now seeking a PhD opportunity to solve critical transparency gaps in automated security systems.</p>
+
+        <h3 style="font-weight:bold; color:#07f1fa;">EDUCATION</h3>
+        <div class="w3-container w3-margin-bottom">
+            <h4 class="w3-text-white">BSc in Electronics and Telecommunication Engineering</h4>
+            <p class="w3-text-white">Chittagong University of Engineering and Technology (CUET)</p>
+            <p class="w3-text-grey">2022 – Present | CGPA: 3.63</p>
+        </div>
+        <div class="w3-container w3-margin-bottom">
+            <h4 class="w3-text-white">HSC in Science</h4>
+            <p class="w3-text-white">Government City College, Chittagong</p>
+            <p class="w3-text-grey">2018 – 2020</p>
+        </div>
+
+        <div class="badge-container">
+            <div class="badge-box">
+                <h3 style="font-weight:bold; color:#07f1fa; margin-bottom: 8px;">TRYHACKME BADGE</h3>
+                <div style="border:1px solid #ccc; width:320px; max-width:100%; height:85px; display:flex; justify-content:center; align-items:center; background:#111; border-radius:8px;">
+                    <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4095795" style="border:none; width:100%; height:100%; border-radius:8px;" scrolling="no" loading="lazy"></iframe>
+                </div>
+                <a href="https://tryhackme.com/p/Showkot313" target="_blank" class="w3-button w3-black w3-hover-blue" style="margin-top:8px;">View My Full Profile</a>
+            </div>
+            <div class="badge-box">
+                <h3 style="font-weight:bold; color:#07f1fa; margin-bottom: 8px;">KAGGLE BADGE</h3>
+                <div style="border:1px solid #ccc;width:320px; max-width:100%; height:85px; display:flex; justify-content:center; align-items:center; background:#111; border-radius:8px;">
+                    <img src="https://img.shields.io/badge/Kaggle-showkothosen-blue?logo=kaggle&style=for-the-badge" alt="Kaggle Badge" style="max-height:55px;"/>
+                </div>
+                <a href="https://www.kaggle.com/showkothosen" target="_blank" class="w3-button w3-black w3-hover-blue" style="margin-top:8px;">View My Kaggle Profile</a>
+            </div>
+        </div>
+
+        <h3 style="font-weight:bold; color:#07f1fa; margin-top: 32px;">SKILLS SUMMARY</h3>
+        <div class="w3-row" style="border-top: 1px solid #fff; border-bottom: 1px solid #fff; padding-top: 16px; padding-bottom: 16px; margin-bottom: 16px;">
+            <div class="w3-col s12 m6">
+                <ul class="w3-ul">
+                    <li>Cybersecurity (Ethical Hacking, CTF)</li>
+                    <li>Machine Learning (Python, Scikit-learn)</li>
+                    <li>Deep Learning (CNN, XAI, SHAP)</li>
+                    <li>Research (IEEE Format, LaTeX)</li>
+                </ul>
+            </div>
+            <div class="w3-col s12 m6">
+                <ul class="w3-ul">
+                    <li>Intrusion Detection Systems (IDS/IPS)</li>
+                    <li>Network Security & Forensics</li>
+                    <li>Operating Systems (Linux/Windows)</li>
+                    <li>Content Creation (YouTube/Canva)</li>
+                </ul>
+            </div>
+        </div>
+        <a href="./Academic_CV_of_Showkot_Hosen_Updated_.pdf" download>
+            <button class="w3-button w3-text-white w3-hover-blue w3-padding-large w3-section"><i class="fa fa-download"></i> Download Resume</button>
+        </a>
+    </div>
+
+    <div class="w3-content w3-padding-64" id="publication">
+        <h3 style="font-weight:bold; color:#07f1fa;">PUBLICATIONS</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-container w3-margin-bottom">
+            <a href="https://github.com/Showkot-Hosen-10/SQLi-Interpretable-Detection" target="_blank" style="text-decoration:none;">
+                <h4 style="color:#fff;">Interpretable SQL Injection Detection: Lightweight Decision Trees with SHAP-Enhanced Deployment</h4>
+            </a>
+            <p class="w3-text-grey">2026 IEEE 2nd International Conference on QPAIN | Author: <b>Showkot Hosen</b></p>
+        </div>
+        <div class="w3-container w3-margin-bottom">
+            <a href="#" style="text-decoration:none;">
+                <h4 style="color:#fff;">XAI-Powered Vision: Making CNN Malware Classifier Transparent for Cybersecurity</h4>
+            </a>
+            <p class="w3-text-grey">2026 IEEE 2nd International Conference on QPAIN | Author: <b>Showkot Hosen</b></p>
+        </div>
+        <div class="w3-container w3-margin-bottom">
+            <a href="https://ieeexplore.ieee.org/document/11012922" target="_blank" style="text-decoration:none;">
+                <h4>Aircraft Detection in Satellite Images Using CNN and Sliding Window Method</h4>
+            </a>
+            <p class="w3-text-grey">2025 International Conference on ECCE | Author: <b>Showkot Hosen</b></p>
+        </div>
+    </div>
+
+    <div class="w3-content w3-padding-64" id="experience">
+        <h3 style="font-weight:bold; color:#07f1fa;">EXPERIENCES</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-container w3-margin-bottom">
+            <h4 class="w3-text-white">Cybersecurity Research Student</h4>
+            <p class="w3-text-white">CUET</p>
+            <p class="w3-text-grey">Hands-on research on IDS/IPS and ML-based cyber defense systems. Participation in national CTF competitions and OSINT investigations.</p>
+        </div>
+        <div class="w3-container w3-margin-bottom">
+            <h4 class="w3-text-white">Cyberhunt - Cybersecurity Mentorship Lead</h4>
+            <p class="w3-text-white">CUET | 2025 – Present</p>
+            <p class="w3-text-grey">Mentoring junior students in the fields of Cybersecurity and Machine Learning research. Organizing workshops on ethical hacking foundations.</p>
+        </div>
+        <div class="w3-container w3-margin-bottom">
+            <h4 class="w3-text-white">Industrial Visit - BSCL (Bangabandhu Satellite City)</h4>
+            <p class="w3-text-grey">Focused on satellite communication infrastructure, signal monitoring, and ground station security protocols.</p>
+        </div>
+    </div>
+
+    <div class="w3-content w3-padding-64" id="certifications">
+        <h3 style="font-weight:bold; color:#07f1fa;">KEY CERTIFICATIONS</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <h4 style="font-weight:bold; color:#00e5ff; margin-top:20px;">Cybersecurity</h4>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/9HZb3GHS/CC.png" alt="ISC2 CC" style="width:100%"><p class="w3-center">(ISC)² Certified in Cybersecurity (CC) Passed</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/kgdNkzNB/Screenshot-2026-03-21-230514.png" alt="ISC2 Coursera" style="width:100%"><p class="w3-center">(ISC)² CC Specialization from Coursera</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/G3TXnR8n/Screenshot-2026-01-04-004234.png" alt="THM Advent" style="width:100%"><p class="w3-center">THM Advent of Cyber 2025</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/5x6MyVty/Screenshot-2025-08-13-231447.png" alt="THM Pre-Security" style="width:100%"><p class="w3-center">THM Pre Security Path</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co/99ZMgJ9S/Screenshot-2025-07-03-215434.png" alt="Ethical Hacker" style="width:100%"><p class="w3-center">Cisco Ethical Hacker</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co/FbggwyWT/Screenshot-2025-05-26-215922.png" alt="Cybersecurity certificates" style="width:100%"><p class="w3-center">Penetration Testing, Threat Hunting, and Cryptography Specialist</p></div>
+        
+        <h4 style="font-weight:bold; color:#00e5ff; margin-top:20px;">Machine Learning</h4>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co/cS0stmCg/Screenshot-2026-03-21-231309.png" alt="AI for Cyber" style="width:100%"><p class="w3-center">Introduction to AI for Cybersecurity</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co/Ywc1NjW/Screenshot-2025-08-13-230611.png" alt="ML Cyber" style="width:100%"><p class="w3-center">ML and Emerging Tech in Cybersecurity</p></div>
+        
+        <h4 style="font-weight:bold; color:#00e5ff; margin-top:20px;">Python & Others</h4>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co/4R1Lmz3K/edge.jpg" alt="EDGE Python" style="width:100%"><p class="w3-center">EDGE Python Professional Certification</p></div>
+        <div class="w3-margin-bottom"><img src="https://i.ibb.co/h1DB7t6X/badges.png" alt="Cisco Badges" style="width:100%"><p class="w3-center">Cisco Networking Academy: 22+ Badges Gained</p></div>
+        
+        <div class="w3-center w3-padding-16">
+            <a href="https://www.linkedin.com/in/showkot-hosen10/" target="_blank" class="w3-button w3-hover-blue w3-black">See LinkedIn for 22+ certificates</a>
+        </div>
+    </div>
+
+    <div class="w3-content w3-padding-64" id="projects">
+        <h3 style="font-weight:bold; color:#07f1fa;">PROJECTS</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-margin-bottom"><h4><a href="https://drive.google.com/file/d/1Ce8MpCGeDdzeRjSaanx6dUzzXLQjgv4r/view" target="_blank" class="w3-text-white">SEC-IoT Industrial IoT Monitoring</a></h4><p class="w3-text-grey">Built with Flask + Scikit-learn to detect anomalies in industrial sensors.</p></div>
+        <div class="w3-margin-bottom"><h4><a href="https://www.linkedin.com/posts/showkot-hosen10_cybersecurity-ml-waf-activity-7243936494793617409-N2-m" target="_blank" class="w3-text-white">MLWAF - ML Powered Firewall</a></h4><p class="w3-text-grey">Real-time SQL injection and XSS detection using Machine Learning models.</p></div>
+        <div class="w3-margin-bottom"><h4><a href="#" class="w3-text-white">Text Steganography Detection</a></h4><p class="w3-text-grey">Deep Learning based covert data defense using LSB and linguistic analysis.</p></div>
+        <div class="w3-margin-bottom"><h4><a href="#" class="w3-text-white">Malware Analysis: Chrome Extensions</a></h4><p class="w3-text-grey">Dynamic and static analysis of malicious browser extensions.</p></div>
+        <div class="w3-margin-bottom"><h4><a href="#" class="w3-text-white">Quranic Shots: E-Commerce</a></h4><p class="w3-text-grey">Full-stack web site (PHP/JavaScript) for digital Islamic content.</p></div>
+        <div class="w3-margin-bottom"><h4><a href="#" class="w3-text-white">Infrared Communication System</a></h4><p class="w3-text-grey">Hardware project using IR modules for short-range wireless data transfer.</p></div>
+    </div>
+
+    <div class="w3-content w3-padding-64" id="community">
+        <h3 style="font-weight:bold; color:#07f1fa;">COMMUNITY CONTRIBUTION</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <p class="w3-text-white">I am passionate about sharing knowledge and mentoring. Below are two of my strategic GitHub roadmaps for the community:</p>
+
+        <div class="w3-container w3-margin-bottom">
+            <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 800px; margin: auto;">
+                <a href="https://github.com/Showkot-Hosen-10/Cybersecurity_Roadmap" target="_blank">
+                    <img src="assets/img/cyber_roadmap.png" alt="Complete Cybersecurity Roadmap" style="width:100%; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
+                </a>
+                <div class="w3-container w3-padding-16">
+                    <h4 class="w3-text-white">Complete Cybersecurity Roadmap</h4>
+                    <p class="w3-text-grey">A strategic guide designed for beginners to build solid foundations in networking, ethical hacking, and system security.</p>
+                    <a href="https://github.com/Showkot-Hosen-10/Cybersecurity_Roadmap" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
+                        <i class="fa fa-github"></i> GitHub Resource
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-container w3-margin-bottom">
+            <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 800px; margin: auto;">
+                <a href="https://github.com/Showkot-Hosen-10/ISC2-CC-Roadmap" target="_blank">
+                    <img src="assets/img/ccmap.png" alt="ISC2 CC Roadmap" style="width:100%; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
+                </a>
+                <div class="w3-container w3-padding-16">
+                    <h4 class="w3-text-white">(ISC)² CC Preparation Roadmap</h4>
+                    <p class="w3-text-grey">Leveraging my status as an (ISC)² Certified professional, I developed this guide to help peers master "Security Principles" and "Incident Response".</p>
+                    <a href="https://github.com/Showkot-Hosen-10/ISC2-CC-Roadmap" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
+                        <i class="fa fa-github"></i> GitHub Resource
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-content w3-padding-64" id="co-curricular">
+        <h3 style="font-weight:bold; color:#07f1fa;">CO-CURRICULAR ACTIVITIES</h3>
+        <hr style="width:200px" class="w3-opacity">
+        <div class="w3-container">
+            <h4 class="w3-text-white">Organizer of Stealth Flags (Televerse 1.0)</h4>
+            <p class="w3-text-grey">
+                Organized and managed a national-level cybersecurity CTF competition on the CTFd platform. Focused on vulnerability analysis and defensive security.
+            </p>
+            <h4 class="w3-text-white">Competitions & Participation</h4>
+            <ul class="w3-ul w3-text-grey">
+                <li>Machine Learning Competition: <b>BUET DL Sprint 4.0</b></li>
+                <li>Capture The Flag (CTF): <b>BCS CTF</b> and <b>UAP CTF</b></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge w3-center">
+        <a href="https://www.linkedin.com/in/showkot-hosen10/" target="_blank" class="w3-hover-text-indigo"><i class="fa fa-linkedin w3-hover-opacity w3-margin-right"></i></a>
+        <a href="https://github.com/Showkot-Hosen-10" target="_blank" class="w3-hover-text-white"><i class="fa fa-github w3-hover-opacity w3-margin-right"></i></a>
+        <a href="https://youtube.com/@xipher-ai" target="_blank" class="w3-hover-text-red"><i class="fa fa-youtube-play w3-hover-opacity w3-margin-right"></i></a>
+        <a href="https://www.kaggle.com/showkothosen" target="_blank" class="w3-hover-text-blue" style="text-decoration:none;"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill:currentColor; width:22px; margin-bottom:4px;" class="w3-hover-opacity w3-margin-right"><path d="M18.825 23.859c-.022.021-.784.141-1.346.141-1.12 0-1.765-.304-2.229-.738L8.103 15.1l-2.072 2.023v5.454c0 .875-.412 1.423-1.423 1.423H1.423C.412 24 0 23.452 0 22.577V1.423C0 .548.412 0 1.423 0h3.185c1.011 0 1.423.548 1.423 1.423v10.957L14.301 3.7c.563-.578 1.346-.953 2.514-.953.541 0 1.286.12 1.307.141.042.042.062.062.021.125L10.233 11.7l8.613 12.034c.041.063.021.084-.021.125Z"/></svg></a>
+        <a href="https://www.researchgate.net/profile/Showkot-Hosen" target="_blank" class="w3-hover-text-teal"><i class="ai ai-researchgate w3-hover-opacity w3-margin-right"></i></a>
+        <p class="w3-small w3-margin-top">Portfolio of Showkot Hosen. Built with W3.CSS & JS.</p>
+    </footer>
+
+</div>
+
+<div id="bot-wrapper">
+    <button id="bot-launcher" onclick="toggleChat()">
+        <i class="fa fa-commenting-o w3-xlarge" id="launcher-icon" style="color:#111"></i>
+    </button>
+    <div id="chat-ui">
+        <div id="chat-ui-header">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <div style="width:10px; height:10px; background:#07f1fa; border-radius:50%"></div>
+                <span style="color:#fff; font-weight:500; font-size:14px">Showkot AI Assistant</span>
+            </div>
+            <i class="fa fa-close" style="color:#888; cursor:pointer" onclick="toggleChat()"></i>
+        </div>
+        <div id="chat-ui-body">
+            <div class="chat-bubble bot-bubble">Assalamu Alaikum! I'm Showkot's AI twin. How can I help you explore his work?</div>
+            <div id="quick-chips">
+                <button class="suggest-chip" onclick="handleChip('Research Focus')">Research Focus</button>
+                <button class="suggest-chip" onclick="handleChip('Publications')">Publications</button>
+                <button class="suggest-chip" onclick="handleChip('Certifications')">Certifications</button>
+                <button class="suggest-chip" onclick="handleChip('Projects')">Projects</button>
+            </div>
+        </div>
+        <div id="chat-ui-footer">
+            <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="checkEnter(event)">
+            <i class="fa fa-paper-plane" style="color:#07f1fa; cursor:pointer; padding:5px" onclick="processMessage()"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+// BOT BRAIN
+const KNOWLEDGE_BASE = {
+    "research": {
+        ans: "Showkot's research specializes in **XAI in Cybersecurity**, focus on making ML models transparent using SHAP and Deep Learning for IDS.",
+        guide: "Check the **ABOUT ME** section for his research philosophy."
+    },
+    "publication": {
+        ans: "He has 3 conference papers. Latest: *Interpretable SQL Injection Detection* at IEEE QPAIN 2026.",
+        guide: "Scroll to the **PUBLICATIONS** section to see links."
+    },
+    "certifications": {
+        ans: "Showkot is **(ISC)² CC Certified**, a Cisco Ethical Hacker, and holds 22+ certifications from Coursera, Cisco, and Udemy.",
+        guide: "The **CERTIFICATIONS** gallery has all the badges!"
+    },
+    "projects": {
+        ans: "Key projects include **MLWAF (ML Firewall)** and **SEC-IoT**. He also created roadmaps for Cybersecurity on GitHub.",
+        guide: "Visit the **PROJECTS** section for more."
+    },
+    "education": {
+        ans: "He is an ETE student at **CUET** with an impressive **3.63 CGPA**.",
+        guide: "See the **EDUCATION** block for timelines."
+    }
+};
+
+function toggleChat() {
+    const ui = document.getElementById('chat-ui');
+    const icon = document.getElementById('launcher-icon');
+    if(ui.style.display === 'flex') {
+        ui.style.display = 'none';
+        icon.className = 'fa fa-commenting-o w3-xlarge';
+    } else {
+        ui.style.display = 'flex';
+        icon.className = 'fa fa-chevron-down w3-large';
+    }
+}
+
+function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
+
+function handleChip(text) {
+    addMessage(text, 'user');
+    respond(text.toLowerCase());
+}
+
+function addMessage(text, type) {
+    const body = document.getElementById('chat-ui-body');
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${type}-bubble`;
+    bubble.innerHTML = text;
+    body.appendChild(bubble);
+    body.scrollTop = body.scrollHeight;
+}
+
+function processMessage() {
+    const input = document.getElementById('chat-input');
+    const val = input.value.trim();
+    if(!val) return;
+    addMessage(val, 'user');
+    input.value = "";
+    respond(val.toLowerCase());
+}
+
+function respond(query) {
+    setTimeout(() => {
+        let match = null;
+        if(query.includes("research") || query.includes("focus")) match = KNOWLEDGE_BASE.research;
+        else if(query.includes("pub") || query.includes("paper")) match = KNOWLEDGE_BASE.publication;
+        else if(query.includes("cert") || query.includes("cc")) match = KNOWLEDGE_BASE.certifications;
+        else if(query.includes("proj")) match = KNOWLEDGE_BASE.projects;
+        else if(query.includes("edu") || query.includes("cuet") || query.includes("cgpa")) match = KNOWLEDGE_BASE.education;
+
+        if(match) {
+            addMessage(match.ans, 'bot');
+            addMessage(`<i class="fa fa-info-circle"></i> Guidance: ${match.guide}`, 'bot');
+        } else {
+            addMessage("I'm trained on Showkot's professional background. Try asking about his **Research, CGPA, or (ISC)² CC Certification**.", 'bot');
+        }
+    }, 600);
+}
+
+function toggleTheme() {
+    var body = document.body;
+    var icon = document.getElementById("theme-icon");
+    var btn = document.getElementById("theme-toggle");
+    body.classList.toggle("light-theme");
+    if (body.classList.contains("light-theme")) {
+        icon.classList.replace("fa-sun-o", "fa-moon-o");
+        btn.classList.replace("w3-white", "w3-black");
+        btn.classList.replace("w3-text-black", "w3-text-white");
+    } else {
+        icon.classList.replace("fa-moon-o", "fa-sun-o");
+        btn.classList.replace("w3-black", "w3-white");
+        btn.classList.replace("w3-text-white", "w3-text-black");
+    }
+}
+</script>
+
+</body>
+</html>
