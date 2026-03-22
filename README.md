@@ -1,6 +1,6 @@
 # 🛡️ Showkot Hosen | XAI & Cybersecurity Portfolio
 
-[![Website](https://img.shields.io/badge/Live-Portfolio-07f1fa?style=for-the-badge&logo=google-chrome&logoColor=white)](https://Showkot-Hosen-10.github.io/)
+[![Website](https://img.shields.io/badge/Live-Portfolio-07f1fa?style=for-the-badge&logo=google-chrome&logoColor=white)](https://showkot-hosen-10.github.io/showkotsfolio/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/showkot-hosen10/)
 [![Kaggle](https://img.shields.io/badge/Kaggle-Expert-00e5ff?style=for-the-badge&logo=kaggle)](https://www.kaggle.com/showkothosen)
 
