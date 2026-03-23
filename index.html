@@ -63,25 +63,26 @@
             color: #ffffff !important; /* Usually looks better white when button turns blue on hover */
         }
 
-       /* 1. Global Background & Night Mode Settings */
+      /* 1. Global Background & Night Mode Settings */
 body {
-    /* Night Mode Image from GitHub */
     background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg.png'); 
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     position: relative;
-    transition: background-image 0.5s ease-in-out;
+    /* Smooth cross-fade for the image */
+    transition: background-image 0.4s ease-in-out;
     margin: 0;
+    background-color: #0f172a; /* Fallback night color */
 }
 
 /* 2. Light Mode Image Swap */
 body.light-theme {
-    /* Light Mode Image from GitHub */
     background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg%20light.png'); 
+    background-color: #ffffff; /* Fallback light color */
 }
 
-/* 3. The Shading Overlay (Night Mode) - Increased Transparency */
+/* 3. The Shading Overlay (Night Mode) */
 body::before {
     content: "";
     position: fixed;
@@ -89,19 +90,29 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(15, 23, 42, 0.5); /* Much lighter dark shade */
+    /* Keep it slightly transparent to show the dark cyber pattern */
+    background-color: rgba(15, 23, 42, 0.7); 
     z-index: -1; 
-    transition: background-color 0.5s ease;
+    transition: background-color 0.4s ease;
 }
 
-/* 4. The Inverted Shading (Light Mode) - Increased Transparency */
+/* 4. The Inverted Shading (Light Mode) - THE FIX */
 body.light-theme::before {
-    background-color: rgba(241, 245, 249, 0.6); /* Much lighter light shade */
+    /* Set this to 1.0 (Opaque) to completely block the background image pattern */
+    background-color: rgba(255, 255, 255, 1.0); 
 }
 
-/* 5. Reduced Glassmorphism (Less Blur) */
+/* 5. Glassmorphism - Cleaned up */
 #main, .contact-card-box, .w3-content {
-    backdrop-filter: blur(2px) saturate(120%); /* Drastically reduced blur for image clarity */
+    /* Remove blur in Light mode to prevent "muddy" white patterns */
+    backdrop-filter: blur(2px);
+    transition: backdrop-filter 0.3s ease;
+}
+
+body.light-theme #main, 
+body.light-theme .contact-card-box, 
+body.light-theme .w3-content {
+    backdrop-filter: none; /* Keeps the light mode crisp and full white */
 }
     </style>
 </head>
