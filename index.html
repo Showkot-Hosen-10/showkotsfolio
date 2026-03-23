@@ -366,6 +366,7 @@ My transition into research was marked by the publication of my first co-authore
 
 <script>
 // BOT BRAIN
+    /* --- CHATBOT KNOWLEDGE BASE --- */
 const KNOWLEDGE_BASE = {
     "research": {
         ans: "Showkot's research specializes in **XAI in Cybersecurity**, focus on making ML models transparent using SHAP and Deep Learning for IDS.",
@@ -386,7 +387,7 @@ const KNOWLEDGE_BASE = {
     "education": {
         ans: "He is an ETE student at **CUET** with an impressive **3.63 CGPA**.",
         guide: "See the **EDUCATION** block for timelines."
-    }
+    },
 
     "academic_foundation": {
     "institution": "CUET (Chittagong University of Engineering and Technology)",
@@ -420,6 +421,30 @@ const KNOWLEDGE_BASE = {
   }
 };
 
+
+
+/* --- UI FUNCTIONALITY --- */
+
+function toggleTheme() {
+    const body = document.body;
+    const icon = document.getElementById("theme-icon");
+    const btn = document.getElementById("theme-toggle");
+
+    // Toggle the theme class
+    body.classList.toggle("light-theme");
+
+    // Update icons and button colors based on current state
+    if (body.classList.contains("light-theme")) {
+        icon.classList.replace("fa-sun-o", "fa-moon-o");
+        btn.classList.replace("w3-white", "w3-black");
+        btn.classList.replace("w3-text-black", "w3-text-white");
+    } else {
+        icon.classList.replace("fa-moon-o", "fa-sun-o");
+        btn.classList.replace("w3-black", "w3-white");
+        btn.classList.replace("w3-text-white", "w3-text-black");
+    }
+}
+
 function toggleChat() {
     const ui = document.getElementById('chat-ui');
     const icon = document.getElementById('launcher-icon');
@@ -432,7 +457,9 @@ function toggleChat() {
     }
 }
 
-function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
+function checkEnter(e) { 
+    if (e.key === 'Enter') processMessage(); 
+}
 
 function handleChip(text) {
     addMessage(text, 'user');
@@ -457,38 +484,28 @@ function processMessage() {
     respond(val.toLowerCase());
 }
 
+/* --- CHATBOT LOGIC --- */
+
 function respond(query) {
     setTimeout(() => {
         let match = null;
-        if(query.includes("research") || query.includes("focus")) match = KNOWLEDGE_BASE.research;
-        else if(query.includes("pub") || query.includes("paper")) match = KNOWLEDGE_BASE.publication;
-        else if(query.includes("cert") || query.includes("cc")) match = KNOWLEDGE_BASE.certifications;
-        else if(query.includes("proj")) match = KNOWLEDGE_BASE.projects;
-        else if(query.includes("edu") || query.includes("cuet") || query.includes("cgpa")) match = KNOWLEDGE_BASE.education;
 
-        if(match) {
+        // Logic routing based on user input
+        if (query.includes("research") || query.includes("focus") || query.includes("xai")) match = KNOWLEDGE_BASE.research;
+        else if (query.includes("pub") || query.includes("paper")) match = KNOWLEDGE_BASE.publication;
+        else if (query.includes("cert") || query.includes("cc") || query.includes("isc2")) match = KNOWLEDGE_BASE.certifications;
+        else if (query.includes("proj")) match = KNOWLEDGE_BASE.projects;
+        else if (query.includes("edu") || query.includes("cuet") || query.includes("cgpa")) match = KNOWLEDGE_BASE.education;
+        else if (query.includes("start") || query.includes("how") || query.includes("origin") || query.includes("hackerrank")) match = KNOWLEDGE_BASE.origin;
+        else if (query.includes("cyber") || query.includes("pivot") || query.includes("nizam")) match = KNOWLEDGE_BASE.pivot;
+
+        if (match) {
             addMessage(match.ans, 'bot');
             addMessage(`<i class="fa fa-info-circle"></i> Guidance: ${match.guide}`, 'bot');
         } else {
-            addMessage("I'm trained on Showkot's professional background. Try asking about his **Research, CGPA, or (ISC)² CC Certification**.", 'bot');
+            addMessage("I'm trained on Showkot's professional background. Try asking about his **Research**, **Cyber Pivot**, or **HackerRank journey**.", 'bot');
         }
     }, 600);
-}
-
-function toggleTheme() {
-    var body = document.body;
-    var icon = document.getElementById("theme-icon");
-    var btn = document.getElementById("theme-toggle");
-    body.classList.toggle("light-theme");
-    if (body.classList.contains("light-theme")) {
-        icon.classList.replace("fa-sun-o", "fa-moon-o");
-        btn.classList.replace("w3-white", "w3-black");
-        btn.classList.replace("w3-text-black", "w3-text-white");
-    } else {
-        icon.classList.replace("fa-moon-o", "fa-sun-o");
-        btn.classList.replace("w3-black", "w3-white");
-        btn.classList.replace("w3-text-white", "w3-text-black");
-    }
 }
 </script>
 
