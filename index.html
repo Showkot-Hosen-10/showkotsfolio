@@ -63,46 +63,60 @@
             color: #ffffff !important; /* Usually looks better white when button turns blue on hover */
         }
 
- /* 1. Global Background (Night Mode default) */
+ /* --- REPLACE YOUR EXISTING THEME CSS WITH THIS --- */
+
+/* 1. Global Settings */
 body {
-    background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg.png'); 
+    background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg.png') !important;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     position: relative;
-    transition: background-image 0.4s ease-in-out;
     margin: 0;
-    /* Ensure no solid color is blocking the image */
-    background-color: transparent !important; 
+    background-color: transparent !important; /* Kill the solid black/white */
 }
 
-/* 2. Light Mode Image Swap */
 body.light-theme {
     background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg%20light.png') !important;
 }
 
-/* 3. The Shading Overlay (Night Mode) */
+/* 2. The Shading Overlay (Tint) */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(15, 23, 42, 0.4); /* Slight tint for Night */
-    z-index: -1;
+    z-index: -1; /* Sits behind text, in front of image */
+    pointer-events: none; /* Let clicks pass through to buttons */
     transition: background-color 0.4s ease;
 }
 
-/* 4. The Inverted Shading (Light Mode) - CLEAR FIX */
-body.light-theme::before {
-    /* We use a very low opacity (0.1) so the image is CLEAR */
-    background-color: rgba(255, 255, 255, 0.1) !important;
+/* Night Tint */
+body:not(.light-theme)::before { background-color: rgba(15, 23, 42, 0.4); }
+
+/* Day Tint (Keep low for image clarity) */
+body.light-theme::before { background-color: rgba(255, 255, 255, 0.1) !important; }
+
+/* 3. Theme Toggle Button Fix (GAYEB FIX) */
+#theme-toggle {
+    position: fixed !important;
+    top: 20px;
+    right: 20px;
+    z-index: 9999 !important; /* Keep it on top of everything */
+    background-color: #07f1fa !important;
+    color: #000 !important;
+    border: 2px solid #000 !important;
 }
 
-/* 5. Force Clear Containers */
-#main, .w3-main, .w3-content, .contact-card-box {
-    background: transparent !important;
+/* 4. Force Clear Containers (CRITICAL) */
+#main, .w3-main, .w3-content, .w3-container, header, #about, #publication {
     background-color: transparent !important;
-    backdrop-filter: none !important; /* Removes all blur */
-    box-shadow: none !important;
+    background: transparent !important;
+    color: inherit;
+}
+
+/* Light mode text colors */
+.light-theme .w3-text-white, .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4 {
+    color: #000 !important;
 }
     </style>
 </head>
@@ -157,18 +171,17 @@ body.light-theme::before {
 
 <div class="w3-padding-large" id="main">
     
-    <header class="w3-container w3-padding-32 w3-center" id="home" style="background: transparent !important;">
-    <h3 style="font-weight:bold; color:var(--accent, #07f1fa);">SHOWKOT HOSEN</h3>
+   <header class="w3-container w3-padding-32 w3-center" id="home" style="background: transparent !important;">
+    <h3 style="font-weight:bold; color:#07f1fa;">SHOWKOT HOSEN</h3>
     
     <img src="https://i.ibb.co/1fczNTv7/Linkedin-Profile-Picture.webp" 
          alt="Showkot Hosen" 
          class="w3-image" 
          loading="lazy" 
-         style="width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto;">
+         style="width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; background: transparent !important;">
          
     <p class="w3-text-white" style="margin-top: 15px;">XAI in Cybersecurity Enthusiast and ML Based Cyber Defence Creator</p>
 </header>
-
     <div class="w3-content w3-justify w3-text-white w3-padding-64" id="about">
         <h3 style="font-weight:bold; color:#07f1fa;">ABOUT ME</h3>
         <hr style="width:200px" class="w3-opacity">
