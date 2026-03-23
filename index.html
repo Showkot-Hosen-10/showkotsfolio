@@ -142,61 +142,62 @@ My transition into research was marked by the publication of my first co-authore
             </div>
         </div>
 
-       <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-top: 32px; text-align: center;">SKILLS SUMMARY</h3>
+      <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-top: 32px; text-align: center;">SKILLS SUMMARY</h3>
 
-<div class="skills-grid-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px 0; border-top: 1px solid var(--border, #fff); border-bottom: 1px solid var(--border, #fff); margin-bottom: 24px;">
+<div class="skills-grid-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 20px 0; border-top: 1px solid var(--border, #fff); border-bottom: 1px solid var(--border, #fff); margin-bottom: 24px;">
     
-    <div class="skill-disk">Cybersecurity</div>
-    <div class="skill-disk">Machine Learning</div>
-    <div class="skill-disk">Explainable AI</div>
-    <div class="skill-disk">Research</div>
-    <div class="skill-disk">Network Security</div>
-    <div class="skill-disk">Operating Systems</div>
-    <div class="skill-disk">Academic Writing</div>
-    <div class="skill-disk">Content Creation</div>
+    <div class="skill-tile">Cybersecurity</div>
+    <div class="skill-tile">Machine Learning</div>
+    <div class="skill-tile">Explainable AI</div>
+    <div class="skill-tile">Research</div>
+    <div class="skill-tile">Network Security</div>
+    <div class="skill-tile">Operating Systems</div>
+    <div class="skill-tile">Academic Writing</div>
+    <div class="skill-tile">Content Creation</div>
 
 </div>
 
-<div style="text-align: center;">
+<div style="text-align: center; width: 100%;">
     <a href="./Academic_CV_of_Showkot_Hosen_Updated_.pdf" download style="text-decoration: none;">
-        <button class="w3-button w3-hover-blue w3-padding-large w3-section" style="border: 1px solid var(--accent, #07f1fa); color: var(--text-main, white); border-radius: 50px;">
+        <button class="w3-button w3-hover-blue w3-padding-large w3-section" style="border: 2px solid var(--accent, #07f1fa); color: var(--text-main, white); border-radius: 8px; font-weight: bold;">
             <i class="fa fa-download"></i> Download Resume
         </button>
     </a>
 </div>
 
 <style>
-    /* The "Disk" styling */
-    .skill-disk {
+    /* The Rectangular Tile styling */
+    .skill-tile {
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        width: 140px;
-        height: 140px;
-        border-radius: 50%; /* Makes it a disk */
-        border: 2px solid var(--accent, #07f1fa);
+        width: 180px; /* Rectangular width */
+        height: 60px;  /* Sleek height */
+        border-radius: 4px; /* Slight roundness for professional look */
+        border: 1px solid var(--accent, #07f1fa);
         font-size: 14px;
         font-weight: 500;
-        padding: 10px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background: transparent;
+        padding: 5px 15px;
+        transition: all 0.3s ease;
+        background: rgba(7, 241, 250, 0.05); /* Subtle tint */
     }
 
-    /* Hover effect for the disks */
-    .skill-disk:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 15px var(--accent, #07f1fa);
+    /* Hover effect for the tiles */
+    .skill-tile:hover {
+        transform: translateY(-5px); /* Pops upward */
+        box-shadow: 0 5px 15px rgba(7, 241, 250, 0.3);
         background: var(--accent, #07f1fa);
         color: #000 !important;
+        cursor: default;
     }
 
-    /* Ensure responsiveness on small screens */
+    /* Ensure responsiveness for mobile */
     @media only screen and (max-width: 600px) {
-        .skill-disk {
-            width: 100px;
-            height: 100px;
+        .skill-tile {
+            width: 140px;
             font-size: 12px;
+            height: 50px;
         }
     }
 </style>
