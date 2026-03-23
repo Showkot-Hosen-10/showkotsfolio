@@ -366,71 +366,50 @@ My transition into research was marked by the publication of my first co-authore
 
 <script>
 // BOT BRAIN
-    /* --- CHATBOT KNOWLEDGE BASE --- */
 /* --- INTELLIGENT BOT KNOWLEDGE BASE --- */
 const KNOWLEDGE_BASE = {
-    // Basic Info
     "research": {
-        ans: "Showkot specializes in **XAI in Cybersecurity**, making ML models transparent using SHAP and Deep Learning for Intrusion Detection Systems (IDS).",
+        ans: "Showkot's research specializes in **XAI in Cybersecurity**, focusing on making ML models transparent using SHAP and Deep Learning for IDS.",
         guide: "Check the **ABOUT ME** section for his research philosophy."
     },
     "publication": {
-        ans: "He has published 3 conference papers. His latest is *Interpretable SQL Injection Detection* at IEEE QPAIN 2026.",
-        guide: "Scroll to the **PUBLICATIONS** section to see the links."
+        ans: "He has 3 conference papers. Latest: *Interpretable SQL Injection Detection* at IEEE QPAIN 2026.",
+        guide: "Scroll to the **PUBLICATIONS** section to see links."
     },
     "certifications": {
-        ans: "Showkot is **(ISC)² CC Certified**, a Cisco Ethical Hacker, and holds 22+ certifications from Coursera and Udemy.",
-        guide: "The **CERTIFICATIONS** gallery has all his official badges!"
+        ans: "Showkot is **(ISC)² CC Certified**, a Cisco Ethical Hacker, and holds 22+ certifications from Coursera, Cisco, and Udemy.",
+        guide: "The **CERTIFICATIONS** gallery has all the badges!"
     },
     "projects": {
-        ans: "Key projects include **MLWAF (ML-powered Firewall)** and **SEC-IoT**. He also maintains Cybersecurity roadmaps on GitHub.",
-        guide: "Visit the **PROJECTS** section for more details."
+        ans: "Key projects include **MLWAF (ML Firewall)** and **SEC-IoT**. He also created roadmaps for Cybersecurity on GitHub.",
+        guide: "Visit the **PROJECTS** section for more."
     },
     "education": {
-        ans: "He is an ETE student at **CUET** with a strong **3.63 CGPA**, focusing on electronics and telecommunications.",
-        guide: "See the **EDUCATION** block for his academic timeline."
+        ans: "He is an ETE student at **CUET** with an impressive **3.63 CGPA**.",
+        guide: "See the **EDUCATION** block for timelines."
     },
-
-    // Origin & Academic Foundation (Origin Story)
     "origin": {
-        ans: "Showkot started at CUET by solving **65+ HackerRank problems** in C++. His first major hurdle was mastering the logic for a **diamond-shaped '*' pattern**!",
-        guide: "He still uses the **same laptop** today that he used for his first 'cout' statement."
+        ans: "He started at CUET solving **65+ HackerRank problems**. His first major challenge was the **diamond-shaped '*' pattern** logic!",
+        guide: "He still uses the same laptop today that he used for his first 'cout'!"
     },
-    "tools": {
-        ans: "He started with **Code::Blocks** but migrated to **VS Code** for Python, LaTeX, and Web Development.",
-        guide: "He uses **Oracle VirtualBox** to run Kali and Parrot OS safely."
-    },
-
-    // Cybersecurity Pivot
     "pivot": {
-        ans: "A career seminar by **Dr. Nizam Mahmood** was the spark. Once Showkot realized **'Everything is Hackable!'**, he shifted his focus entirely to security.",
-        guide: "This realization led to his 'Exponential Acceleration' in ML and Cyber studies."
+        ans: "A seminar by **Dr. Nizam Mahmood** was the spark. Once he realized **'Everything is Hackable!'**, he pivoted to security.",
+        guide: "He uses long Ramadan and Eid vacations for intense security deep-dives."
     },
     "struggles": {
-        ans: "Early on, **CIDR notation and subnetting** were his biggest hurdles, along with mastering the Zenmap GUI.",
-        guide: "He eventually conquered these through the Cisco EH course and terminal practice."
-    },
-    "strategy": {
-        ans: "He didn't learn daily—instead, he used **Ramadan and Eid vacations** for 'deep-work sprints' to dive into Cybersecurity with maximum focus.",
-        guide: "He considers his early 'CGPA dip' as a period of patient foundation building."
-    },
-    "automation": {
-        ans: "He bridges coding and security by **automating Nmap scans** using 'vibe coding' and Python scripts.",
-        guide: "His favorite terminal milestones include mastering the **cat command** and **nano** for Bash automation."
+        ans: "Early on, **CIDR notation and subnetting** were his biggest hurdles, alongside mastering the Zenmap GUI.",
+        guide: "He bridges coding and security by automating Nmap scans via 'vibe coding'."
     }
 };
 
-/* --- UI FUNCTIONALITY --- */
-
+/* --- THEME LOGIC --- */
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById("theme-icon");
     const btn = document.getElementById("theme-toggle");
 
-    // Toggle the theme class
     body.classList.toggle("light-theme");
 
-    // Update icons and button colors based on current state
     if (body.classList.contains("light-theme")) {
         icon.classList.replace("fa-sun-o", "fa-moon-o");
         btn.classList.replace("w3-white", "w3-black");
@@ -442,6 +421,7 @@ function toggleTheme() {
     }
 }
 
+/* --- CHATBOT LOGIC --- */
 function toggleChat() {
     const ui = document.getElementById('chat-ui');
     const icon = document.getElementById('launcher-icon');
@@ -454,9 +434,7 @@ function toggleChat() {
     }
 }
 
-function checkEnter(e) { 
-    if (e.key === 'Enter') processMessage(); 
-}
+function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
 
 function handleChip(text) {
     addMessage(text, 'user');
@@ -481,38 +459,25 @@ function processMessage() {
     respond(val.toLowerCase());
 }
 
-/* --- INTELLIGENT RESPONSE LOGIC --- */
 function respond(query) {
     setTimeout(() => {
         let match = null;
-        const q = query.toLowerCase();
+        if(query.includes("research") || query.includes("xai")) match = KNOWLEDGE_BASE.research;
+        else if(query.includes("pub") || query.includes("paper")) match = KNOWLEDGE_BASE.publication;
+        else if(query.includes("cert") || query.includes("cc")) match = KNOWLEDGE_BASE.certifications;
+        else if(query.includes("proj")) match = KNOWLEDGE_BASE.projects;
+        else if(query.includes("edu") || query.includes("cgpa")) match = KNOWLEDGE_BASE.education;
+        else if(query.includes("start") || query.includes("origin") || query.includes("hackerrank")) match = KNOWLEDGE_BASE.origin;
+        else if(query.includes("pivot") || query.includes("nizam") || query.includes("why")) match = KNOWLEDGE_BASE.pivot;
+        else if(query.includes("hard") || query.includes("struggle") || query.includes("cidr")) match = KNOWLEDGE_BASE.struggles;
 
-        // Intelligent Keyword Mapping
-        if (q.includes("research") || q.includes("xai") || q.includes("shap")) match = KNOWLEDGE_BASE.research;
-        else if (q.includes("pub") || q.includes("paper") || q.includes("ieee")) match = KNOWLEDGE_BASE.publication;
-        else if (q.includes("cert") || q.includes("cc") || q.includes("isc2")) match = KNOWLEDGE_BASE.certifications;
-        else if (q.includes("project") || q.includes("mlwaf") || q.includes("github")) match = KNOWLEDGE_BASE.projects;
-        else if (q.includes("edu") || q.includes("cuet") || q.includes("cgpa")) match = KNOWLEDGE_BASE.education;
-        
-        // Origin & Foundation keywords
-        else if (q.includes("start") || q.includes("begin") || q.includes("hackerrank") || q.includes("laptop") || q.includes("diamond")) match = KNOWLEDGE_BASE.origin;
-        else if (q.includes("tool") || q.includes("vscode") || q.includes("linux") || q.includes("virtualbox")) match = KNOWLEDGE_BASE.tools;
-        
-        // Pivot & Strategy keywords
-        else if (q.includes("pivot") || q.includes("nizam") || q.includes("hackable") || q.includes("why")) match = KNOWLEDGE_BASE.pivot;
-        else if (q.includes("hard") || q.includes("struggle") || q.includes("cidr") || q.includes("subnet")) match = KNOWLEDGE_BASE.struggles;
-        else if (q.includes("vacation") || q.includes("ramadan") || q.includes("eid") || q.includes("study")) match = KNOWLEDGE_BASE.strategy;
-        else if (q.includes("nmap") || q.includes("bash") || q.includes("automate") || q.includes("nano")) match = KNOWLEDGE_BASE.automation;
-
-        if (match) {
+        if(match) {
             addMessage(match.ans, 'bot');
-            addMessage(`<i class="fa fa-info-circle"></i> ${match.guide}`, 'bot');
+            addMessage(`<i class="fa fa-info-circle"></i> Guidance: ${match.guide}`, 'bot');
         } else {
-            addMessage("I can tell you about Showkot's **Research**, **HackerRank journey**, or how he spent his **Ramadan vacations** learning security!", 'bot');
+            addMessage("I can tell you about Showkot's **Research**, **Cyber Pivot**, or **HackerRank journey**!", 'bot');
         }
     }, 600);
-}
-    
 }
 </script>
 
