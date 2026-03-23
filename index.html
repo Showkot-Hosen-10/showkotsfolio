@@ -47,6 +47,21 @@
         .suggest-chip:hover { background: #07f1fa; color: #111; }
         #chat-ui-footer { padding: 12px; background: #222; border-top: 1px solid #333; display: flex; align-items: center; gap: 8px; }
         #chat-input { flex: 1; background: #333; border: none; color: white; padding: 10px; border-radius: 8px; outline: none; }
+        /* Default (Night Mode) */
+        .resume-btn {
+            color: #ffffff !important; /* Forces white in dark mode */
+        }
+        
+        /* Light Mode Override */
+        .light-theme .resume-btn {
+            color: #000000 !important; /* Forces black in light mode */
+            border-color: var(--accent, #00008B) !important;
+        }
+        
+        /* Hover effect to keep it readable */
+        .resume-btn:hover {
+            color: #ffffff !important; /* Usually looks better white when button turns blue on hover */
+        }
     </style>
 </head>
 <body class="w3-black">
@@ -159,7 +174,8 @@ My transition into research was marked by the publication of my first co-authore
 
 <div style="text-align: center; width: 100%;">
     <a href="./Academic_CV_of_Showkot_Hosen_Updated_.pdf" download style="text-decoration: none;">
-        <button class="w3-button w3-hover-blue w3-padding-large w3-section" style="border: 2px solid var(--accent, #07f1fa); color: var(--text-main, white); border-radius: 8px; font-weight: bold;">
+        <button class="w3-button w3-hover-blue w3-padding-large w3-section resume-btn" 
+                style="border: 2px solid var(--accent, #07f1fa); border-radius: 8px; font-weight: bold; background: transparent;">
             <i class="fa fa-download"></i> Download Resume
         </button>
     </a>
