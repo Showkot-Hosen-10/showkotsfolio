@@ -63,7 +63,7 @@
             color: #ffffff !important; /* Usually looks better white when button turns blue on hover */
         }
 
-    /* 1. Global Background & Night Mode Settings */
+   /* 1. Global Background (Night Mode default) */
 body {
     background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg.png'); 
     background-attachment: fixed;
@@ -72,38 +72,37 @@ body {
     position: relative;
     transition: background-image 0.4s ease-in-out;
     margin: 0;
+    /* Ensure no solid color is blocking the image */
+    background-color: transparent !important; 
 }
 
 /* 2. Light Mode Image Swap */
 body.light-theme {
-    background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg%20light.png'); 
+    background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg%20light.png') !important;
 }
 
-/* 3. The Shading Overlay (Night Mode) - ULTRA CLEAR */
+/* 3. The Shading Overlay (Night Mode) */
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 0.3 opacity keeps the image 70% visible/clear */
-    background-color: rgba(15, 23, 42, 0.3); 
-    z-index: -1; 
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(15, 23, 42, 0.4); /* Slight tint for Night */
+    z-index: -1;
     transition: background-color 0.4s ease;
 }
 
-/* 4. The Inverted Shading (Light Mode) - ULTRA CLEAR */
+/* 4. The Inverted Shading (Light Mode) - CLEAR FIX */
 body.light-theme::before {
-    /* 0.2 opacity makes the light image pop while keeping black text readable */
-    background-color: rgba(255, 255, 255, 0.2); 
+    /* We use a very low opacity (0.1) so the image is CLEAR */
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 5. REMOVED BLUR - This makes everything sharp */
-#main, .contact-card-box, .w3-content {
-    backdrop-filter: none !important; 
+/* 5. Force Clear Containers */
+#main, .w3-main, .w3-content, .contact-card-box {
     background: transparent !important;
-    transition: 0.3s;
+    background-color: transparent !important;
+    backdrop-filter: none !important; /* Removes all blur */
+    box-shadow: none !important;
 }
     </style>
 </head>
