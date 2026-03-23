@@ -236,6 +236,22 @@ My transition into research was marked by the publication of my first co-authore
     /* This makes text Dark (Black) in Light mode */
     color: #000000;
 }
+
+    /* Default Night Mode - White Text */
+.linkedin-btn {
+    color: #ffffff !important;
+}
+
+/* Light Mode - Black Text */
+.light-theme .linkedin-btn {
+    color: #000000 !important;
+}
+
+/* Hover State - Keeps text white when background turns blue */
+.linkedin-btn:hover {
+    background: #38bdf8 !important;
+    color: #ffffff !important;
+}
 </style>
 
     <div class="w3-content w3-padding-64" id="publication">
@@ -435,7 +451,8 @@ My transition into research was marked by the publication of my first co-authore
 
             <a href="https://www.linkedin.com/in/showkot-hosen10" 
                target="_blank" 
-               style="text-decoration: none; color: white; border: 1px solid #38bdf8; padding: 12px 25px; border-radius: 8px; font-weight: bold; transition: 0.3s; display: flex; align-items: center; gap: 10px;">
+               class="linkedin-btn"
+               style="text-decoration: none; border: 1px solid #38bdf8; padding: 12px 25px; border-radius: 8px; font-weight: bold; transition: 0.3s; display: flex; align-items: center; gap: 10px;">
                <span>🔗</span> LinkedIn Profile
             </a>
         </div>
