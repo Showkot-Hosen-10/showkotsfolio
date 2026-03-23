@@ -142,32 +142,64 @@ My transition into research was marked by the publication of my first co-authore
             </div>
         </div>
 
-        <h3 style="font-weight:bold; color:#07f1fa; margin-top: 32px;">SKILLS SUMMARY</h3>
-        <div class="w3-row" style="border-top: 1px solid #fff; border-bottom: 1px solid #fff; padding-top: 16px; padding-bottom: 16px; margin-bottom: 16px;">
-          <div class="w3-col s12 m6">
-                    <ul class="w3-ul">
-                        <li>Cybersecurity</li>
-                        <li>Machine Learning</li>
-                        <li>Explainable AI</li>
-                        <li>Research</li>
-                    </ul>
-        </div>
+       <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-top: 32px; text-align: center;">SKILLS SUMMARY</h3>
 
-<div class="w3-col s12"><hr class="w3-border-grey" style="margin:10px 0"></div>
+<div class="skills-grid-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px 0; border-top: 1px solid var(--border, #fff); border-bottom: 1px solid var(--border, #fff); margin-bottom: 24px;">
+    
+    <div class="skill-disk">Cybersecurity</div>
+    <div class="skill-disk">Machine Learning</div>
+    <div class="skill-disk">Explainable AI</div>
+    <div class="skill-disk">Research</div>
+    <div class="skill-disk">Network Security</div>
+    <div class="skill-disk">Operating Systems</div>
+    <div class="skill-disk">Academic Writing</div>
+    <div class="skill-disk">Content Creation</div>
 
-        <div class="w3-col s12 m6">
-                    <ul class="w3-ul">
-                        <li>Network Security</li>
-                        <li>Operating Systems</li>
-                        <li>Academic Writing</li>
-                        <li>Content Creation</li>
-                    </ul>
-        </div>
-        </div>
-        <a href="./Academic_CV_of_Showkot_Hosen_Updated_.pdf" download>
-            <button class="w3-button w3-text-white w3-hover-blue w3-padding-large w3-section"><i class="fa fa-download"></i> Download Resume</button>
-        </a>
-    </div>
+</div>
+
+<div style="text-align: center;">
+    <a href="./Academic_CV_of_Showkot_Hosen_Updated_.pdf" download style="text-decoration: none;">
+        <button class="w3-button w3-hover-blue w3-padding-large w3-section" style="border: 1px solid var(--accent, #07f1fa); color: var(--text-main, white); border-radius: 50px;">
+            <i class="fa fa-download"></i> Download Resume
+        </button>
+    </a>
+</div>
+
+<style>
+    /* The "Disk" styling */
+    .skill-disk {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%; /* Makes it a disk */
+        border: 2px solid var(--accent, #07f1fa);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: transparent;
+    }
+
+    /* Hover effect for the disks */
+    .skill-disk:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px var(--accent, #07f1fa);
+        background: var(--accent, #07f1fa);
+        color: #000 !important;
+    }
+
+    /* Ensure responsiveness on small screens */
+    @media only screen and (max-width: 600px) {
+        .skill-disk {
+            width: 100px;
+            height: 100px;
+            font-size: 12px;
+        }
+    }
+</style>
 
     <div class="w3-content w3-padding-64" id="publication">
         <h3 style="font-weight:bold; color:#07f1fa;">PUBLICATIONS</h3>
