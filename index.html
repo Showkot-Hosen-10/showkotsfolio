@@ -72,20 +72,22 @@
         border: 1px solid #ccc; width: 320px; max-width: 100%; height: 85px; 
         display: flex; justify-content: center; align-items: center; background: #111; border-radius: 8px;
     }
- /* Badge Buttons in Light Mode */
-.light-theme .badge-btn {
-    background-color: #f4f4f4 !important; /* Grayish-white / Ash */
-    color: #000 !important;              /* Black text */
-    border: 1px solid #ddd !important;   /* Subtle border for definition */
-    font-weight: bold;
-}
 
-/* Maintain the blue hover effect for Light Mode */
-.light-theme .badge-btn:hover {
-    background-color: #2196F3 !important;
-    color: #fff !important;
-    border-color: #2196F3 !important;
-}
+    /* Badge Buttons in Light Mode */
+    .light-theme .badge-btn {
+        background-color: #f4f4f4 !important; /* Grayish-white / Ash */
+        color: #000 !important;              /* Black text */
+        border: 1px solid #ddd !important;   /* Subtle border for definition */
+        font-weight: bold;
+    }
+
+    /* Maintain the blue hover effect for Light Mode */
+    .light-theme .badge-btn:hover {
+        background-color: #2196F3 !important;
+        color: #fff !important;
+        border-color: #2196F3 !important;
+    }
+
     .contact-card-box {
         background: #0f172a; padding: 40px; border-radius: 15px; border: 1px solid #1e293b;
         max-width: 800px; margin: 0 auto; transition: 0.3s; color: #ffffff; 
@@ -102,7 +104,27 @@
     .light-theme span, 
     .light-theme .w3-text-grey {
         color: #000 !important;
-        font-weight: 400 !important; /* Forces normal weight for descriptions */
+        font-weight: 400 !important;
+    }
+
+    /* NEW: Divider Lines (Underlines between sections) */
+    .light-theme hr {
+        border-color: #000 !important; 
+        opacity: 0.2; 
+    }
+
+    /* NEW: Sidebar & Mobile Navbar specific overrides */
+    .light-theme .w3-sidebar .w3-bar-item {
+        border-bottom: 1px solid rgba(0,0,0,0.1); 
+    }
+
+    .light-theme #myNavbar .w3-bar {
+        background-color: #ffffff !important;   
+        border-bottom: 1px solid #ddd !important; 
+    }
+
+    .light-theme #myNavbar .w3-bar-item {
+        color: #000 !important; 
     }
 
     /* SPECIFIC SUBHEADINGS (Bold & Black) */
@@ -113,7 +135,7 @@
     .light-theme b, 
     .light-theme strong {
         color: #000 !important;
-        font-weight: 700 !important; /* Bold for subheadings only */
+        font-weight: 700 !important;
     }
 
     /* Section Titles (Experience, Publications, etc) */
@@ -130,16 +152,16 @@
     .light-theme #community p { color: #000 !important; font-weight: normal; }
     .light-theme #community hr { border-color: #000 !important; opacity: 0.2; }
 
-  /* Contact Card in Light Mode */
-.light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; }
+    /* Contact Card in Light Mode */
+    .light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; }
 
-/* Add the new rule right here */
-.light-theme .linkedin-btn, 
-.light-theme .linkedin-btn span { 
-    color: #000000 !important; 
-}
+    .light-theme .linkedin-btn, 
+    .light-theme .linkedin-btn span { 
+        color: #000000 !important; 
+    }
 
-.light-theme .linkedin-btn:hover { color: #ffffff !important; }
+    .light-theme .linkedin-btn:hover { color: #ffffff !important; }
+
     /* Certificate Button Area */
     .light-theme .w3-center.w3-padding-16 .w3-button.w3-black {
         background-color: #f4f4f4 !important; color: #000 !important; border: 1px solid #ddd !important;
@@ -148,7 +170,7 @@
         background-color: #2196F3 !important; color: #fff !important;
     }
 
-    /* Sidebar/Navbar Overrides */
+    /* Sidebar/Navbar Media Queries Overrides */
     @media only screen and (min-width: 601px) {
         .light-theme .w3-sidebar { background-color: #ffffff !important; border-right: 1px solid #ddd; }
         .light-theme .w3-sidebar .w3-bar-item { color: #000 !important; }
