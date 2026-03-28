@@ -101,10 +101,8 @@
     /* 7. LIGHT THEME SPECIFIC OVERRIDES */
     .light-theme { color: #000 !important; }
     
-    /* Force research collab text to black in light mode */
     .light-theme .research-collab { color: #000 !important; }
 
-    /* General Text Color (Normal Weight) */
     .light-theme p, 
     .light-theme li, 
     .light-theme span, 
@@ -113,79 +111,69 @@
         font-weight: 400 !important;
     }
 
-    /* NEW: Divider Lines (Underlines between sections) */
-    .light-theme hr {
-        border-color: #000 !important; 
-        opacity: 0.2; 
-    }
+    .light-theme hr { border-color: #000 !important; opacity: 0.2; }
 
-    /* NEW: Sidebar & Mobile Navbar specific overrides */
-    .light-theme .w3-sidebar .w3-bar-item {
-        border-bottom: 1px solid rgba(0,0,0,0.1); 
-    }
+    .light-theme .w3-sidebar .w3-bar-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
 
     .light-theme #myNavbar .w3-bar {
         background-color: #ffffff !important;   
         border-bottom: 1px solid #ddd !important; 
     }
 
-    .light-theme #myNavbar .w3-bar-item {
-        color: #000 !important; 
+    .light-theme #myNavbar .w3-bar-item { color: #000 !important; }
+
+    /* CHATBOT LIGHT THEME OVERRIDES */
+    .light-theme #chat-ui {
+        background: #ffffff !important;
+        border-color: #ddd !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    }
+    .light-theme #chat-header {
+        background: #f8f9fa !important;
+        border-bottom: 1px solid #eee !important;
+        color: #000 !important;
+    }
+    .light-theme #chat-messages { background: #ffffff !important; }
+    .light-theme #chat-input-area {
+        background: #f8f9fa !important;
+        border-top: 1px solid #eee !important;
+    }
+    .light-theme #chat-input {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #ddd !important;
     }
 
-    /* SPECIFIC SUBHEADINGS (Bold & Black) */
-    .light-theme h4, 
-    .light-theme h5, 
-    .light-theme h6,
-    .light-theme .w3-wide,
-    .light-theme b, 
-    .light-theme strong {
+    .light-theme h4, .light-theme h5, .light-theme h6, .light-theme .w3-wide, .light-theme b, .light-theme strong {
         color: #000 !important;
         font-weight: 700 !important;
     }
 
-    /* Section Titles (Experience, Publications, etc) */
-    .light-theme .badge-title, 
-    .light-theme h3, 
-    .light-theme .w3-text-blue { 
+    .light-theme .badge-title, .light-theme h3, .light-theme .w3-text-blue { 
         color: #00008B !important; 
         font-weight: bold !important;
     }
 
-    /* Community Section Cards */
     .light-theme .w3-card.w3-black { background-color: #f4f4f4 !important; border-color: #ddd !important; }
     .light-theme #community h4 { color: #000 !important; font-weight: bold; }
     .light-theme #community p { color: #000 !important; font-weight: normal; }
     .light-theme #community hr { border-color: #000 !important; opacity: 0.2; }
 
-    /* Contact Card in Light Mode */
     .light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; }
-
-    .light-theme .linkedin-btn, 
-    .light-theme .linkedin-btn span { 
-        color: #000000 !important; 
-    }
-
+    .light-theme .linkedin-btn, .light-theme .linkedin-btn span { color: #000000 !important; }
     .linkedin-btn:hover { background: #38bdf8 !important; color: #ffffff !important; }
 
-    /* Certificate Button Area */
     .light-theme .w3-center.w3-padding-16 .w3-button.w3-black {
         background-color: #f4f4f4 !important; color: #000 !important; border: 1px solid #ddd !important;
     }
-    .light-theme .w3-center.w3-padding-16 .w3-button.w3-black:hover {
-        background-color: #2196F3 !important; color: #fff !important;
-    }
+    .light-theme .w3-center.w3-padding-16 .w3-button.w3-black:hover { background-color: #2196F3 !important; color: #fff !important; }
 
-    /* Sidebar/Navbar Media Queries Overrides */
     @media only screen and (min-width: 601px) {
         .light-theme .w3-sidebar { background-color: #ffffff !important; border-right: 1px solid #ddd; }
         .light-theme .w3-sidebar .w3-bar-item { color: #000 !important; }
     }
-    @media only screen and (max-width: 600px) {
-        .light-theme #myNavbar .w3-bar-item { color: #000 !important; }
-    }
+    @media only screen and (max-width: 600px) { .light-theme #myNavbar .w3-bar-item { color: #000 !important; } }
 
-    /* Tag Overrides */
     .light-theme .w3-light-grey, .light-theme .w3-grey, .light-theme .w3-tag {
         background-color: #00008B !important; color: #fff !important; font-weight: bold;
     }
@@ -201,12 +189,38 @@
     .resume-btn { color: #ffffff !important; }
     .light-theme .resume-btn { color: #000000 !important; border-color: #00008B !important; }
 
-    /* 9. CHATBOT UI */
+    /* 9. CHATBOT UI - TELEGRAM STYLE */
     #bot-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
-    #bot-launcher { width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
-    #chat-ui { display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 15px; position: absolute; bottom: 80px; right: 0; flex-direction: column; box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid #333; }
+    #bot-launcher { 
+        width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; 
+        display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; 
+        box-shadow: 0 4px 15px rgba(7, 241, 250, 0.4); transition: 0.3s;
+    }
+    #bot-launcher:hover { transform: scale(1.1); }
+    
+    #chat-ui { 
+        display: none; width: 350px; height: 500px; background: #1a1a1a; 
+        border-radius: 20px; position: absolute; bottom: 80px; right: 0; 
+        flex-direction: column; box-shadow: 0 15px 40px rgba(0,0,0,0.6); 
+        border: 1px solid #333; overflow: hidden; transition: 0.3s;
+    }
+    #chat-header { 
+        padding: 15px; background: #242424; color: #07f1fa; 
+        font-weight: bold; display: flex; align-items: center; justify-content: space-between;
+    }
+    #chat-messages { 
+        flex: 1; padding: 15px; overflow-y: auto; background: #121212;
+        display: flex; flex-direction: column; gap: 10px;
+    }
+    #chat-input-area { 
+        padding: 15px; background: #242424; display: flex; gap: 10px; align-items: center;
+    }
+    #chat-input {
+        flex: 1; background: #333; border: none; padding: 10px 15px; 
+        border-radius: 20px; color: #fff; outline: none;
+    }
 
-    /* 10. SKILLS GRID (Rectangular Tiles) */
+    /* 10. SKILLS GRID */
     .skill-tile {
         display: flex; align-items: center; justify-content: center; text-align: center;
         width: 180px; height: 60px; border-radius: 4px; border: 1px solid var(--accent, #07f1fa);
@@ -222,6 +236,7 @@
 
     @media only screen and (max-width: 600px) {
         .skill-tile { width: 140px; font-size: 12px; height: 50px; }
+        #chat-ui { width: 300px; height: 450px; right: -10px; }
     }
 </style>
     
