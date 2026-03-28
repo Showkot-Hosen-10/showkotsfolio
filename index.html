@@ -179,13 +179,23 @@
     }
 
     /* 8. UI ELEMENTS (Toggle & Resume) */
+/* 8. UI ELEMENTS (Toggle & Resume) */
     #theme-toggle {
         position: fixed !important; top: 20px; right: 20px; z-index: 9999;
         cursor: pointer; border-radius: 50%; width: 50px; height: 50px;
         display: flex; align-items: center; justify-content: center;
+        /* Default Dark Mode Look */
         background-color: #07f1fa !important; color: #000 !important; border: 2px solid #000 !important;
         box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
+
+    /* THE ADJUSTMENT: Grayish-white for Light Mode */
+    .light-theme #theme-toggle { 
+        background-color: #f4f4f4 !important; /* Grayish-white/Ash */
+        color: #000 !important;               /* Dark Icon */
+        border: 2px solid #333 !important;    /* Defined Dark Border */
+    }
+    
     .resume-btn { color: #ffffff !important; }
     .light-theme .resume-btn { color: #000000 !important; border-color: #00008B !important; }
 
