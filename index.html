@@ -18,7 +18,7 @@
     /* 2. Sidebar Logic (Desktop) */
     .w3-sidebar { 
         width: 120px; 
-        background: #1a0505 !important; /* Dark Red close to Black for Dark Theme */
+        background: #1a0505 !important; /* Dark Red-Black for Dark Theme */
         color: #fff;
     }
     
@@ -33,14 +33,13 @@
         background-position: center;
         position: relative;
         margin: 0;
-        background-color: transparent !important;
     }
 
     body.light-theme {
         background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg%20light2.png') !important;
     }
 
-    /* 4. The Shading Overlay (Tint & Blur) */
+    /* 4. Overlay & Blur (Light Mode) */
     body::before {
         content: "";
         position: fixed;
@@ -50,10 +49,8 @@
         transition: all 0.4s ease;
     }
 
-    /* Night Mode Tint */
     body:not(.light-theme)::before { background-color: rgba(0, 0, 0, 0.4); }
 
-    /* Light Mode: White-ish Blurry Overlay */
     body.light-theme::before { 
         background-color: rgba(255, 255, 255, 0.25) !important; 
         backdrop-filter: blur(1px); 
@@ -65,10 +62,9 @@
     #about, #publication, #experience, #projects, #certifications {
         background-color: transparent !important;
         background: transparent !important;
-        color: inherit;
     }
 
-    /* 6. BADGE SYSTEM - Side by Side Desktop */
+    /* 6. BADGE SYSTEM */
     .badge-container {
         display: flex;
         flex-wrap: wrap;
@@ -104,17 +100,24 @@
         border-radius: 8px;
     }
 
-    /* Badge Button Styling */
+    /* Badge Button Styling & Hover */
     .badge-btn {
         margin-top: 8px;
         background-color: #000 !important;
+        color: #fff !important;
+        transition: 0.3s;
+    }
+
+    .badge-btn:hover {
+        background-color: #2196F3 !important; /* Blue hover matching navbar */
         color: #fff !important;
     }
 
     /* 7. LIGHT THEME SPECIFIC OVERRIDES */
     .light-theme { color: #000 !important; }
     
-    .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4, .light-theme li {
+    /* Skills Summary Text - Black for Light Theme */
+    .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4, .light-theme li, .light-theme span {
         color: #000 !important;
     }
 
@@ -122,14 +125,14 @@
         color: #00008B !important; 
     }
 
-    /* Sidebar Light Theme (Desktop) */
+    /* Desktop Sidebar Light Theme */
     @media only screen and (min-width: 601px) {
         .light-theme .w3-sidebar {
             background-color: #ffffff !important;
             border-right: 1px solid #ddd;
         }
         .light-theme .w3-sidebar .w3-bar-item {
-            color: #000 !important; /* Black icons in desktop light mode */
+            color: #000 !important;
         }
     }
 
@@ -140,21 +143,27 @@
         }
     }
 
-    /* Skill Boxes (Dark Blue with Black Text) */
+    /* Skill Tags (Dark Blue Box with Black Text) */
     .light-theme .w3-light-grey, .light-theme .w3-grey, .light-theme .w3-tag {
         background-color: #00008B !important; 
         color: #000 !important; 
         font-weight: bold;
     }
 
-    /* Badge Button Light Theme (White BG, Black Text, Black Border) */
+    /* Badge Button Light Theme */
     .light-theme .badge-btn {
         background-color: #fff !important;
         color: #000 !important;
         border: 1px solid #000 !important;
     }
+    
+    .light-theme .badge-btn:hover {
+        background-color: #2196F3 !important;
+        color: #fff !important;
+        border-color: #2196F3 !important;
+    }
 
-    /* 8. Theme Toggle & UI Elements */
+    /* 8. UI Elements */
     #theme-toggle {
         position: fixed !important;
         top: 20px; right: 20px; z-index: 9999;
@@ -167,9 +176,9 @@
     .resume-btn { color: #ffffff !important; }
     .light-theme .resume-btn { color: #000000 !important; border-color: #00008B !important; }
 
-    /* 9. Advanced Chatbot UI */
+    /* 9. Chatbot UI */
     #bot-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
-    #bot-launcher { width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; box-shadow: 0 5px 20px rgba(7, 241, 250, 0.4); }
+    #bot-launcher { width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; }
     #chat-ui { display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 15px; position: absolute; bottom: 80px; right: 0; flex-direction: column; box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid #333; }
 </style>
 </head>
