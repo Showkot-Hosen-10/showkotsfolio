@@ -13,18 +13,19 @@
     /* 1. Base Styles & Typography */
     body, h1, h2, h3, h4, h5, h6 { font-family: "Montserrat", sans-serif }
     .w3-row-padding img { margin-bottom: 12px }
+    html { scroll-behavior: smooth; }
     
-    /* DESKTOP SIDEBAR: Dark Theme Default */
+    /* 2. Sidebar Logic (Desktop) */
     .w3-sidebar { 
         width: 120px; 
-        background: #1a0505 !important; 
+        background: #1a0505 !important; /* Dark Red close to Black for Dark Theme */
         color: #fff;
     }
     
     #main { margin-left: 120px }
     @media only screen and (max-width: 600px) { #main { margin-left: 0 } }
 
-    /* 2. Global Background Logic */
+    /* 3. Global Background & Image Logic */
     body {
         background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg.png') !important;
         background-attachment: fixed;
@@ -32,13 +33,14 @@
         background-position: center;
         position: relative;
         margin: 0;
+        background-color: transparent !important;
     }
 
     body.light-theme {
         background-image: url('https://raw.githubusercontent.com/Showkot-Hosen-10/showkotsfolio/main/assets/img/portfolio%20bg%20light2.png') !important;
     }
 
-    /* 3. Overlay & Blur */
+    /* 4. The Shading Overlay (Tint & Blur) */
     body::before {
         content: "";
         position: fixed;
@@ -48,20 +50,25 @@
         transition: all 0.4s ease;
     }
 
+    /* Night Mode Tint */
     body:not(.light-theme)::before { background-color: rgba(0, 0, 0, 0.4); }
 
+    /* Light Mode: White-ish Blurry Overlay */
     body.light-theme::before { 
         background-color: rgba(255, 255, 255, 0.25) !important; 
         backdrop-filter: blur(1px); 
         -webkit-backdrop-filter: blur(1px);
     }
 
-    /* 4. Layout Containers */
-    #main, .w3-main, .w3-content, .w3-container, header, #about, #publication, #experience, #projects, #certifications {
+    /* 5. Force Clear Containers */
+    #main, .w3-main, .w3-content, .w3-container, header, 
+    #about, #publication, #experience, #projects, #certifications {
         background-color: transparent !important;
+        background: transparent !important;
+        color: inherit;
     }
 
-    /* 5. BADGE SYSTEM - Side by Side Desktop, Stacked Mobile */
+    /* 6. BADGE SYSTEM - Side by Side Desktop */
     .badge-container {
         display: flex;
         flex-wrap: wrap;
@@ -75,7 +82,7 @@
         flex-direction: column;
         align-items: center;
         flex: 1;
-        min-width: 320px; /* Ensures they don't get too skinny */
+        min-width: 320px;
         max-width: 400px;
     }
 
@@ -104,54 +111,66 @@
         color: #fff !important;
     }
 
-    /* Light Theme Button Overrides */
-    .light-theme .badge-btn {
-        background-color: #fff !important;
+    /* 7. LIGHT THEME SPECIFIC OVERRIDES */
+    .light-theme { color: #000 !important; }
+    
+    .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4, .light-theme li {
         color: #000 !important;
-        border: 1px solid #000 !important;
     }
 
-    /* 6. Desktop Sidebar Light Theme */
+    .light-theme .badge-title, .light-theme h3, .light-theme .w3-text-blue { 
+        color: #00008B !important; 
+    }
+
+    /* Sidebar Light Theme (Desktop) */
     @media only screen and (min-width: 601px) {
         .light-theme .w3-sidebar {
             background-color: #ffffff !important;
             border-right: 1px solid #ddd;
         }
         .light-theme .w3-sidebar .w3-bar-item {
-            color: #000 !important;
+            color: #000 !important; /* Black icons in desktop light mode */
         }
     }
 
-    /* 7. Skill Boxes & Text Fixes */
+    /* Mobile Navbar Text Color */
+    @media only screen and (max-width: 600px) {
+        .light-theme #myNavbar .w3-bar-item { 
+            color: #fff !important; 
+        }
+    }
+
+    /* Skill Boxes (Dark Blue with Black Text) */
     .light-theme .w3-light-grey, .light-theme .w3-grey, .light-theme .w3-tag {
         background-color: #00008B !important; 
         color: #000 !important; 
         font-weight: bold;
     }
 
-    .light-theme { color: #000 !important; }
-    .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4, .light-theme li {
+    /* Badge Button Light Theme (White BG, Black Text, Black Border) */
+    .light-theme .badge-btn {
+        background-color: #fff !important;
         color: #000 !important;
-    }
-    .light-theme .badge-title {
-        color: #00008B !important; /* Dark blue title in light mode */
+        border: 1px solid #000 !important;
     }
 
-    /* 8. Theme Toggle & UI */
+    /* 8. Theme Toggle & UI Elements */
     #theme-toggle {
         position: fixed !important;
         top: 20px; right: 20px; z-index: 9999;
         cursor: pointer; border-radius: 50%; width: 50px; height: 50px;
         display: flex; align-items: center; justify-content: center;
         background-color: #07f1fa !important; color: #000 !important; border: 2px solid #000 !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
     .resume-btn { color: #ffffff !important; }
     .light-theme .resume-btn { color: #000000 !important; border-color: #00008B !important; }
 
+    /* 9. Advanced Chatbot UI */
     #bot-wrapper { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
-    #bot-launcher { width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    #chat-ui { display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 15px; position: absolute; bottom: 80px; right: 0; flex-direction: column; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+    #bot-launcher { width: 60px; height: 60px; border-radius: 30px; background: #07f1fa; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; box-shadow: 0 5px 20px rgba(7, 241, 250, 0.4); }
+    #chat-ui { display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 15px; position: absolute; bottom: 80px; right: 0; flex-direction: column; box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid #333; }
 </style>
 </head>
 <body class="w3-black">
