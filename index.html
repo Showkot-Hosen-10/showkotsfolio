@@ -266,6 +266,52 @@
     @media only screen and (max-width: 600px) {
         .skill-tile { width: 140px; font-size: 12px; height: 50px; }
     }
+
+    /* 10. SKILLS GRID (Rectangular Tiles) */
+.skill-tile {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    width: 180px; 
+    height: 60px; 
+    border-radius: 4px; 
+    border: 1px solid var(--accent, #07f1fa);
+    font-size: 14px; 
+    font-weight: 500; 
+    padding: 5px 15px; 
+    transition: all 0.3s ease;
+    background: rgba(7, 241, 250, 0.05); 
+    color: #fff;
+}
+
+.skill-tile:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(7, 241, 250, 0.3);
+    background: var(--accent, #07f1fa); 
+    color: #000 !important; 
+    cursor: default;
+}
+
+/* Light Theme Adjustments */
+.light-theme .skill-tile { 
+    color: #000 !important; 
+    border-color: #00008B; 
+    font-weight: bold; 
+}
+
+.light-theme .skills-grid-container { 
+    border-color: #000 !important; 
+}
+
+/* Mobile Responsiveness */
+@media only screen and (max-width: 600px) {
+    .skill-tile { 
+        width: 140px; 
+        font-size: 12px; 
+        height: 50px; 
+    }
+}
 </style>
     
 </head>
@@ -368,6 +414,7 @@ My transition into research was marked by the publication of my first co-authore
                 </div>
             </div>
 
+<!-- SKILLS SUMMARY SECTION -->
 <h3 class="skills-title" style="font-weight:bold; color:var(--accent, #07f1fa); margin-top: 32px; text-align: center;">SKILLS SUMMARY</h3>
 
 <div class="skills-grid-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 20px 0; border-top: 1px solid var(--border, #fff); border-bottom: 1px solid var(--border, #fff); margin-bottom: 24px;">
