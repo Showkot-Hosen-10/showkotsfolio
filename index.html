@@ -18,7 +18,7 @@
     /* 2. Sidebar Logic (Desktop) */
     .w3-sidebar { 
         width: 120px; 
-        background: #1a0505 !important; /* Dark Red-Black for Dark Theme */
+        background: #1a0505 !important; 
         color: #fff;
     }
     
@@ -59,87 +59,83 @@
 
     /* 5. Force Clear Containers */
     #main, .w3-main, .w3-content, .w3-container, header, 
-    #about, #publication, #experience, #projects, #certifications {
+    #about, #publication, #experience, #projects, #certifications, #community {
         background-color: transparent !important;
         background: transparent !important;
     }
 
     /* 6. BADGE & CONTACT SYSTEM */
-    .badge-container {
-        display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px;
-    }
-
-    .badge-box {
-        display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 320px; max-width: 400px;
-    }
-
+    .badge-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
+    .badge-box { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 320px; max-width: 400px; }
     .badge-title { font-weight: bold; color: #07f1fa; margin-bottom: 8px; }
-
     .badge-frame {
         border: 1px solid #ccc; width: 320px; max-width: 100%; height: 85px; 
         display: flex; justify-content: center; align-items: center; background: #111; border-radius: 8px;
     }
-
-    .badge-btn {
-        margin-top: 8px; background-color: #000 !important; color: #fff !important; transition: 0.3s;
-    }
-
+    .badge-btn { margin-top: 8px; background-color: #000 !important; color: #fff !important; transition: 0.3s; }
     .badge-btn:hover { background-color: #2196F3 !important; color: #fff !important; }
 
-    /* Contact Card Shaded Box */
     .contact-card-box {
         background: #0f172a; padding: 40px; border-radius: 15px; border: 1px solid #1e293b;
         max-width: 800px; margin: 0 auto; transition: 0.3s; color: #ffffff; 
     }
-
     .linkedin-btn { color: #ffffff !important; transition: 0.3s; }
     .linkedin-btn:hover { background: #38bdf8 !important; color: #ffffff !important; }
 
     /* 7. LIGHT THEME SPECIFIC OVERRIDES */
     .light-theme { color: #000 !important; }
     
+    /* General Text Color */
     .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4, .light-theme li, .light-theme span {
         color: #000 !important;
     }
 
+    /* SPECIFIC SUBHEADINGS (BSc, HSC, Projects, Collab text, etc.) */
+    .light-theme h4, 
+    .light-theme h5, 
+    .light-theme h6, 
+    .light-theme .w3-opacity, 
+    .light-theme .w3-text-grey,
+    .light-theme .w3-wide {
+        color: #000 !important;
+        font-weight: bold !important;
+    }
+
+    /* Section Titles (Experience, Publications, etc) */
     .light-theme .badge-title, .light-theme h3, .light-theme .w3-text-blue { 
         color: #00008B !important; 
     }
 
-    /* Community Section Cards in Light Mode */
-    .light-theme .w3-card.w3-black {
-        background-color: #f4f4f4 !important; /* Ash Light */
-        border-color: #ddd !important;
-    }
-
-    .light-theme #community h4, .light-theme #community p { color: #000 !important; }
+    /* Community Section Cards */
+    .light-theme .w3-card.w3-black { background-color: #f4f4f4 !important; border-color: #ddd !important; }
+    .light-theme #community h4, .light-theme #community p { color: #000 !important; font-weight: bold; }
     .light-theme #community hr { border-color: #000 !important; opacity: 0.2; }
 
-    /* Contact Card in Light Mode */
-    .light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; }
+    /* Contact Card */
+    .light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; font-weight: bold; }
     .light-theme .linkedin-btn { color: #000000 !important; }
-    .light-theme .linkedin-btn:hover { color: #ffffff !important; }
 
-    /* Sidebar Overrides */
+    /* Certificate Button Area */
+    .light-theme .w3-center.w3-padding-16 .w3-button.w3-black {
+        background-color: #f4f4f4 !important; color: #000 !important; border: 1px solid #ddd !important;
+    }
+    .light-theme .w3-center.w3-padding-16 .w3-button.w3-black:hover {
+        background-color: #2196F3 !important; color: #fff !important;
+    }
+
+    /* Sidebar/Navbar Overrides */
     @media only screen and (min-width: 601px) {
         .light-theme .w3-sidebar { background-color: #ffffff !important; border-right: 1px solid #ddd; }
         .light-theme .w3-sidebar .w3-bar-item { color: #000 !important; }
     }
-
     @media only screen and (max-width: 600px) {
         .light-theme #myNavbar .w3-bar-item { color: #fff !important; }
     }
 
     /* Tag Overrides */
     .light-theme .w3-light-grey, .light-theme .w3-grey, .light-theme .w3-tag {
-        background-color: #00008B !important; color: #000 !important; font-weight: bold;
+        background-color: #00008B !important; color: #fff !important; font-weight: bold;
     }
-
-    .light-theme .badge-btn {
-        background-color: #fff !important; color: #000 !important; border: 1px solid #000 !important;
-    }
-    
-    .light-theme .badge-btn:hover { border-color: #2196F3 !important; }
 
     /* 8. UI ELEMENTS (Toggle & Resume) */
     #theme-toggle {
@@ -149,7 +145,6 @@
         background-color: #07f1fa !important; color: #000 !important; border: 2px solid #000 !important;
         box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-
     .resume-btn { color: #ffffff !important; }
     .light-theme .resume-btn { color: #000000 !important; border-color: #00008B !important; }
 
@@ -165,13 +160,11 @@
         font-size: 14px; font-weight: 500; padding: 5px 15px; transition: all 0.3s ease;
         background: rgba(7, 241, 250, 0.05); color: #fff;
     }
-
     .skill-tile:hover {
         transform: translateY(-5px); box-shadow: 0 5px 15px rgba(7, 241, 250, 0.3);
         background: var(--accent, #07f1fa); color: #000 !important; cursor: default;
     }
-
-    .light-theme .skill-tile { color: #000 !important; border-color: #00008B; }
+    .light-theme .skill-tile { color: #000 !important; border-color: #00008B; font-weight: bold; }
     .light-theme .skills-grid-container { border-color: #000 !important; }
 
     @media only screen and (max-width: 600px) {
