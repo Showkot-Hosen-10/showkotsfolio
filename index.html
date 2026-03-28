@@ -53,10 +53,11 @@
     body:not(.light-theme)::before { background-color: rgba(0, 0, 0, 0.4); }
 
     /* LIGHT MODE: Darkish Blurry Overlay */
+  /* LIGHT MODE: White-ish Blurry Overlay */
     body.light-theme::before { 
-        background-color: rgba(0, 0, 0, 0.25) !important; /* Darkish tint */
-        backdrop-filter: blur(1px); /* Blur effect */
-        -webkit-backdrop-filter: blur(4px);
+        background-color: rgba(255, 255, 255, 0.25) !important; /* White-ish tint */
+        backdrop-filter: blur(1px); /* Subtle blur effect */
+        -webkit-backdrop-filter: blur(1px);
     }
 
     /* 4. Layout Containers */
