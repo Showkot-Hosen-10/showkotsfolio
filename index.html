@@ -160,7 +160,7 @@
         color: #000000 !important; 
     }
 
-    .light-theme .linkedin-btn:hover { color: #ffffff !important; }
+    .linkedin-btn:hover { background: #38bdf8 !important; color: #ffffff !important; }
 
     /* Certificate Button Area */
     .light-theme .w3-center.w3-padding-16 .w3-button.w3-black {
@@ -176,7 +176,8 @@
         .light-theme .w3-sidebar .w3-bar-item { color: #000 !important; }
     }
     @media only screen and (max-width: 600px) {
-        .light-theme #myNavbar .w3-bar-item { color: #fff !important; }
+        /* Updated: Mobile navbar text turns black in light mode */
+        .light-theme #myNavbar .w3-bar-item { color: #000 !important; }
     }
 
     /* Tag Overrides */
@@ -218,6 +219,7 @@
         .skill-tile { width: 140px; font-size: 12px; height: 50px; }
     }
 </style>
+    
 </head>
 <body class="w3-black">
 
