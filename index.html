@@ -122,28 +122,6 @@
 
     .light-theme #myNavbar .w3-bar-item { color: #000 !important; }
 
-    /* CHATBOT LIGHT THEME OVERRIDES */
-    .light-theme #chat-ui {
-        background: #ffffff !important;
-        border: 1px solid #ddd !important;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
-    }
-    .light-theme #chat-header {
-        background: #f8f9fa !important;
-        border-bottom: 1px solid #eee !important;
-        color: #000 !important;
-    }
-    .light-theme #chat-messages { background: #ffffff !important; color: #000 !important; }
-    .light-theme #chat-input-area {
-        background: #f8f9fa !important;
-        border-top: 1px solid #eee !important;
-    }
-    .light-theme #chat-input {
-        background: #fff !important;
-        color: #000 !important;
-        border: 1px solid #ddd !important;
-    }
-
     .light-theme h4, .light-theme h5, .light-theme h6, .light-theme .w3-wide, .light-theme b, .light-theme strong {
         color: #000 !important;
         font-weight: 700 !important;
@@ -178,22 +156,20 @@
         background-color: #00008B !important; color: #fff !important; font-weight: bold;
     }
 
-  /* 8. UI ELEMENTS (Toggle & Resume) */
+    /* 8. UI ELEMENTS (Toggle & Resume) */
     #theme-toggle {
         position: fixed !important; top: 20px; right: 20px; z-index: 9999;
         cursor: pointer; border-radius: 50%; width: 50px; height: 50px;
         display: flex; align-items: center; justify-content: center;
-        /* Default Dark Mode Look */
         background-color: #07f1fa !important; color: #000 !important; border: 2px solid #000 !important;
         box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         transition: all 0.3s ease;
     }
 
-    /* THE ADJUSTMENT: Grayish-white for Light Mode */
     .light-theme #theme-toggle { 
-        background-color: #f4f4f4 !important; /* Grayish-white/Ash */
-        color: #000 !important;               /* Dark Icon */
-        border: 2px solid #333 !important;    /* Defined Dark Border */
+        background-color: #f4f4f4 !important; 
+        color: #000 !important;               
+        border: 2px solid #333 !important;    
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     
@@ -207,21 +183,19 @@
     
     #bot-launcher { 
         width: 50px; height: 50px; border-radius: 25px; 
-        background: #07f1fa; /* Default Dark Mode Look */
+        background: #07f1fa; 
         display: flex; align-items: center; justify-content: center; 
         cursor: pointer; border: 2px solid #000; 
         box-shadow: 0 4px 15px rgba(7, 241, 250, 0.4);
         transition: all 0.3s ease;
     }
 
-    /* THE ADJUSTMENT: Grayish-white for Light Mode */
     .light-theme #bot-launcher {
-        background-color: #f4f4f4 !important; /* Grayish-white/Ash */
-        border: 2px solid #333 !important;    /* Dark Border */
+        background-color: #f4f4f4 !important; 
+        border: 2px solid #333 !important;    
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    /* Ensure the icon stays dark in light mode */
     .light-theme #launcher-icon { color: #333 !important; }
     
     #bot-launcher:hover { transform: scale(1.1); }
@@ -230,7 +204,7 @@
         display: none; width: 280px; height: 380px; background: #1a1a1a; 
         border-radius: 12px; position: absolute; bottom: 70px; right: 0; 
         flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-        border: 1px solid #444; /* Thin Border */
+        border: 1px solid #444; 
         overflow: hidden; 
     }
 
@@ -241,13 +215,8 @@
     }
 
     #chat-ui-body { 
-        flex: 1; 
-        padding: 12px; 
-        overflow-y: auto; /* Enables scrolling */
-        background: #121212;
-        display: flex; 
-        flex-direction: column; 
-        gap: 8px;
+        flex: 1; padding: 12px; overflow-y: auto; background: #121212;
+        display: flex; flex-direction: column; gap: 8px;
     }
 
     #chat-ui-footer { 
@@ -260,12 +229,10 @@
         border-radius: 15px; color: #fff; outline: none; font-size: 12px;
     }
 
-    /* Chat Bubbles */
     .chat-bubble { padding: 8px 12px; border-radius: 12px; max-width: 85%; font-size: 12px; line-height: 1.4; }
     .bot-bubble { background: #333; color: #fff; align-self: flex-start; border-bottom-left-radius: 2px; }
     .user-bubble { background: #07f1fa; color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
 
-    /* Suggestion Chips */
     #quick-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
     .suggest-chip { 
         background: transparent; border: 1px solid #07f1fa; color: #07f1fa; 
@@ -281,6 +248,24 @@
     .light-theme #chat-ui-footer { background: #f8f9fa; border-top-color: #eee; }
     .light-theme #chat-input { background: #fff; color: #000; border-color: #ddd; }
     .light-theme .bot-bubble { background: #f0f0f0; color: #000; }
+
+    /* 10. SKILLS GRID (Rectangular Tiles) */
+    .skill-tile {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        width: 180px; height: 60px; border-radius: 4px; border: 1px solid var(--accent, #07f1fa);
+        font-size: 14px; font-weight: 500; padding: 5px 15px; transition: all 0.3s ease;
+        background: rgba(7, 241, 250, 0.05); color: #fff;
+    }
+    .skill-tile:hover {
+        transform: translateY(-5px); box-shadow: 0 5px 15px rgba(7, 241, 250, 0.3);
+        background: var(--accent, #07f1fa); color: #000 !important; cursor: default;
+    }
+    .light-theme .skill-tile { color: #000 !important; border-color: #00008B; font-weight: bold; }
+    .light-theme .skills-grid-container { border-color: #000 !important; }
+
+    @media only screen and (max-width: 600px) {
+        .skill-tile { width: 140px; font-size: 12px; height: 50px; }
+    }
 </style>
     
 </head>
