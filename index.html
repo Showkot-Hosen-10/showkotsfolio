@@ -85,35 +85,43 @@
     /* 7. LIGHT THEME SPECIFIC OVERRIDES */
     .light-theme { color: #000 !important; }
     
-    /* General Text Color */
-    .light-theme p, .light-theme h1, .light-theme h2, .light-theme h4, .light-theme li, .light-theme span {
+    /* General Text Color (Normal Weight) */
+    .light-theme p, 
+    .light-theme li, 
+    .light-theme span, 
+    .light-theme .w3-text-grey {
         color: #000 !important;
+        font-weight: 400 !important; /* Forces normal weight for descriptions */
     }
 
-    /* SPECIFIC SUBHEADINGS (BSc, HSC, Projects, Collab text, etc.) */
+    /* SPECIFIC SUBHEADINGS (Bold & Black) */
     .light-theme h4, 
     .light-theme h5, 
-    .light-theme h6, 
-    .light-theme .w3-opacity, 
-    .light-theme .w3-text-grey,
-    .light-theme .w3-wide {
+    .light-theme h6,
+    .light-theme .w3-wide,
+    .light-theme b, 
+    .light-theme strong {
         color: #000 !important;
-        font-weight: bold !important;
+        font-weight: 700 !important; /* Bold for subheadings only */
     }
 
     /* Section Titles (Experience, Publications, etc) */
-    .light-theme .badge-title, .light-theme h3, .light-theme .w3-text-blue { 
+    .light-theme .badge-title, 
+    .light-theme h3, 
+    .light-theme .w3-text-blue { 
         color: #00008B !important; 
+        font-weight: bold !important;
     }
 
     /* Community Section Cards */
     .light-theme .w3-card.w3-black { background-color: #f4f4f4 !important; border-color: #ddd !important; }
-    .light-theme #community h4, .light-theme #community p { color: #000 !important; font-weight: bold; }
+    .light-theme #community h4 { color: #000 !important; font-weight: bold; }
+    .light-theme #community p { color: #000 !important; font-weight: normal; }
     .light-theme #community hr { border-color: #000 !important; opacity: 0.2; }
 
     /* Contact Card */
-    .light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; font-weight: bold; }
-    .light-theme .linkedin-btn { color: #000000 !important; }
+    .light-theme .contact-card-box { background: #e2e8f0; border-color: #cbd5e1; color: #000000; }
+    .light-theme .contact-card-box p { font-weight: normal !important; }
 
     /* Certificate Button Area */
     .light-theme .w3-center.w3-padding-16 .w3-button.w3-black {
