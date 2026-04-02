@@ -67,16 +67,60 @@
         background: transparent !important;
     }
 
-  /* MATCHING VIEW MY PAGE BUTTONS TO SKILLS TILES */
+/* 6. BADGE & CONTACT SYSTEM - UPDATED */
+
+/* Container: Force side-by-side layout */
+.badge-container { 
+    display: flex; 
+    flex-direction: row; /* Horizontal alignment */
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 30px; /* Space between the two badge boxes */
+    margin-top: 20px; 
+}
+
+/* The outer box for each badge */
+.badge-box { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    flex: 0 1 auto; /* Prevents stretching */
+    min-width: 340px; 
+    padding: 15px;
+    /* THIN OUTER BORDER LINE */
+    border: 1px solid rgba(7, 241, 250, 0.2); 
+    border-radius: 8px;
+}
+
+.light-theme .badge-box {
+    border: 1px solid rgba(0, 0, 139, 0.1);
+}
+
+.badge-title { font-weight: bold; color: #07f1fa; margin-bottom: 12px; }
+
+/* The Inner Frame holding the image */
+.badge-frame {
+    border: 1px solid #333; 
+    width: 320px; 
+    height: 85px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: #111; 
+    border-radius: 4px;
+    margin-bottom: 15px; /* Space between image and button */
+}
+
+/* BUTTON STYLE: Exactly like Skills Summary Tiles */
 .badge-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 320px; /* Matching your badge frame width */
-    height: 60px; 
+    width: 180px; /* Matching Skill Tile Width */
+    height: 50px; /* Matching Skill Tile Height */
     border-radius: 4px; 
-    border: 1px solid #07f1fa !important; /* Skill tile accent color */
+    border: 1px solid #07f1fa !important; 
     font-size: 14px; 
     font-weight: 500; 
     transition: all 0.3s ease;
@@ -92,7 +136,7 @@
     color: #000 !important; 
 }
 
-/* Light Theme Override for Badge Buttons */
+/* Light Theme Override for Buttons */
 .light-theme .badge-btn { 
     color: #000 !important; 
     border-color: #00008B !important; 
