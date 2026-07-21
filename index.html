@@ -523,6 +523,21 @@ My transition into research was marked by the publication of my first co-authore
 
     <div class="w3-container w3-margin-bottom">
         <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 800px; margin: auto;">
+            <div class="w3-container w3-padding-16">
+                <h4>PromptLight: Lightweight Prompt Injection Detection <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:11px; vertical-align:middle;">Under Review</span></h4>
+                <p class="w3-text-grey">Submitted to ISWA (Intelligent Systems with Applications, Elsevier)</p>
+                <p>Author: <b>Showkot Hosen</b>, with supervisors Professor Dr. Md. Azad Hossain and Md. Farhad Hossain</p>
+                <p class="w3-text-grey">An ALBERT-base-v2-powered prompt injection detection system for securing LLM applications.</p>
+
+                <a href="https://github.com/Showkot-Hosen-10/UGThesis" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
+                    <i class="fa fa-github"></i> Abstract / Repo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container w3-margin-bottom">
+        <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 800px; margin: auto;">
             <a href="https://ieeexplore.ieee.org/document/11546239" target="_blank">
                 <img src="assets/img/Papers/4385.png" alt="Interpretable SQL Injection Detection" style="width:100%; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
             </a>
@@ -718,6 +733,20 @@ My transition into research was marked by the publication of my first co-authore
         </ul>
     </div>
 </div>
+
+<div class="w3-content w3-padding-64" id="awards">
+    <h3 style="font-weight:bold; color:var(--accent, #07f1fa);">AWARDS</h3>
+    <hr style="width:200px" class="w3-opacity">
+    <div class="w3-container">
+        <h4 style="color:var(--text-main); margin-bottom: 5px;">
+            <i class="fa fa-trophy w3-margin-right" style="color:#07f1fa;"></i>DevSecOps Phoenix Summit 2026 Fellowship
+        </h4>
+        <p class="w3-text-grey">
+            Selected as a fellowship recipient, sponsored by Flexoptix, for the DevSecOps Phoenix Summit 2026 held in Dhaka (June 23–25). Completed hands-on DevSecOps training covering Docker, Trivy, and kube-bench for container security; Harbor as a secure artifact registry; and supply chain security concepts including SBOM, SCA, Cosign, Kyverno, and SLSA.
+        </p>
+    </div>
+</div>
+
 <section id="contact" style="text-align: center; padding: 64px 20px;">
     <div class="contact-card-box">
         <h2 style="font-weight: bold; margin-bottom: 10px; color: inherit;">Let's Connect</h2>
@@ -790,7 +819,7 @@ const KNOWLEDGE_BASE = {
         guide: "Check the **ABOUT ME** section for his research philosophy."
     },
     "publication": {
-        ans: "He has 3 conference papers. Latest: *Interpretable SQL Injection Detection* at IEEE QPAIN 2026.",
+        ans: "He has 3 conference papers and a thesis (PromptLight) under review at ISWA. Latest: *Interpretable SQL Injection Detection* at IEEE QPAIN 2026.",
         guide: "Scroll to the **PUBLICATIONS** section to see links."
     },
     "certifications": {
@@ -816,6 +845,10 @@ const KNOWLEDGE_BASE = {
     "struggles": {
         ans: "Early on, **CIDR notation and subnetting** were his biggest hurdles, alongside mastering the Zenmap GUI.",
         guide: "He bridges coding and security by automating Nmap scans via 'vibe coding'."
+    },
+    "awards": {
+        ans: "He was selected as a **fellowship recipient** (sponsored by Flexoptix) for the **DevSecOps Phoenix Summit 2026** in Dhaka, training in container security and supply chain security tooling.",
+        guide: "See the **AWARDS** section under Extras for details."
     }
 };
 
@@ -887,6 +920,7 @@ function respond(query) {
         else if(query.includes("start") || query.includes("origin") || query.includes("hackerrank")) match = KNOWLEDGE_BASE.origin;
         else if(query.includes("pivot") || query.includes("nizam") || query.includes("why")) match = KNOWLEDGE_BASE.pivot;
         else if(query.includes("hard") || query.includes("struggle") || query.includes("cidr")) match = KNOWLEDGE_BASE.struggles;
+        else if(query.includes("award") || query.includes("fellowship") || query.includes("phoenix") || query.includes("devsecops")) match = KNOWLEDGE_BASE.awards;
 
         if(match) {
             addMessage(match.ans, 'bot');
