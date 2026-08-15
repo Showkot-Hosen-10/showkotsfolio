@@ -814,11 +814,56 @@ My transition into research was marked by the publication of my first co-authore
 </div>
 
 <script>
-// BOT BRAIN
-/* --- INTELLIGENT BOT KNOWLEDGE BASE --- */
-const BOT_API_URL = "https://showkot-portfolio-bot.showkotsfolio.workers.dev";
+const BOT_API_URL = "https://showkot-portfolio-bot.YOUR-SUBDOMAIN.workers.dev";
 let chatHistory = [];
 let isBotTyping = false;
+
+/* --- THEME LOGIC --- */
+function toggleTheme() {
+    const body = document.body;
+    const icon = document.getElementById("theme-icon");
+    const btn = document.getElementById("theme-toggle");
+    body.classList.toggle("light-theme");
+    if (body.classList.contains("light-theme")) {
+        icon.classList.replace("fa-sun-o", "fa-moon-o");
+        btn.classList.replace("w3-white", "w3-black");
+        btn.classList.replace("w3-text-black", "w3-text-white");
+    } else {
+        icon.classList.replace("fa-moon-o", "fa-sun-o");
+        btn.classList.replace("w3-black", "w3-white");
+        btn.classList.replace("w3-text-white", "w3-text-black");
+    }
+}
+
+/* --- CHAT UI --- */
+function toggleChat() {
+    const ui = document.getElementById('chat-ui');
+    const icon = document.getElementById('launcher-icon');
+    if (ui.style.display === 'flex') {
+        ui.style.display = 'none';
+        icon.className = 'fa fa-commenting-o w3-xlarge';
+    } else {
+        ui.style.display = 'flex';
+        icon.className = 'fa fa-chevron-down w3-large';
+    }
+}
+
+function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
+
+function addMessage(text, type) {
+    const body = document.getElementById('chat-ui-body');
+    const bubble = document.createElement('div');
+    bubble.className = `chat-bubble ${type}-bubble`;
+    bubble.innerHTML = text;
+    body.appendChild(bubble);
+    body.scrollTop = body.scrollHeight;
+    return bubble;
+}
+
+function handleChip(text) {
+    addMessage(text, 'user');
+    askBot(text);
+}
 
 function processMessage() {
     const input = document.getElementById('chat-input');
@@ -827,11 +872,6 @@ function processMessage() {
     addMessage(val, 'user');
     input.value = "";
     askBot(val);
-}
-
-function handleChip(text) {
-    addMessage(text, 'user');
-    askBot(text);
 }
 
 async function askBot(message) {
@@ -845,7 +885,7 @@ async function askBot(message) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message, history: chatHistory }),
         });
-        if (!res.ok) throw new Error("Bad response");
+        if (!res.ok) throw new Error("Bad response: " + res.status);
         const data = await res.json();
         const reply = data.reply || "Sorry, I couldn't process that right now.";
         typingBubble.innerHTML = reply;
@@ -859,57 +899,6 @@ async function askBot(message) {
         document.getElementById('chat-ui-body').scrollTop = 999999;
     }
 }
-/* --- THEME LOGIC --- */
-function toggleTheme() {
-    const body = document.body;
-    const icon = document.getElementById("theme-icon");
-    const btn = document.getElementById("theme-toggle");
-
-    body.classList.toggle("light-theme");
-
-    if (body.classList.contains("light-theme")) {
-        icon.classList.replace("fa-sun-o", "fa-moon-o");
-        btn.classList.replace("w3-white", "w3-black");
-        btn.classList.replace("w3-text-black", "w3-text-white");
-    } else {
-        icon.classList.replace("fa-moon-o", "fa-sun-o");
-        btn.classList.replace("w3-black", "w3-white");
-        btn.classList.replace("w3-text-white", "w3-text-black");
-    }
-}
-
-/* --- CHATBOT LOGIC --- */
-function toggleChat() {
-    const ui = document.getElementById('chat-ui');
-    const icon = document.getElementById('launcher-icon');
-    if(ui.style.display === 'flex') {
-        ui.style.display = 'none';
-        icon.className = 'fa fa-commenting-o w3-xlarge';
-    } else {
-        ui.style.display = 'flex';
-        icon.className = 'fa fa-chevron-down w3-large';
-    }
-}
-
-function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
-
-function handleChip(text) {
-    addMessage(text, 'user');
-    respond(text.toLowerCase());
-}
-
-function addMessage(text, type) {
-    const body = document.getElementById('chat-ui-body');
-    const bubble = document.createElement('div');
-    bubble.className = `chat-bubble ${type}-bubble`;
-    bubble.innerHTML = text;
-    body.appendChild(bubble);
-    body.scrollTop = body.scrollHeight;
-}
-
-
-
-
 </script>
 
 </body>
