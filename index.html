@@ -816,45 +816,49 @@ My transition into research was marked by the publication of my first co-authore
 <script>
 // BOT BRAIN
 /* --- INTELLIGENT BOT KNOWLEDGE BASE --- */
-const KNOWLEDGE_BASE = {
-    "research": {
-        ans: "Showkot's research specializes in **XAI in Cybersecurity**, focusing on making ML models transparent using SHAP and Deep Learning for IDS.",
-        guide: "Check the **ABOUT ME** section for his research philosophy."
-    },
-    "publication": {
-        ans: "He has 3 conference papers and a thesis (PromptLight) under review at ISWA. Latest: *Interpretable SQL Injection Detection* at IEEE QPAIN 2026.",
-        guide: "Scroll to the **PUBLICATIONS** section to see links."
-    },
-    "certifications": {
-        ans: "Showkot is **(ISC)² CC Certified**, a Cisco Ethical Hacker, and holds 22+ certifications from Coursera, Cisco, and Udemy.",
-        guide: "The **CERTIFICATIONS** gallery has all the badges!"
-    },
-    "projects": {
-        ans: "Key projects include **MLWAF (ML Firewall)** and **SEC-IoT**. He also created roadmaps for Cybersecurity on GitHub.",
-        guide: "Visit the **PROJECTS** section for more."
-    },
-    "education": {
-        ans: "He is an ETE student at **CUET** with an impressive **3.63 CGPA**.",
-        guide: "See the **EDUCATION** block for timelines."
-    },
-    "origin": {
-        ans: "He started at CUET solving **65+ HackerRank problems**. His first major challenge was the **diamond-shaped '*' pattern** logic!",
-        guide: "He still uses the same laptop today that he used for his first 'cout'!"
-    },
-    "pivot": {
-        ans: "A seminar by **Dr. Nizam Mahmood** was the spark. Once he realized **'Everything is Hackable!'**, he pivoted to security.",
-        guide: "He uses long Ramadan and Eid vacations for intense security deep-dives."
-    },
-    "struggles": {
-        ans: "Early on, **CIDR notation and subnetting** were his biggest hurdles, alongside mastering the Zenmap GUI.",
-        guide: "He bridges coding and security by automating Nmap scans via 'vibe coding'."
-    },
-    "awards": {
-        ans: "He was selected as a **fellowship recipient** (sponsored by Flexoptix) for the **DevSecOps Phoenix Summit 2026** in Dhaka, training in container security and supply chain security tooling.",
-        guide: "See the **AWARDS** section under Extras for details."
-    }
-};
+const BOT_API_URL = "https://showkot-portfolio-bot.showkotsfolio.workers.dev";
+let chatHistory = [];
+let isBotTyping = false;
 
+function processMessage() {
+    const input = document.getElementById('chat-input');
+    const val = input.value.trim();
+    if (!val || isBotTyping) return;
+    addMessage(val, 'user');
+    input.value = "";
+    askBot(val);
+}
+
+function handleChip(text) {
+    addMessage(text, 'user');
+    askBot(text);
+}
+
+async function askBot(message) {
+    if (isBotTyping) return;
+    isBotTyping = true;
+    const typingBubble = addMessage('<i class="fa fa-circle-o-notch fa-spin"></i> thinking...', 'bot');
+
+    try {
+        const res = await fetch(BOT_API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message, history: chatHistory }),
+        });
+        if (!res.ok) throw new Error("Bad response");
+        const data = await res.json();
+        const reply = data.reply || "Sorry, I couldn't process that right now.";
+        typingBubble.innerHTML = reply;
+        chatHistory.push({ role: "user", content: message });
+        chatHistory.push({ role: "assistant", content: reply });
+        if (chatHistory.length > 8) chatHistory = chatHistory.slice(-8);
+    } catch (err) {
+        typingBubble.innerHTML = "I'm having trouble connecting right now — try again, or use the contact section below!";
+    } finally {
+        isBotTyping = false;
+        document.getElementById('chat-ui-body').scrollTop = 999999;
+    }
+}
 /* --- THEME LOGIC --- */
 function toggleTheme() {
     const body = document.body;
@@ -903,36 +907,9 @@ function addMessage(text, type) {
     body.scrollTop = body.scrollHeight;
 }
 
-function processMessage() {
-    const input = document.getElementById('chat-input');
-    const val = input.value.trim();
-    if(!val) return;
-    addMessage(val, 'user');
-    input.value = "";
-    respond(val.toLowerCase());
-}
 
-function respond(query) {
-    setTimeout(() => {
-        let match = null;
-        if(query.includes("research") || query.includes("xai")) match = KNOWLEDGE_BASE.research;
-        else if(query.includes("pub") || query.includes("paper")) match = KNOWLEDGE_BASE.publication;
-        else if(query.includes("cert") || query.includes("cc")) match = KNOWLEDGE_BASE.certifications;
-        else if(query.includes("proj")) match = KNOWLEDGE_BASE.projects;
-        else if(query.includes("edu") || query.includes("cgpa")) match = KNOWLEDGE_BASE.education;
-        else if(query.includes("start") || query.includes("origin") || query.includes("hackerrank")) match = KNOWLEDGE_BASE.origin;
-        else if(query.includes("pivot") || query.includes("nizam") || query.includes("why")) match = KNOWLEDGE_BASE.pivot;
-        else if(query.includes("hard") || query.includes("struggle") || query.includes("cidr")) match = KNOWLEDGE_BASE.struggles;
-        else if(query.includes("award") || query.includes("fellowship") || query.includes("phoenix") || query.includes("devsecops")) match = KNOWLEDGE_BASE.awards;
 
-        if(match) {
-            addMessage(match.ans, 'bot');
-            addMessage(`<i class="fa fa-info-circle"></i> Guidance: ${match.guide}`, 'bot');
-        } else {
-            addMessage("I can tell you about Showkot's **Research**, or **Cyber Pivot** journey!", 'bot');
-        }
-    }, 600);
-}
+
 </script>
 
 </body>
