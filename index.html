@@ -786,9 +786,9 @@ My transition into research was marked by the publication of my first co-authore
 </div>
 
 <div id="bot-wrapper">
-    <button id="bot-launcher" onclick="toggleChat()">
-        <i class="fa fa-commenting-o w3-xlarge" id="launcher-icon" style="color:#111"></i>
-    </button>
+<button id="bot-launcher" onclick="toggleChat()">
+    <i class="fa fa-commenting-o w3-xlarge" id="launcher-icon" style="color:#111"></i>
+</button>
     <div id="chat-ui">
         <div id="chat-ui-header">
             <div style="display:flex; align-items:center; gap:10px;">
@@ -814,7 +814,7 @@ My transition into research was marked by the publication of my first co-authore
 </div>
 
 <style>
-/* Chat bubble link styling — bundled here so this is one paste */
+/* Chat bubble link styling */
 .bot-bubble a {
     color: #07f1fa;
     text-decoration: underline;
@@ -823,10 +823,38 @@ My transition into research was marked by the publication of my first co-authore
 .light-theme .bot-bubble a {
     color: #00008B;
 }
+
+/* --- AI Neon Glow theme --- */
+@keyframes neonPulse {
+    0%, 100% {
+        box-shadow: 0 0 8px 2px rgba(7, 241, 250, 0.6),
+                    0 0 18px 4px rgba(7, 241, 250, 0.35);
+    }
+    50% {
+        box-shadow: 0 0 14px 4px rgba(7, 241, 250, 0.9),
+                    0 0 28px 8px rgba(7, 241, 250, 0.55);
+    }
+}
+
+#bot-launcher {
+    animation: neonPulse 2.2s ease-in-out infinite;
+}
+.light-theme #bot-launcher {
+    animation: none; /* keep light theme calm, matches its existing muted look */
+}
+
+#chat-ui {
+    border-color: rgba(7, 241, 250, 0.35);
+    box-shadow: 0 0 24px rgba(7, 241, 250, 0.25), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.light-theme #chat-ui {
+    border-color: #ddd;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
 </style>
 
 <script>
-const BOT_API_URL = "https://showkot-portfolio-bot.showkotsfolio.workers.dev";
+const BOT_API_URL = "https://showkot-portfolio-bot.YOUR-SUBDOMAIN.workers.dev";
 let chatHistory = [];
 let isBotTyping = false;
 
@@ -853,7 +881,7 @@ function toggleChat() {
     const icon = document.getElementById('launcher-icon');
     if (ui.style.display === 'flex') {
         ui.style.display = 'none';
-        icon.className = 'fa fa-commenting-o w3-xlarge';
+        icon.className = 'fa fa-android w3-xlarge';
     } else {
         ui.style.display = 'flex';
         icon.className = 'fa fa-chevron-down w3-large';
@@ -864,7 +892,8 @@ function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
 
 /* Escape raw HTML first so nothing user/model-supplied can inject tags,
    THEN convert a small safe subset of markdown to HTML. Order matters:
-   escape -> links -> bold. */
+   escape -> links -> bold. Only ever used on message CONTENT (user text or
+   the model's reply) — never on our own trusted UI markup. */
 function renderMarkdown(rawText) {
     const escapeHtml = (s) =>
         s.replace(/&/g, "&amp;")
@@ -885,13 +914,19 @@ function renderMarkdown(rawText) {
     return safe;
 }
 
-function addMessage(text, type) {
+/* raw=true is for OUR OWN trusted UI markup (e.g. the spinner) — it must
+   NOT be escaped, or the literal tags show up as visible text instead of
+   rendering as an icon. raw=false (default) is for message content, which
+   always goes through escaping + markdown rendering for safety. */
+function addMessage(text, type, raw = false) {
     const body = document.getElementById('chat-ui-body');
     const bubble = document.createElement('div');
     bubble.className = `chat-bubble ${type}-bubble`;
-    // Only run bot replies through markdown rendering; user's own typed
-    // text is shown as-is.
-    bubble.innerHTML = type === 'bot' ? renderMarkdown(text) : text;
+    if (raw) {
+        bubble.innerHTML = text;
+    } else {
+        bubble.innerHTML = type === 'bot' ? renderMarkdown(text) : text;
+    }
     body.appendChild(bubble);
     body.scrollTop = body.scrollHeight;
     return bubble;
@@ -914,7 +949,13 @@ function processMessage() {
 async function askBot(message) {
     if (isBotTyping) return;
     isBotTyping = true;
-    const typingBubble = addMessage('<i class="fa fa-circle-o-notch fa-spin"></i> thinking...', 'bot');
+    // raw=true here: this is our own trusted spinner markup, not model
+    // output — it must render as an icon, not escaped text.
+    const typingBubble = addMessage(
+        '<i class="fa fa-circle-o-notch fa-spin"></i> thinking...',
+        'bot',
+        true
+    );
 
     try {
         const res = await fetch(BOT_API_URL, {
