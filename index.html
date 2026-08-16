@@ -813,8 +813,20 @@ My transition into research was marked by the publication of my first co-authore
     </div>
 </div>
 
+<style>
+/* Chat bubble link styling — bundled here so this is one paste */
+.bot-bubble a {
+    color: #07f1fa;
+    text-decoration: underline;
+    word-break: break-word;
+}
+.light-theme .bot-bubble a {
+    color: #00008B;
+}
+</style>
+
 <script>
-const BOT_API_URL = "https://showkot-portfolio-bot.showkotsfolio.workers.dev/";
+const BOT_API_URL = "https://showkot-portfolio-bot.YOUR-SUBDOMAIN.workers.dev";
 let chatHistory = [];
 let isBotTyping = false;
 
@@ -850,11 +862,36 @@ function toggleChat() {
 
 function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
 
+/* Escape raw HTML first so nothing user/model-supplied can inject tags,
+   THEN convert a small safe subset of markdown to HTML. Order matters:
+   escape -> links -> bold. */
+function renderMarkdown(rawText) {
+    const escapeHtml = (s) =>
+        s.replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;");
+
+    let safe = escapeHtml(rawText);
+
+    // [text](https://...) -> clickable link, opens in new tab
+    safe = safe.replace(
+        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+    );
+
+    // **bold** -> <strong>
+    safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+
+    return safe;
+}
+
 function addMessage(text, type) {
     const body = document.getElementById('chat-ui-body');
     const bubble = document.createElement('div');
     bubble.className = `chat-bubble ${type}-bubble`;
-    bubble.innerHTML = text;
+    // Only run bot replies through markdown rendering; user's own typed
+    // text is shown as-is.
+    bubble.innerHTML = type === 'bot' ? renderMarkdown(text) : text;
     body.appendChild(bubble);
     body.scrollTop = body.scrollHeight;
     return bubble;
@@ -888,7 +925,7 @@ async function askBot(message) {
         if (!res.ok) throw new Error("Bad response: " + res.status);
         const data = await res.json();
         const reply = data.reply || "Sorry, I couldn't process that right now.";
-        typingBubble.innerHTML = reply;
+        typingBubble.innerHTML = renderMarkdown(reply);
         chatHistory.push({ role: "user", content: message });
         chatHistory.push({ role: "assistant", content: reply });
         if (chatHistory.length > 8) chatHistory = chatHistory.slice(-8);
@@ -900,6 +937,5 @@ async function askBot(message) {
     }
 }
 </script>
-
 </body>
 </html>
