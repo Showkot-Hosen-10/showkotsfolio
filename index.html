@@ -837,6 +837,8 @@ My transition into research was marked by the publication of my first co-authore
 </div>
 
 <div id="bot-wrapper">
+    <audio id="popup-sound" src="./assets/audio/popup.mp3" preload="auto"></audio>
+
     <div id="bot-teaser" onclick="openFromTeaser()">
         <span id="bot-teaser-close" onclick="dismissTeaser(event)">&times;</span>
         Hi, I'm Showkot's AI assistant.<br>How can I help you?
@@ -964,7 +966,7 @@ My transition into research was marked by the publication of my first co-authore
 </style>
 
 <script>
-const BOT_API_URL = "https://showkot-portfolio-bot.jnjn.workers.dev";
+const BOT_API_URL = "https://showkot-portfolio-bot.YOUR-SUBDOMAIN.workers.dev";
 let chatHistory = [];
 let isBotTyping = false;
 let chatHasBeenOpened = false;
@@ -1016,21 +1018,26 @@ function toggleChat() {
 
     if (opening && !chatHasBeenOpened) {
         chatHasBeenOpened = true;
-        // One final re-engagement nudge, 2 minutes after first open —
-        // only fires if the chat is closed again by then. After it fires
-        // once (or is skipped because the chat's still open), the teaser
-        // is permanently retired for the rest of this visit.
         setTimeout(() => {
             const stillClosed = document.getElementById('chat-ui').style.display !== 'flex';
-            if (stillClosed && !teaserForeverStopped) {
-                showTeaser(true);
-            }
+            if (stillClosed && !teaserForeverStopped) showTeaser(true);
             teaserForeverStopped = true;
         }, 120000);
     }
 }
 
 function checkEnter(e) { if (e.key === 'Enter') processMessage(); }
+
+/* --- Popup sound: plays for deliberate (sticky) teaser pops only, not
+   the lightweight hover peek. Autoplay policies in some browsers block
+   sound before any user interaction with the page — the .catch() below
+   silently ignores that rather than throwing a console error. It'll still
+   reliably play for the tap/click-triggered pops. --- */
+function playPopupSound() {
+    const sound = document.getElementById('popup-sound');
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+}
 
 /* --- Teaser popup logic --- */
 function showTeaser(sticky) {
@@ -1039,6 +1046,7 @@ function showTeaser(sticky) {
     const teaser = document.getElementById('bot-teaser');
     teaser.style.display = 'block';
     teaser.dataset.sticky = sticky ? '1' : '0';
+    if (sticky) playPopupSound();
 }
 
 function hideTeaser() {
@@ -1057,7 +1065,6 @@ function openFromTeaser() {
     }
 }
 
-// Desktop: hover reveals the teaser (non-sticky — hides again on mouseleave)
 document.getElementById('bot-launcher').addEventListener('mouseenter', () => {
     if (!isTouchPrimary() && !chatHasBeenOpened) showTeaser(false);
 });
@@ -1066,34 +1073,56 @@ document.getElementById('bot-launcher').addEventListener('mouseleave', () => {
     if (teaser.dataset.sticky !== '1') hideTeaser();
 });
 
-// Mobile: first tap reveals the teaser instead of opening; second tap opens
 function handleLauncherClick(e) {
     if (isTouchPrimary() && !chatHasBeenOpened) {
         const teaser = document.getElementById('bot-teaser');
         if (teaser.style.display !== 'block') {
             showTeaser(true);
-            return; // first tap: reveal only, don't open yet
+            return;
         }
     }
-    toggleChat(); // second tap on mobile, or any click on desktop
+    toggleChat();
 }
 
-// Auto nudge #1 — 10s after page load
 setTimeout(() => {
     if (chatHasBeenOpened) return;
     showTeaser(true);
     setTimeout(() => { if (!chatHasBeenOpened) hideTeaser(); }, 8000);
 }, 10000);
 
-// Auto nudge #2 — 30s after page load, only if still not opened
 setTimeout(() => {
     if (chatHasBeenOpened) return;
     showTeaser(true);
     setTimeout(() => { if (!chatHasBeenOpened) hideTeaser(); }, 8000);
 }, 30000);
 
-/* Escape raw HTML first so nothing user/model-supplied can inject tags,
-   THEN convert a small safe subset of markdown to HTML. */
+/* --- FRONTEND fallback knowledge base -----------------------------------
+   Used ONLY when fetch() to the Worker fails entirely (wrong URL, network
+   down, Worker deleted, CORS block) — i.e. the request never even reached
+   the backend, so the backend's own keyword fallback never got a chance
+   to run. This is a second, independent safety net at the frontend layer,
+   so total connection failure is covered too, not just backend LLM
+   failure. Keep this in sync with worker.js's KNOWLEDGE_BASE by hand if
+   you update one — they're intentionally separate files. */
+const FRONTEND_KB = {
+    research: "Showkot's research specializes in **XAI in Cybersecurity**, focusing on ML-based Intrusion Detection Systems and LLM security.",
+    publication: "He has 4 works, including **PromptLight** (submitted to Cybersecurity and Applications, Elsevier) and papers at IEEE QPAIN 2026.",
+    certifications: "Showkot holds the **(ISC)² CC** credential, is a Cisco Ethical Hacker, and has 22+ certifications total.",
+    projects: "Key projects include **SEC-IoT** and **MLWAF**, an ML-powered web application firewall.",
+    education: "He completed his **BSc in ETE at CUET** (CGPA 3.63/4.00) and is now pursuing an **MSc**, majoring in AI and Cybersecurity.",
+};
+
+function frontendFallback(message) {
+    const q = message.toLowerCase();
+    const prefix = "Can't reach my main brain right now — here's what I know offline:";
+    if (q.includes("research") || q.includes("xai")) return `${prefix} ${FRONTEND_KB.research}`;
+    if (q.includes("pub") || q.includes("paper")) return `${prefix} ${FRONTEND_KB.publication}`;
+    if (q.includes("cert")) return `${prefix} ${FRONTEND_KB.certifications}`;
+    if (q.includes("proj")) return `${prefix} ${FRONTEND_KB.projects}`;
+    if (q.includes("edu") || q.includes("cgpa")) return `${prefix} ${FRONTEND_KB.education}`;
+    return `${prefix} feel free to explore the sections above, or reach out via the contact section below!`;
+}
+
 function renderMarkdown(rawText) {
     const escapeHtml = (s) =>
         s.replace(/&/g, "&amp;")
@@ -1155,7 +1184,10 @@ async function askBot(message) {
         chatHistory.push({ role: "assistant", content: reply });
         if (chatHistory.length > 8) chatHistory = chatHistory.slice(-8);
     } catch (err) {
-        typingBubble.innerHTML = "I'm having trouble connecting right now — try again, or use the contact section below!";
+        // The Worker was completely unreachable (not just an LLM failure
+        // inside it) — use the frontend's own fallback KB instead of a
+        // dead-end message.
+        typingBubble.innerHTML = renderMarkdown(frontendFallback(message));
     } finally {
         isBotTyping = false;
         document.getElementById('chat-ui-body').scrollTop = 999999;
