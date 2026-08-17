@@ -1110,11 +1110,15 @@ const FRONTEND_KB = {
     certifications: "Showkot holds the **(ISC)² CC** credential, is a Cisco Ethical Hacker, and has 22+ certifications total.",
     projects: "Key projects include **SEC-IoT** and **MLWAF**, an ML-powered web application firewall.",
     education: "He completed his **BSc in ETE at CUET** (CGPA 3.63/4.00) and is now pursuing an **MSc**, majoring in AI and Cybersecurity.",
+    awards: "He was selected as a DevSecOps Fellow for the **Phoenix Summit 2026** in Dhaka (sponsored by Flexoptix), and was a Semifinalist at Face The Case 2.0.",
+    skills: "His technical toolkit spans **Python, Bash, C++**, security tools like Wireshark and Nmap, and AI/ML tooling including prompt engineering with LLMs.",
+    service: "Showkot serves as an **Invited Reviewer** for Cyber Security and Applications (Elsevier) and is on the Reviewer Panel for HKIE Transactions.",
+    experience: "He's a Cybersecurity Research Student at CUET and leads **Cyberhunt**, mentoring junior students in cybersecurity and ML.",
 };
 
 function frontendFallback(message) {
     const q = message.toLowerCase();
-    const prefix = "Can't reach my main brain right now — here's what I know offline:";
+    const prefix = "Can't reach my main brain right now :( here's what I know offline:";
     if (q.includes("research") || q.includes("xai")) return `${prefix} ${FRONTEND_KB.research}`;
     if (q.includes("pub") || q.includes("paper")) return `${prefix} ${FRONTEND_KB.publication}`;
     if (q.includes("cert")) return `${prefix} ${FRONTEND_KB.certifications}`;
