@@ -345,7 +345,28 @@
     color: #000 !important; 
     cursor: default;
 }
+.badge-frame {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    display: inline-block;
+    transition: background 0.3s;
+}
 
+@media (prefers-color-scheme: dark) {
+    .badge-frame {
+        background: #1a1a1a;
+    }
+}
+
+/* If you use a manual dark mode toggle class on body */
+body.dark-mode .badge-frame {
+    background: #1a1a1a;
+}
+
+body.light-mode .badge-frame {
+    background: #ffffff;
+}
 /* Light Theme Adjustments */
 .light-theme .skill-tile { 
     color: #000 !important; 
