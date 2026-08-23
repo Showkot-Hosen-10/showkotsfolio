@@ -83,15 +83,15 @@
 }
 
 /* The outer box for each badge */
-.badge-box { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    flex: 0 1 auto; /* Prevents stretching */
-    min-width: 340px; 
+.badge-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 auto;
+    min-width: 340px;
     padding: 15px;
-    /* THIN OUTER BORDER LINE */
-    border: 1px solid rgba(7, 241, 250, 0.2); 
+    border: 1px solid rgba(7, 241, 250, 0.2);
     border-radius: 8px;
 }
 
@@ -101,17 +101,31 @@
 
 .badge-title { font-weight: bold; color: #07f1fa; margin-bottom: 12px; }
 
-/* The Inner Frame holding the image */
 .badge-frame {
-    border: 1px solid #333; 
-    width: 320px; 
-    height: 85px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    background: #111; 
+    border: 1px solid #333;
+    width: 320px;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 4px;
-    margin-bottom: 15px; /* Space between image and button */
+    margin-bottom: 15px;
+    padding: 10px;
+    transition: background 0.3s;
+    /* Dark mode default */
+    background: #1a1a1a;
+}
+
+/* Light mode — manual toggle */
+body.light-theme .badge-frame {
+    background: #ffffff;
+}
+
+/* Light mode — OS preference fallback */
+@media (prefers-color-scheme: light) {
+    body:not(.light-theme):not(.w3-black) .badge-frame {
+        background: #ffffff;
+    }
 }
 
 /* BUTTON STYLE: Exactly like Skills Summary Tiles */
