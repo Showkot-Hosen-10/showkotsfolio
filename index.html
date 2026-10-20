@@ -1245,6 +1245,15 @@ My transition into research was marked by the publication of my first co-authore
 </div>
 
 <style>
+
+    /* Justified chatbot text */
+#chat-ui-body .chat-bubble,
+#chat-ui-body .chat-bubble * {
+    text-align: justify !important;
+    text-justify: inter-word;
+    hyphens: auto;              /* avoids big gaps in the narrow 280px window */
+    -webkit-hyphens: auto;
+}
       p {
     text-align: justify;
 }
