@@ -524,18 +524,123 @@ My transition into research was marked by the publication of my first co-authore
                 </div>
             </div>
 
+<!-- =====================================================================
+  PART 1 — CSS
+  Paste at the END of your existing <style> block (delete the <style> tags
+  below if you do that), or leave it as is — it also works in the body.
+  (If you pasted the earlier version, replace it with this one.)
+====================================================================== -->
+<style>
+/* ---------- SKILL HOVER POPUPS ---------- */
+.skill-wrap { position: relative; }
+.skill-wrap .skill-tile { cursor: pointer; }
+.skill-wrap.open .skill-tile {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(7, 241, 250, 0.3);
+    background: var(--accent, #07f1fa);
+    color: #000 !important;
+}
+.skill-pop {
+    display: none; position: absolute; top: 100%; left: 50%;
+    --shift: 0px;
+    transform: translateX(calc(-50% + var(--shift)));
+    width: 340px; max-width: 92vw; z-index: 1000;
+    padding-top: 10px;              /* invisible bridge so the mouse can travel into the popup */
+    text-align: left;               /* parents are centered/justified, so force left */
+}
+.skill-wrap.open .skill-pop { display: block; }
+.skill-pop-inner {
+    background: #0d1117; color: #e6edf3; border: 1px solid #07f1fa; border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6); padding: 14px;
+    max-height: 340px; overflow-y: auto; font-size: 13px; line-height: 1.45;
+    font-weight: 400; text-align: left;
+}
+.sp-title { font-weight: 700; font-size: 15px; color: #07f1fa; margin-bottom: 6px; }
+.sp-note  { font-size: 12px; opacity: .75; margin-bottom: 6px; font-style: italic; }
+.sp-label { font-weight: 700; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; margin: 10px 0 4px; opacity: .85; }
+.sp-link  { display: block; padding: 3px 0; color: #07f1fa; text-decoration: none; cursor: pointer; }
+.sp-link:hover { text-decoration: underline; }
+.sp-link i { width: 16px; text-align: center; margin-right: 4px; }
+.sp-foot  { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.15); font-size: 12px; }
+.light-theme .skill-pop-inner { background: #fff; color: #000; border-color: #00008B; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.light-theme .sp-title { color: #00008B; }
+.light-theme .sp-link  { color: #00008B; }
+.light-theme .sp-foot  { border-top-color: rgba(0,0,0,.15); }
+
+/* ---------- ROADMAP ---------- */
+.roadmap { position: relative; max-width: 820px; margin: 28px auto 0; padding-left: 52px; }
+.roadmap::before { content: ""; position: absolute; left: 19px; top: 0; bottom: 0; width: 3px; background: linear-gradient(#07f1fa, #1e88e5); border-radius: 2px; }
+.rm-flag { display: inline-block; font-size: 11px; letter-spacing: 1px; font-weight: 700; padding: 4px 12px; border-radius: 12px; background: #07f1fa; color: #000; margin-bottom: 18px; }
+.rm-flag.end { margin: 4px 0 0; }
+.rm-step { position: relative; margin-bottom: 30px; }
+.rm-dot { position: absolute; left: -52px; top: 0; width: 40px; height: 40px; border-radius: 50%; background: #07f1fa; color: #000; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid #000; }
+.rm-title { font-weight: 700; font-size: 16px; color: #07f1fa; padding-top: 6px; }
+.rm-desc  { font-size: 13px; opacity: .75; margin: 2px 0 12px; }
+.light-theme .rm-dot { background: #00008B; color: #fff; border-color: #fff; }
+.light-theme .rm-title { color: #00008B; }
+.light-theme .rm-flag { background: #00008B; color: #fff; }
+.light-theme .roadmap::before { background: linear-gradient(#00008B, #1e88e5); }
+
+/* ---------- CERTIFICATE CARD (with preview) ---------- */
+.cert-card {
+    display: flex; align-items: center; gap: 14px; padding: 12px 14px; margin-bottom: 14px;
+    border: 1px solid rgba(7,241,250,.3); border-radius: 8px; background: rgba(0,0,0,.45);
+    cursor: pointer; transition: all .25s ease;
+}
+.cert-card:hover, .cert-card:focus { transform: translateY(-3px); border-color: #07f1fa; box-shadow: 0 6px 16px rgba(7,241,250,.25); outline: none; }
+.cert-thumb {
+    flex: 0 0 132px; height: 92px; border-radius: 6px; overflow: hidden; background: rgba(7,241,250,.08);
+    border: 1px solid rgba(7,241,250,.35); display: flex; align-items: center; justify-content: center;
+    color: #07f1fa; font-size: 28px;
+}
+.cert-thumb canvas, .cert-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; background: #fff; }
+.cert-meta { flex: 1; min-width: 0; }
+.cert-name   { font-weight: 600; font-size: 14px; line-height: 1.3; }
+.cert-issuer { font-size: 12px; opacity: .7; margin-top: 2px; }
+.cert-view   { flex: 0 0 auto; font-size: 12px; border: 1px solid #07f1fa; color: #07f1fa; padding: 4px 10px; border-radius: 12px; }
+.cert-card:hover .cert-view { background: #07f1fa; color: #000; }
+@media only screen and (max-width: 520px) {
+    .cert-thumb { flex-basis: 92px; height: 66px; }
+    .cert-view { display: none; }
+}
+.light-theme .cert-card { background: rgba(255,255,255,.85); border-color: rgba(0,0,139,.35); }
+.light-theme .cert-card:hover, .light-theme .cert-card:focus { border-color: #00008B; box-shadow: 0 6px 16px rgba(0,0,139,.2); }
+.light-theme .cert-thumb { border-color: rgba(0,0,139,.4); color: #00008B; background: rgba(0,0,139,.06); }
+.light-theme .cert-view { color: #00008B; border-color: #00008B; }
+.light-theme .cert-card:hover .cert-view { background: #00008B; color: #fff; }
+
+/* ---------- CERTIFICATE VIEWER (modal) ---------- */
+.cert-modal { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,.82); align-items: center; justify-content: center; }
+.cert-modal.open { display: flex; }
+.cert-modal-box { width: min(920px, 94vw); height: 88vh; background: #111; border: 1px solid #07f1fa; border-radius: 10px; display: flex; flex-direction: column; overflow: hidden; }
+.cert-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; background: #1a1a1a; color: #fff; font-weight: 600; font-size: 14px; }
+.cert-modal-head a { color: #07f1fa; font-size: 13px; text-decoration: none; margin-right: 12px; }
+.cert-modal-head button { background: transparent; border: 1px solid #07f1fa; color: #07f1fa; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 14px; }
+.cert-modal-head button:hover { background: #07f1fa; color: #000; }
+#cert-modal-body { flex: 1; background: #fff; overflow: auto; text-align: center; }
+#cert-modal-body iframe { width: 100%; height: 100%; border: 0; }
+#cert-modal-body img { max-width: 100%; height: auto; }
+</style>
+
+
+<!-- =====================================================================
+  PART 2 — SKILLS SUMMARY  (unchanged from before)
+  Replace everything from <!-- SKILLS SUMMARY SECTION --> down to (and
+  including) the "Download Resume" div with this block.
+====================================================================== -->
 <!-- SKILLS SUMMARY SECTION -->
 <h3 class="skills-title" style="font-weight:bold; color:var(--accent, #07f1fa); margin-top: 32px; text-align: center;">SKILLS SUMMARY</h3>
+<p class="skills-hint" style="text-align:center; font-size:12px; opacity:.7; margin-top:-6px;">Hover (or tap) a skill to see the credentials that back it up</p>
 
 <div class="skills-grid-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 20px 0; border-top: 1px solid var(--border, #fff); border-bottom: 1px solid var(--border, #fff); margin-bottom: 24px;">
-    <div class="skill-tile">Embedded System & IoT</div>
-    <div class="skill-tile">AI Security</div>
-    <div class="skill-tile">Explainable AI</div>
-    <div class="skill-tile">Machine Learning</div>
-    <div class="skill-tile">Cybersecurity</div>
-    <div class="skill-tile">Research</div>
-    <div class="skill-tile">Operating Systems</div>
-    <div class="skill-tile">Academic Writing</div>
+    <div class="skill-wrap" data-skill="embedded"><div class="skill-tile" tabindex="0">Embedded System &amp; IoT</div></div>
+    <div class="skill-wrap" data-skill="aisec"><div class="skill-tile" tabindex="0">AI Security</div></div>
+    <div class="skill-wrap" data-skill="xai"><div class="skill-tile" tabindex="0">Explainable AI</div></div>
+    <div class="skill-wrap" data-skill="ml"><div class="skill-tile" tabindex="0">Machine Learning</div></div>
+    <div class="skill-wrap" data-skill="cyber"><div class="skill-tile" tabindex="0">Cybersecurity</div></div>
+    <div class="skill-wrap" data-skill="research"><div class="skill-tile" tabindex="0">Research</div></div>
+    <div class="skill-wrap" data-skill="os"><div class="skill-tile" tabindex="0">Operating Systems</div></div>
+    <div class="skill-wrap" data-skill="writing"><div class="skill-tile" tabindex="0">Academic Writing</div></div>
 </div>
 
 <div style="text-align: center; width: 100%;">
@@ -547,270 +652,327 @@ My transition into research was marked by the publication of my first co-authore
     </a>
 </div>
 
- <div class="w3-content w3-padding-64" id="experience">
-    <h3 style="font-weight:bold; color:#07f1fa;">EXPERIENCES</h3>
-    <hr style="width:200px" class="w3-opacity">
 
-    <!-- Current Role: Adjunct Lecturer -->
-    <div class="w3-container w3-margin-bottom">
-        <h4 class="w3-text-white">Adjunct Lecturer</h4>
-        <p class="w3-text-white">Department of Electronic and Telecommunication Engineering (ETE)</p>
-        <p class="w3-text-white">International Islamic University Chittagong (IIUC)</p>
-        <p class="w3-text-grey">2026 – Present</p>
-        <p class="w3-text-grey">Conducting lectures, practical lab sessions, and mentoring undergraduate students in electronics and telecommunication engineering topics.</p>
-    </div>
-
-    <!-- Cybersecurity Research Student -->
-    <div class="w3-container w3-margin-bottom">
-        <h4 class="w3-text-white">Cybersecurity Research Student</h4>
-        <p class="w3-text-white">CUET</p>
-        <p class="w3-text-grey">Hands-on research on IDS/IPS and ML-based cyber defense systems. Participation in national CTF competitions and OSINT investigations.</p>
-    </div>
-
-    <!-- Cybersecurity Mentorship Lead -->
-    <div class="w3-container w3-margin-bottom">
-        <h4 class="w3-text-white">Cyberhunt - Cybersecurity Mentorship Lead</h4>
-        <p class="w3-text-white">CUET | 2025 – Present</p>
-        <p class="w3-text-grey">Mentoring junior students in the fields of Cybersecurity and Machine Learning research. Organizing workshops on ethical hacking foundations.</p>
-    </div>
-
-    <!-- BSCL Visit -->
-    <div class="w3-container w3-margin-bottom">
-        <h4 class="w3-text-white">Industrial Visit - BSCL</h4>
-        <p class="w3-text-grey">Focused on satellite communication infrastructure, signal monitoring, and ground station security protocols.</p>
-    </div>
-
-    <!-- DigidenIT Attachment -->
-    <div class="w3-container w3-margin-bottom">
-        <h4 class="w3-text-white">Industrial Attachment - DigidenIT</h4>
-        <p class="w3-text-grey">Focused on ASP.NET based simple dental clinic services app development with backend and frontend integrated.</p>
-    </div>
-</div>
-
-<div class="w3-content w3-padding-64" id="publication">
-    <h3 style="font-weight:bold; color:#07f1fa;">PUBLICATIONS</h3>
-    <hr style="width:200px" class="w3-opacity">
-    <p>My research focus lies at the intersection of Machine Learning and Cybersecurity, with a particular emphasis on Explainable AI (XAI).</p>
-
-    <!-- ===================== JOURNALS (big, stacked) ===================== -->
-    <h4 style="font-weight:bold; color:#00e5ff; margin-top:30px; text-align:center;">
-        Journals <span style="font-size:13px; font-weight:normal;">(yet to be submitted)</span>
-    </h4>
-
-    <!-- Journal 1: PromptLight -->
-    <div class="w3-container w3-margin-bottom">
-        <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 900px; margin: auto;">
-            <a href="https://github.com/Showkot-Hosen-10/UGThesis" target="_blank">
-                <img src="assets/img/PromptLightISWA.png" alt="PromptLight: Lightweight Prompt Injection Detection" style="width:100%; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-            </a>
-            <div class="w3-container w3-padding-16">
-                <h4>PromptLight: Lightweight Prompt Injection Detection
-                    <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:11px; vertical-align:middle;">Manuscript Ready</span>
-                </h4>
-                <p class="w3-text-grey">Manuscript Ready for Submission</p>
-                <p>Author: <b>Showkot Hosen</b>, with supervisors Professor Dr. Md. Azad Hossain and Md. Farhad Hossain</p>
-                <p class="w3-text-grey">An ALBERT-base-v2-powered prompt injection detection system for securing LLM applications.</p>
-                <a href="https://github.com/Showkot-Hosen-10/UGThesis" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                    <i class="fa fa-github"></i> Read Abstract
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Journal 2: Text Steganography -->
-    <div class="w3-container w3-margin-bottom">
-        <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 900px; margin: auto;">
-            <a href="https://github.com/Showkot-Hosen-10/textstego" target="_blank">
-                <img src="assets/img/visual_abstract.png" alt="Lightweight and Explainable Text Steganography Detection" style="width:100%; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-            </a>
-            <div class="w3-container w3-padding-16">
-                <h4>Lightweight and Explainable Multi-Class Detection and Recovery of Format- and Substitution-Based Text Steganography: A Leakage-Free Benchmark Under Domain Shift
-                    <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:11px; vertical-align:middle;">Manuscript Ready</span>
-                </h4>
-                <p class="w3-text-grey">Manuscript Ready for Submission</p>
-                <p>Author: <b>Showkot Hosen</b> and Professor Dr. Md. Azad Hossain</p>
-                <p class="w3-text-grey">A 17-feature LightGBM-Lite detector (0.39 ms per text on CPU) for four-class text steganography, benchmarked leakage-free against ALBERT, RoBERTa, TextCNN and Qwen2.5-0.5B under domain shift, with SHAP reasons and payload recovery for every alert.</p>
-                <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                    <a href="https://github.com/Showkot-Hosen-10/textstego" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                        <i class="fa fa-github"></i> View Repository
-                    </a>
-                    <a href="https://doi.org/10.5281/zenodo.23403109" target="_blank" class="w3-button w3-round-large w3-small" style="background:#024dad; color:#fff;">
-                        <i class="fa fa-database"></i> Data & Artifacts
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Journal 3: WSN-IDS -->
-    <div class="w3-container w3-margin-bottom">
-        <div class="w3-card w3-black" style="border: 1px solid #333; max-width: 900px; margin: auto;">
-            <a href="https://github.com/Showkot-Hosen-10/WSN-DS-XAI" target="_blank">
-                <img src="assets/img/vizabs.png" alt="WSN-DS IDS: Duplicate-Audited, SHAP-Explainable Decision Tree" style="width:100%; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-            </a>
-            <div class="w3-container w3-padding-16">
-                <h4>WSN-IDS: A Duplicate-Audited, SHAP-Explainable Decision Tree for Lightweight Intrusion Detection
-                    <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:11px; vertical-align:middle;">Manuscript Ready</span>
-                </h4>
-                <p class="w3-text-grey">Manuscript Ready for Submission</p>
-                <p>Author: <b>Showkot Hosen</b> and Professor Dr. Md. Azad Hossain</p>
-                <p class="w3-text-grey">A GridSearchCV-tuned Decision Tree IDS for LEACH-based WSNs with full SHAP explainability, duplicate-row auditing, and honest stability analysis on WSN-DS.</p>
-                <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                    <a href="https://github.com/Showkot-Hosen-10/WSN-DS-XAI" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                        <i class="fa fa-github"></i> View Repository
-                    </a>
-                    <a href="https://doi.org/10.5281/zenodo.22066348" target="_blank" class="w3-button w3-round-large w3-small" style="background:#024dad; color:#fff;">
-                        <i class="fa fa-database"></i> Data & Artifacts
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================== CONFERENCES (one row) ===================== -->
-    <h4 style="font-weight:bold; color:#00e5ff; margin-top:40px; text-align:center;">Conferences</h4>
-
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-
-        <!-- Conference 1: SQL Injection -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
-            <a href="https://ieeexplore.ieee.org/document/11546239" target="_blank">
-                <img src="assets/img/Papers/4385.png" alt="Interpretable SQL Injection Detection" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-            </a>
-            <div class="w3-container w3-padding-16">
-                <h4 style="font-size: 14px;">Interpretable SQL Injection Detection: Lightweight Decision Trees with SHAP-Enhanced Deployment</h4>
-                <p class="w3-text-grey" style="font-size: 12px;">2026 IEEE 2nd International Conference on QPAIN</p>
-                <p style="font-size: 12px;">Author: <b>Showkot Hosen</b>, Abdulah Al Mamun Zihan and Nursadul Mamun</p>
-                <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                    <a href="https://ieeexplore.ieee.org/document/11546239" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                        <i class="fa fa-external-link"></i> IEEE Xplore
-                    </a>
-                    <a href="https://youtu.be/B8jIIbuimGc?si=KvUyeLyRKwPAKCQS" target="_blank" class="w3-button w3-red w3-round-large w3-small">
-                        <i class="fa fa-youtube-play"></i> Presentation
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conference 2: XAI Malware -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
-            <a href="https://ieeexplore.ieee.org/document/11546170" target="_blank">
-                <img src="assets/img/Papers/6605.png" alt="XAI-Powered Malware Classifier" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-            </a>
-            <div class="w3-container w3-padding-16">
-                <h4 style="font-size: 14px;">XAI-Powered Vision: Making CNN Malware Classifier Transparent for Cybersecurity</h4>
-                <p class="w3-text-grey" style="font-size: 12px;">2026 IEEE 2nd International Conference on QPAIN</p>
-                <p style="font-size: 12px;">Author: <b>Showkot Hosen</b>, Turja Talukder and Md. Azad Hossain</p>
-                <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                    <a href="https://ieeexplore.ieee.org/document/11546170" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                        <i class="fa fa-external-link"></i> IEEE Xplore
-                    </a>
-                    <a href="https://youtu.be/GJt1m80JCxw?si=Mvazr6ByN18oiyK1" target="_blank" class="w3-button w3-red w3-round-large w3-small">
-                        <i class="fa fa-youtube-play"></i> Presentation
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conference 3: Aircraft Detection -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
-            <a href="https://ieeexplore.ieee.org/document/11012922" target="_blank">
-                <img src="assets/img/Papers/Sat.png" alt="Aircraft Detection Paper" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-            </a>
-            <div class="w3-container w3-padding-16">
-                <h4 style="font-size: 14px;">Aircraft Detection in Satellite Images Using CNN and Sliding Window Method</h4>
-                <p class="w3-text-grey" style="font-size: 12px;">2025 International Conference on ECCE</p>
-                <p style="font-size: 12px;">Author: Abdullah Al Mamun Zihan, MD Wahid Islam Chowdhury, <b>Showkot Hosen</b> and Md. Saiful Islam</p>
-                <a href="https://ieeexplore.ieee.org/document/11012922" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                    <i class="fa fa-external-link"></i> IEEE Xplore
-                </a>
-            </div>
-        </div>
-
-        <!-- Conference 4: CJ-master (under review) -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
-            <!-- TODO: add the real image file at this path -->
-            <img src="assets/img/cjmaster.png" alt="CJ-master: Cryptojacking Detection Framework" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;">
-            <div class="w3-container w3-padding-16">
-                <h4 style="font-size: 14px;">CJ-master: A Multilayer Browser-Based Cryptojacking Detection Framework with Real-Time Chromium Extension Deployment
-                    <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:10px; vertical-align:middle;">Under Review</span>
-                </h4>
-                <p class="w3-text-grey" style="font-size: 12px;">Submitted to ECCE 2027 (under review)</p>
-                <p style="font-size: 12px;">Author: Tonmoy Datta, <b>Showkot Hosen</b> and Dr. Md. Azad Hossain</p>
-            </div>
-        </div>
-
-    </div>
-</div>
-<div class="w3-content w3-padding-64" id="academic-service" style="text-align: left;">
-    <h3 style="font-weight:bold; color:#07f1fa; text-align: left;">ACADEMIC SERVICE</h3>
-    <hr style="width:200px; margin-left: 0;" class="w3-opacity">
-
-<!-- Flex container for side-by-side layout (centered) -->
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-
-    <!-- Reviewer Role 1: Elsevier (Cyber Security and Applications) -->
-    <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1; min-width: 280px; max-width: 380px;">
-        <a href="https://ibb.co.com/wF7HsjC1" target="_blank">
-            <img src="https://i.ibb.co.com/q3CG5V9w/Certificate-CSA-Recognised.png" alt="Cyber Security and Applications Reviewer Certificate" style="width:100%; height: 200px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-        </a>
-        <div class="w3-container w3-padding-16">
-            <h4 style="color:#07f1fa; font-size: 18px;">Invited Reviewer (2026)</h4>
-            <h5 style="margin-top:0; color:#fff; font-size: 15px;">Cyber Security and Applications (Elsevier)</h5>
-            <p class="w3-text-grey" style="font-size: 13px;">
-                Invited by the editorial board to serve as a peer reviewer for manuscripts submitted to the journal.
-            </p>
-            <a href="https://ibb.co.com/wF7HsjC1" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                <i class="fa fa-external-link"></i> View Certificate
-            </a>
-        </div>
-    </div>
-
-    <!-- Reviewer Role 2: HKIE Transactions -->
-    <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1; min-width: 280px; max-width: 380px;">
-        <a href="https://ibb.co.com/Mxn6ksLw" target="_blank">
-            <img src="https://i.ibb.co.com/Q39dvfGS/HKIE.jpg" alt="HKIE Reviewer Panel Certificate" style="width:100%; height: 200px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
-        </a>
-        <div class="w3-container w3-padding-16">
-            <h4 style="color:#07f1fa; font-size: 18px;">Reviewer Panel Member (2026)</h4>
-            <h5 style="margin-top:0; color:#fff; font-size: 15px;">HKIE Transactions – The Hong Kong Institution of Engineers</h5>
-            <p class="w3-text-grey" style="font-size: 13px;">
-                Added to the journal’s reviewer panel and invited to review manuscripts within my area of expertise.
-            </p>
-            <a href="https://ibb.co.com/Mxn6ksLw" target="_blank" class="w3-button w3-blue w3-round-large w3-small">
-                <i class="fa fa-external-link"></i> View Recognition
-            </a>
-        </div>
-    </div>
-
-</div>
-</div>
-
-       
+<!-- =====================================================================
+  PART 3 — KEY CERTIFICATIONS (roadmap only)
+  Replace your whole <div id="certifications"> ... </div> block with this.
+====================================================================== -->
 <div class="w3-content w3-padding-64" id="certifications" style="text-align: left;">
     <h3 style="font-weight:bold; color:#07f1fa; text-align: left;">KEY CERTIFICATIONS</h3>
     <hr style="width:200px; margin-left: 0;" class="w3-opacity">
-        <h4 style="font-weight:bold; color:#00e5ff; margin-top:20px;">Cybersecurity</h4>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/9HZb3GHS/CC.png" alt="ISC2 CC" style="width:100%"><p class="w3-center">ISC2 Certified in Cybersecurity (CC) Passed</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/kgdNkzNB/Screenshot-2026-03-21-230514.png" alt="ISC2 Coursera" style="width:100%"><p class="w3-center">ISC2 CC Specialization from Coursera</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/G3TXnR8n/Screenshot-2026-01-04-004234.png" alt="THM Advent" style="width:100%"><p class="w3-center">THM Advent of Cyber 2025</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/5x6MyVty/Screenshot-2025-08-13-231447.png" alt="THM Pre-Security" style="width:100%"><p class="w3-center">THM Pre Security Path</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co/99ZMgJ9S/Screenshot-2025-07-03-215434.png" alt="Ethical Hacker" style="width:100%"><p class="w3-center">Cisco Ethical Hacker</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co/FbggwyWT/Screenshot-2025-05-26-215922.png" alt="Cybersecurity certificates" style="width:100%"><p class="w3-center">Penetration Testing, Threat Hunting, and Cryptography Specialist</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co.com/fGNG3KKm/1782406570418.jpg" alt="DevSecOps Phoenix Summit 2026 Training" style="width:100%"><p class="w3-center">DevSecOps Phoenix Summit 2026 Training</p></div>
-        
-        <h4 style="font-weight:bold; color:#00e5ff; margin-top:20px;">Machine Learning</h4>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co/cS0stmCg/Screenshot-2026-03-21-231309.png" alt="AI for Cyber" style="width:100%"><p class="w3-center">Introduction to AI for Cybersecurity</p></div>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co/Ywc1NjW/Screenshot-2025-08-13-230611.png" alt="ML Cyber" style="width:100%"><p class="w3-center">ML and Emerging Tech in Cybersecurity</p></div>
-        
-        <h4 style="font-weight:bold; color:#00e5ff; margin-top:20px;">Python & Others</h4>
-        <div class="w3-margin-bottom"><img src="https://i.ibb.co/4R1Lmz3K/edge.jpg" alt="EDGE Python" style="width:100%"><p class="w3-center">EDGE Python Professional Certification</p></div>
-        <div class="w3-margin-bottom"><img src="https://ibb.co.com/0yHr4wb7" alt="Cisco Badges" style="width:100%"><p class="w3-center">Cisco Networking Academy Badges Gained</p></div>
-        
-        <div class="w3-center w3-padding-16">
-            <a href="https://www.linkedin.com/in/showkot-hosen10/" target="_blank" class="w3-button w3-hover-blue w3-black">See LinkedIn for 22+ certificates</a>
-        </div>
+    <p>My learning path, from foundations to real-world applications. Click any certificate to open it.</p>
+
+    <!-- Filled by the script in PART 4 -->
+    <div class="roadmap" id="cert-roadmap"></div>
+
+    <div class="w3-center w3-padding-16">
+        <a href="https://www.linkedin.com/in/showkot-hosen10/" target="_blank" class="w3-button w3-hover-blue w3-black">See LinkedIn for 22+ certificates</a>
     </div>
+</div>
+
+<!-- Certificate viewer (one shared modal) -->
+<div class="cert-modal" id="cert-modal" aria-hidden="true">
+    <div class="cert-modal-box">
+        <div class="cert-modal-head">
+            <div id="cert-modal-title"></div>
+            <div style="display:flex; align-items:center;">
+                <a id="cert-modal-open" href="#" target="_blank" rel="noopener"><i class="fa fa-external-link"></i> Open in new tab</a>
+                <button id="cert-modal-close" aria-label="Close">&#10005;</button>
+            </div>
+        </div>
+        <div id="cert-modal-body"></div>
+    </div>
+</div>
+
+
+<!-- =====================================================================
+  PART 4 — SCRIPT
+  Paste right before </body>, after your existing <script>.
+  This is the ONE place that holds your certificate list, the roadmap
+  order, and the evidence behind each skill. Edit titles/links here.
+====================================================================== -->
+<script>
+(function () {
+  'use strict';
+
+  var BASE = 'assets/img/Certs/';
+  function pdf(name) { return BASE + encodeURIComponent(name); }
+
+  /* ---------- 1. ALL CERTIFICATES ----------
+     PDFs get an automatic first-page preview (rendered in the browser).
+     Optional: add  thumb:'assets/img/Certs/thumbs/xxx.png'  to use your own preview image. */
+  var CERTS = {
+    nettech:     { icon:'fa-sitemap',      title:'Network Technician Career Path', issuer:'Cisco Networking Academy', url:pdf('Network_Technician_Career_Path_certificate.pdf') },
+    ciscobadges: { icon:'fa-certificate',  title:'Cisco Networking Academy Badges', issuer:'Cisco', url:pdf('cisco_Badges.pdf') },
+    edge:        { icon:'fa-code',         title:'EDGE Python Professional Certification', issuer:'EDGE', url:'https://i.ibb.co/4R1Lmz3K/edge.jpg' },
+
+    thmpre:      { icon:'fa-flag',         title:'Pre Security Path', issuer:'TryHackMe', url:pdf('THM-Pre security.pdf') },
+    isc2spec:    { icon:'fa-graduation-cap', title:'ISC2 CC Specialization', issuer:'Coursera', url:pdf('CC from Coursera.pdf') },
+    osint:       { icon:'fa-search',       title:'OSINT Certificate', issuer:'', url:pdf('OSINT Showkot Hosen.pdf') },
+
+    ethhack:     { icon:'fa-user-secret',  title:'Ethical Hacker', issuer:'Cisco Networking Academy', url:'https://i.ibb.co/99ZMgJ9S/Screenshot-2025-07-03-215434.png' },
+    pentest:     { icon:'fa-bug',          title:'Penetration Testing, Threat Hunting, and Cryptography Specialist', issuer:'Coursera', url:pdf('Coursera TPentesting Certs.pdf') },
+    thmaoc:      { icon:'fa-gift',         title:'Advent of Cyber 2025', issuer:'TryHackMe', url:pdf('THM-AoC 2025 Cert.pdf') },
+
+    isc2cc:      { icon:'fa-shield',       title:'ISC2 Certified in Cybersecurity (CC)', issuer:'ISC2 · Exam passed', url:'https://i.ibb.co.com/9HZb3GHS/CC.png' },
+
+    aicyber:     { icon:'fa-microchip',    title:'Introduction to AI for Cybersecurity', issuer:'Coursera', url:pdf('Intro_Al_for_cybersec _Coursera.pdf') },
+    mlemerg:     { icon:'fa-line-chart',   title:'ML and Emerging Tech in Cybersecurity', issuer:'', url:pdf('ML_and_Emerg.pdf') },
+    malnet:      { icon:'fa-exclamation-triangle', title:'Malware and Network Anomaly Detection', issuer:'Coursera', url:pdf('Malware_Net_Anomaly_Coursera.pdf') },
+    aisec:       { icon:'fa-lock',         title:'Introduction to AI Security', issuer:'', url:pdf('Introduction-to-Al-Security-Cedificate.pdf') },
+    openwaiver:  { icon:'fa-file-text-o',  title:'Open Waiver AI Certificate', issuer:'', url:pdf('Open Waiver Al certificate.pdf') },
+
+    learnathon:  { icon:'fa-lightbulb-o',  title:'Learn-A-Thon Certificate', issuer:'', url:pdf('Learn_A_Thon.pdf') },
+    phoenix:     { icon:'fa-trophy',       title:'DevSecOps Phoenix Summit 2026: Fellowship Training', issuer:'Phoenix Summit, Dhaka', url:'https://i.ibb.co.com/fGNG3KKm/1782406570418.jpg' }
+  };
+
+  /* ---------- 2. ROADMAP: foundations -> applications (each certificate once) ---------- */
+  var ROADMAP = [
+    { t:'Networking and Programming Foundations', d:'Networking, packet tracing and Python basics.', ids:['nettech','ciscobadges','edge'] },
+    { t:'Security Fundamentals', d:'Core security concepts and investigation skills.', ids:['thmpre','isc2spec','osint'] },
+    { t:'Offensive and Defensive Skills', d:'Ethical hacking, penetration testing, threat hunting and cryptography.', ids:['ethhack','pentest','thmaoc'] },
+    { t:'Industry Credential', d:'Professional validation of cybersecurity fundamentals.', ids:['isc2cc'] },
+    { t:'AI Meets Security', d:'Applying machine learning to security problems.', ids:['aicyber','mlemerg','malnet','aisec','openwaiver'] },
+    { t:'Applications', d:'Hands-on programs and DevSecOps fellowship training.', ids:['learnathon','phoenix'] }
+  ];
+
+  /* ---------- 3. EVIDENCE BEHIND EACH SKILL (shown in the hover popup) ---------- */
+  var U = {
+    sqli:'https://ieeexplore.ieee.org/document/11546239',
+    malware:'https://ieeexplore.ieee.org/document/11546170',
+    aircraft:'https://ieeexplore.ieee.org/document/11012922',
+    prompt:'https://github.com/Showkot-Hosen-10/UGThesis',
+    stego:'https://github.com/Showkot-Hosen-10/textstego',
+    wsn:'https://github.com/Showkot-Hosen-10/WSN-DS-XAI',
+    kaggle:'https://www.kaggle.com/showkothosen',
+    buet:'https://www.kaggle.com/competitions/dl-sprint-4-0-bengali-speaker-diarization-challenge',
+    thm:'https://tryhackme.com/p/Sh313',
+    cyberRoad:'https://github.com/Showkot-Hosen-10/Cybersecurity_Roadmap',
+    ccRoad:'https://github.com/Showkot-Hosen-10/ISC2-CC-Roadmap',
+    bcs:'https://bcsbd.org.bd/event-details/bcs-ict-fest-2025',
+    uap:'https://www.facebook.com/uap.cyber.siege/',
+    televerse:'https://www.linkedin.com/company/televerse-1-0/',
+    researchgate:'https://www.researchgate.net/profile/Showkot-Hosen',
+    linkedin:'https://www.linkedin.com/in/showkot-hosen10/'
+  };
+
+  var SKILLS = {
+    embedded: { certs:['nettech','ciscobadges'], groups:[
+      { g:'Education and Work', i:'fa-graduation-cap', items:[['BSc in Electronics and Telecommunication Engineering, CUET','#about'],['Adjunct Lecturer (ETE), IIUC','#experience']] },
+      { g:'Projects', i:'fa-microchip', items:[['SEC-IoT and other IoT / embedded projects','#projects']] },
+      { g:'Research', i:'fa-file-text-o', items:[['WSN-IDS: intrusion detection for wireless sensor networks', U.wsn]] }
+    ]},
+    aisec: { certs:['aisec','aicyber'], groups:[
+      { g:'Research', i:'fa-file-text-o', items:[['PromptLight: prompt injection detection for LLM apps', U.prompt]] },
+      { g:'Projects', i:'fa-microchip', items:[['MLWAF: ML-powered web application firewall','#projects']] },
+      { g:'Education', i:'fa-graduation-cap', items:[['MSc majoring in AI and Cybersecurity, CUET','#about']] }
+    ]},
+    xai: { certs:[], note:'Validated through publications and research manuscripts.', groups:[
+      { g:'Publications', i:'fa-book', items:[['XAI-Powered Vision: CNN malware classifier (IEEE QPAIN 2026)', U.malware],['Interpretable SQL Injection Detection with SHAP (IEEE QPAIN 2026)', U.sqli],['WSN-IDS: SHAP-explainable Decision Tree', U.wsn],['Text steganography detection with SHAP reasons', U.stego]] }
+    ]},
+    ml: { certs:['aicyber','mlemerg','malnet','edge'], groups:[
+      { g:'Publications', i:'fa-book', items:[['Aircraft Detection in Satellite Images using CNN (ECCE 2025)', U.aircraft],['PromptLight (ALBERT-base-v2)', U.prompt],['Text steganography detection (LightGBM-Lite)', U.stego]] },
+      { g:'Competitions and Profiles', i:'fa-trophy', items:[['BUET DL Sprint 4.0 (Kaggle)', U.buet],['Kaggle profile', U.kaggle]] }
+    ]},
+    cyber: { certs:['isc2cc','isc2spec','pentest','thmpre','thmaoc','ethhack','osint','phoenix'], groups:[
+      { g:'Work and Mentoring', i:'fa-briefcase', items:[['Cybersecurity Research Student, CUET','#experience'],['Cyberhunt: Cybersecurity Mentorship Lead','#experience']] },
+      { g:'CTFs and Events', i:'fa-flag', items:[['BCS CTF', U.bcs],['UAP CTF', U.uap],['Organizer, Televerse 1.0 CTF', U.televerse]] },
+      { g:'Profiles', i:'fa-link', items:[['TryHackMe profile', U.thm]] }
+    ]},
+    research: { certs:[], note:'Validated through peer-reviewed work and academic service.', groups:[
+      { g:'Publications', i:'fa-book', items:[['IEEE QPAIN 2026: SQL Injection Detection', U.sqli],['IEEE QPAIN 2026: XAI-Powered Malware Classifier', U.malware],['ECCE 2025: Aircraft Detection', U.aircraft],['All papers and manuscripts','#publication']] },
+      { g:'Academic Service', i:'fa-check-square-o', items:[['Reviewer: Cyber Security and Applications (Elsevier)','#academic-service'],['Reviewer Panel: HKIE Transactions','#academic-service']] },
+      { g:'Thesis and Profile', i:'fa-link', items:[['Undergraduate thesis: PromptLight', U.prompt],['ResearchGate profile', U.researchgate]] }
+    ]},
+    os: { certs:['ciscobadges','thmpre'], groups:[
+      { g:'Foundations', i:'fa-terminal', items:[['Linux Bash and Packet Tracing foundations','#about']] },
+      { g:'Community', i:'fa-users', items:[['Cybersecurity Roadmap (networking, ethical hacking, system security)', U.cyberRoad]] }
+    ]},
+    writing: { certs:[], note:'Validated through publications, reviewing and written guides.', groups:[
+      { g:'Publications', i:'fa-book', items:[['IEEE QPAIN 2026 and ECCE 2025 papers', '#publication'],['Journal manuscripts (PromptLight, text steganography, WSN-IDS)','#publication']] },
+      { g:'Academic Service', i:'fa-check-square-o', items:[['Reviewer roles (Elsevier, HKIE)','#academic-service']] },
+      { g:'Guides', i:'fa-pencil', items:[['Cybersecurity Roadmap', U.cyberRoad],['ISC2 CC Preparation Roadmap', U.ccRoad]] }
+    ]}
+  };
+
+  /* ---------- helpers ---------- */
+  function isPdf(u) { return /\.pdf$/i.test(u); }
+
+  function thumbHtml(c) {
+    var icon = '<i class="fa ' + c.icon + '"></i>';
+    if (c.thumb)       return '<div class="cert-thumb"><img src="' + c.thumb + '" alt="" loading="lazy"></div>';
+    if (!isPdf(c.url)) return '<div class="cert-thumb"><img src="' + c.url   + '" alt="" loading="lazy"></div>';
+    return '<div class="cert-thumb" data-pdf="' + c.url + '" data-icon="' + c.icon + '">' + icon + '</div>';
+  }
+
+  function certCard(id) {
+    var c = CERTS[id];
+    return '<div class="cert-card" data-cert="' + id + '" tabindex="0" role="button">' +
+             thumbHtml(c) +
+             '<div class="cert-meta"><div class="cert-name">' + c.title + '</div>' +
+             (c.issuer ? '<div class="cert-issuer">' + c.issuer + '</div>' : '') + '</div>' +
+             '<div class="cert-view"><i class="fa fa-eye"></i> View</div>' +
+           '</div>';
+  }
+
+  function linkHtml(text, href, icon) {
+    var ext = /^https?:/.test(href);
+    return '<a class="sp-link" href="' + href + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '><i class="fa ' + icon + '"></i>' + text + '</a>';
+  }
+
+  /* ---------- PDF first-page previews (pdf.js, loaded only when needed) ---------- */
+  var PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+  var pdfReady = null;
+  function loadPdfJs() {
+    if (pdfReady) return pdfReady;
+    pdfReady = new Promise(function (resolve, reject) {
+      if (window.pdfjsLib) { resolve(window.pdfjsLib); return; }
+      var s = document.createElement('script');
+      s.src = PDFJS + 'pdf.min.js';
+      s.onload = function () { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.js'; resolve(window.pdfjsLib); };
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return pdfReady;
+  }
+  function renderThumb(el) {
+    var url = el.getAttribute('data-pdf');
+    loadPdfJs()
+      .then(function (lib) { return lib.getDocument(url).promise; })
+      .then(function (doc) { return doc.getPage(1); })
+      .then(function (page) {
+        var base = page.getViewport({ scale: 1 });
+        var vp = page.getViewport({ scale: 280 / base.width });   // ~2x the displayed width, stays sharp
+        var cv = document.createElement('canvas');
+        cv.width = vp.width; cv.height = vp.height;
+        return page.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise.then(function () {
+          el.innerHTML = ''; el.appendChild(cv);
+        });
+      })
+      .catch(function () { /* keep the icon if the preview fails */ });
+  }
+
+  /* ---------- certificate viewer ---------- */
+  var modal, mBody, mTitle, mOpen;
+  function openCert(id) {
+    var c = CERTS[id]; if (!c) return;
+    mTitle.textContent = c.title + (c.issuer ? ' — ' + c.issuer : '');
+    mOpen.href = c.url;
+    mBody.innerHTML = '';
+    if (isPdf(c.url)) {
+      var f = document.createElement('iframe'); f.src = c.url; f.title = c.title; mBody.appendChild(f);
+    } else {
+      var im = document.createElement('img'); im.src = c.url; im.alt = c.title; mBody.appendChild(im);
+    }
+    modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCert() {
+    modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true');
+    mBody.innerHTML = '';                       // stops the PDF from loading/using memory
+    document.body.style.overflow = '';
+  }
+
+  /* ---------- skill popups ---------- */
+  var wraps = [];
+  function placePop(w) {
+    var pop = w.querySelector('.skill-pop');
+    pop.style.setProperty('--shift', '0px');
+    var r = pop.getBoundingClientRect(), m = 10, shift = 0;
+    if (r.left < m) shift = m - r.left;
+    else if (r.right > window.innerWidth - m) shift = (window.innerWidth - m) - r.right;
+    pop.style.setProperty('--shift', shift + 'px');
+  }
+  function openSkill(w) {
+    clearTimeout(w._t);
+    wraps.forEach(function (o) { if (o !== w) o.classList.remove('open'); });
+    w.classList.add('open'); placePop(w);
+  }
+  function buildPop(w) {
+    var s = SKILLS[w.getAttribute('data-skill')]; if (!s) return;
+    var name = w.querySelector('.skill-tile').textContent;
+    var h = '<div class="skill-pop"><div class="skill-pop-inner"><div class="sp-title">' + name + '</div>';
+    if (s.note) h += '<div class="sp-note">' + s.note + '</div>';
+    if (s.certs.length) {
+      h += '<div class="sp-label"><i class="fa fa-certificate"></i> Certificates</div>';
+      s.certs.forEach(function (id) {
+        h += '<a class="sp-link" href="' + CERTS[id].url + '" data-cert="' + id + '"><i class="fa fa-file-pdf-o"></i>' + CERTS[id].title + '</a>';
+      });
+    }
+    s.groups.forEach(function (g) {
+      h += '<div class="sp-label"><i class="fa ' + g.i + '"></i> ' + g.g + '</div>';
+      g.items.forEach(function (it) { h += linkHtml(it[0], it[1], 'fa-angle-right'); });
+    });
+    h += '<div class="sp-foot"><a class="sp-link" href="' + U.linkedin + '" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i>All credentials on LinkedIn</a></div>';
+    h += '</div></div>';
+    w.insertAdjacentHTML('beforeend', h);
+  }
+
+  function init() {
+    /* roadmap */
+    var rm = '<div class="rm-flag">START: FOUNDATIONS</div>';
+    ROADMAP.forEach(function (s, i) {
+      rm += '<div class="rm-step"><div class="rm-dot">' + (i + 1) + '</div>' +
+            '<div class="rm-title">' + s.t + '</div><div class="rm-desc">' + s.d + '</div>' +
+            s.ids.map(certCard).join('') + '</div>';
+    });
+    rm += '<div class="rm-flag end">NOW: APPLICATIONS</div>';
+    document.getElementById('cert-roadmap').innerHTML = rm;
+
+    /* previews: image previews that fail fall back to the icon; PDF previews render lazily */
+    Array.prototype.forEach.call(document.querySelectorAll('.cert-thumb img'), function (img) {
+      img.addEventListener('error', function () {
+        var card = img.closest('.cert-card'), id = card && card.getAttribute('data-cert');
+        img.parentNode.innerHTML = '<i class="fa ' + (CERTS[id] ? CERTS[id].icon : 'fa-certificate') + '"></i>';
+      });
+    });
+    var thumbs = document.querySelectorAll('.cert-thumb[data-pdf]');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); renderThumb(e.target); } });
+      }, { rootMargin: '200px' });
+      Array.prototype.forEach.call(thumbs, function (t) { io.observe(t); });
+    } else {
+      Array.prototype.forEach.call(thumbs, renderThumb);
+    }
+
+    /* modal wiring */
+    modal  = document.getElementById('cert-modal');
+    mBody  = document.getElementById('cert-modal-body');
+    mTitle = document.getElementById('cert-modal-title');
+    mOpen  = document.getElementById('cert-modal-open');
+    document.getElementById('cert-modal-close').addEventListener('click', closeCert);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeCert(); });
+
+    /* skill popups */
+    wraps = Array.prototype.slice.call(document.querySelectorAll('.skill-wrap'));
+    wraps.forEach(function (w) {
+      buildPop(w);
+      w.addEventListener('mouseenter', function () { openSkill(w); });
+      w.addEventListener('mouseleave', function () { w._t = setTimeout(function () { w.classList.remove('open'); }, 180); });
+      w.addEventListener('focusin', function () { openSkill(w); });
+      w.querySelector('.skill-tile').addEventListener('click', function () {
+        if (window.matchMedia('(hover: none)').matches) {          // touch devices: tap toggles
+          if (w.classList.contains('open')) w.classList.remove('open'); else openSkill(w);
+        }
+      });
+    });
+
+    /* global: open certs, close popups */
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest ? e.target.closest('[data-cert]') : null;
+      if (el) { e.preventDefault(); openCert(el.getAttribute('data-cert')); return; }
+      if (!e.target.closest('.skill-wrap')) wraps.forEach(function (w) { w.classList.remove('open'); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { if (modal.classList.contains('open')) closeCert(); wraps.forEach(function (w) { w.classList.remove('open'); }); }
+      if (e.key === 'Enter' && e.target.classList && e.target.classList.contains('cert-card')) openCert(e.target.getAttribute('data-cert'));
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
 
 <div class="w3-content w3-padding-64" id="projects" style="text-align: left;">
     <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-bottom: 25px;">PROJECTS</h3>
