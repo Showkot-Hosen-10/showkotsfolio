@@ -777,16 +777,46 @@ My transition into research was marked by the publication of my first co-authore
             </div>
         </div>
     </div>
+    <!-- ===================== CONFERENCES (5 in one row on desktop, stacked on mobile) ===================== -->
+    <style>
+        .conf-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);   /* 5 cards in one row on desktop */
+            gap: 16px;
+            align-items: stretch;
+        }
+        .conf-card {
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .conf-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            image-rendering: -webkit-optimize-contrast;
+        }
+        .conf-card .w3-container { flex: 1; }
 
-    <!-- ===================== CONFERENCES (one row) ===================== -->
+        /* Tablet and mobile: one card per row, top to bottom */
+        @media (max-width: 992px) {
+            .conf-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+
     <h4 style="font-weight:bold; color:#00e5ff; margin-top:40px; text-align:center;">Conferences</h4>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+    <div class="conf-grid">
 
         <!-- Conference 1: SQL Injection -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
+        <div class="w3-card w3-black conf-card">
             <a href="https://ieeexplore.ieee.org/document/11546239" target="_blank">
-                <img src="assets/img/Papers/4385.png" alt="Interpretable SQL Injection Detection" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
+                <img src="assets/img/Papers/4385.png" alt="Interpretable SQL Injection Detection" class="w3-hover-opacity">
             </a>
             <div class="w3-container w3-padding-16">
                 <h4 style="font-size: 14px;">Interpretable SQL Injection Detection: Lightweight Decision Trees with SHAP-Enhanced Deployment</h4>
@@ -804,9 +834,9 @@ My transition into research was marked by the publication of my first co-authore
         </div>
 
         <!-- Conference 2: XAI Malware -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
+        <div class="w3-card w3-black conf-card">
             <a href="https://ieeexplore.ieee.org/document/11546170" target="_blank">
-                <img src="assets/img/Papers/6605.png" alt="XAI-Powered Malware Classifier" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
+                <img src="assets/img/Papers/6605.png" alt="XAI-Powered Malware Classifier" class="w3-hover-opacity">
             </a>
             <div class="w3-container w3-padding-16">
                 <h4 style="font-size: 14px;">XAI-Powered Vision: Making CNN Malware Classifier Transparent for Cybersecurity</h4>
@@ -824,9 +854,9 @@ My transition into research was marked by the publication of my first co-authore
         </div>
 
         <!-- Conference 3: Aircraft Detection -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
+        <div class="w3-card w3-black conf-card">
             <a href="https://ieeexplore.ieee.org/document/11012922" target="_blank">
-                <img src="assets/img/Papers/Sat.png" alt="Aircraft Detection Paper" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;" class="w3-hover-opacity">
+                <img src="assets/img/Papers/Sat.png" alt="Aircraft Detection Paper" class="w3-hover-opacity">
             </a>
             <div class="w3-container w3-padding-16">
                 <h4 style="font-size: 14px;">Aircraft Detection in Satellite Images Using CNN and Sliding Window Method</h4>
@@ -839,8 +869,8 @@ My transition into research was marked by the publication of my first co-authore
         </div>
 
         <!-- Conference 4: CJ-master (under review) -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
-            <img src="assets/img/cjmaster.png" alt="CJ-master: Cryptojacking Detection Framework" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;">
+        <div class="w3-card w3-black conf-card">
+            <img src="assets/img/cjmaster.png" alt="CJ-master: Cryptojacking Detection Framework">
             <div class="w3-container w3-padding-16">
                 <h4 style="font-size: 14px;">CJ-master: A Multilayer Browser-Based Cryptojacking Detection Framework with Real-Time Chromium Extension Deployment
                     <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:10px; vertical-align:middle;">Under Review</span>
@@ -849,20 +879,20 @@ My transition into research was marked by the publication of my first co-authore
                 <p style="font-size: 12px;">Author: Tonmoy Datta, <b>Showkot Hosen</b> and Dr. Md. Azad Hossain</p>
             </div>
         </div>
- <!-- Conference 5: Sentrix (under review) -->
-        <div class="w3-card w3-black" style="border: 1px solid #333; flex: 1 1 200px; max-width: 225px;">
-            <img src="assets/img/iot.pdf" alt="SentriX: Edge AI Industrial Worker Safety Monitoring and Gate Access System" style="width:100%; height: 150px; object-fit: cover; image-rendering: -webkit-optimize-contrast;">
+
+        <!-- Conference 5: SentriX (under review) -->
+        <div class="w3-card w3-black conf-card">
+            <img src="assets/img/iot.png" alt="SentriX: Edge AI Industrial Worker Safety Monitoring and Gate Access System">
             <div class="w3-container w3-padding-16">
                 <h4 style="font-size: 14px;">SentriX: Edge AI-Powered Industrial Worker Safety Monitoring and Intelligent Gate Access System
                     <span class="w3-tag w3-round" style="background:#07f1fa; color:#000; font-size:10px; vertical-align:middle;">Under Review</span>
                 </h4>
                 <p class="w3-text-grey" style="font-size: 12px;">Submitted to ECCE 2027 (under review)</p>
-                <p style="font-size: 12px;">Author: Abdullah Al Mamun Zihan, <b>Showkot Hosen</b>, Prangon sarker intu, Saidur Rahman Riad and Taeba Taher</p>
+                <p style="font-size: 12px;">Author: Abdullah Al Mamun Zihan, <b>Showkot Hosen</b>, Prangon Sarker Intu, Saidur Rahman Riad and Taeba Taher</p>
             </div>
         </div>
 
     </div>
-</div>
 
 <div class="w3-content w3-padding-64" id="academic-service" style="text-align: left;">
     <h3 style="font-weight:bold; color:#07f1fa; text-align: left;">ACADEMIC SERVICE</h3>
