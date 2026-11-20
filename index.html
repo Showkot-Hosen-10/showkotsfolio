@@ -1673,6 +1673,67 @@ My transition into research was marked by the publication of my first co-authore
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================================
+   LIGHT THEME: CERTIFICATIONS
+   ========================================================= */
+.light-theme #certifications,
+.light-theme #certifications p,
+.light-theme #certifications .rm-desc,
+.light-theme #certifications .cert-name,
+.light-theme #certifications .cert-issuer {
+    color: #000 !important;
+    opacity: 1;
+}
+.light-theme #certifications .cert-issuer { color: #333 !important; }
+.light-theme #certifications .cert-name   { font-weight: 700; }
+.light-theme #certifications .rm-title    { color: #00008B !important; }
+.light-theme #certifications .rm-flag     { background: #00008B !important; color: #fff !important; }
+.light-theme #certifications .cert-card   { background: #ffffff !important; border-color: rgba(0,0,139,.35) !important; }
+.light-theme #certifications .cert-view   { color: #00008B !important; border-color: #00008B !important; }
+.light-theme #certifications .cert-card:hover .cert-view { background: #00008B !important; color: #fff !important; }
+
+/* =========================================================
+   LIGHT THEME: PROJECTS
+   ========================================================= */
+.light-theme .project-card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 139, 0.25) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.light-theme .project-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 139, 0.2);
+    border-color: #00008B !important;
+}
+.light-theme .project-info h4,
+.light-theme .project-info h4 a {
+    color: #000 !important;
+}
+.light-theme .project-info h4 a:hover { color: #00008B !important; }
+.light-theme .project-info p {
+    color: #222 !important;
+    font-weight: 400 !important;
+}
+.light-theme .doc-icon { color: #00008B !important; }
+/* .yt-icon stays red in both themes */
+
+/* =========================================================
+   MOBILE / TABLET TWEAKS
+   ========================================================= */
+.projects-grid { width: 100%; box-sizing: border-box; }
+.project-card  { min-width: 0; }
+.project-info h4 a { gap: 8px; word-break: break-word; }
+
+@media (max-width: 600px) {
+    .project-img { height: 160px; }
+    .project-info { padding: 14px; }
+    .roadmap { padding-left: 46px; }
+    .rm-dot  { left: -46px; width: 34px; height: 34px; font-size: 13px; }
+    .roadmap::before { left: 16px; }
+    .cert-card { gap: 10px; padding: 10px; }
+    .cert-name { font-size: 13px; }
+}
+
 </style>
 
 
