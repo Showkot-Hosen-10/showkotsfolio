@@ -482,48 +482,195 @@ body.light-mode .badge-frame {
         <p>My journey into Engineering began with a rigorous focus on algorithmic problem-solving, where I built a strong foundation in C and C++ by solving over 65+ challenges on HackerRank. This early technical discipline evolved into a deep curiosity for IoT, embedded system, Cybersecurity, leading me to master the fundamentals of Networking, Packet Tracing, and Linux Bash through the Cisco ecosystem. While navigating the complexities of early engineering, I made a strategic pivot in my third year to align my academic performance with my professional ambitions. This resulted in a significant CGPA boost, achieved while simultaneously earning the Cisco Ethical Hacker credential and developing proficiency in Python for Machine Learning.
 
 My transition into research was marked by the publication of my first co-authored paper on CNN-based satellite image classification, which laid the groundwork for my subsequent work. As a lead researcher, I have since published two additional papers as first author, focusing on the intersection of Deep Learning and security. Having recently earned the ISC2 Certified in Cybersecurity (CC) designation, I am currently specializing in Explainable AI (XAI) and LLMs for my thesis. I am driven by the goal of bridging the gap between automated security and human interpretability, and I am now seeking a PhD opportunity to develop the next generation of transparent, AI-driven defense systems.</p>
+<style>
+    /* ===== Shared: organization logo cards ===== */
+    .org-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 16px;
+        border: 1px solid #222;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.02);
+        transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+    .org-item:hover {
+        transform: translateY(-4px);
+        border-color: rgba(7, 241, 250, .5);
+        box-shadow: 0 8px 28px rgba(7, 241, 250, .12);
+    }
 
-        <h3 style="font-weight:bold; color:#07f1fa;">EDUCATION</h3>
-        <div class="w3-container w3-margin-bottom">
+    .org-logo {
+        position: relative;
+        flex: 0 0 84px;
+        width: 84px;
+        height: 84px;
+        padding: 8px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 12px rgba(7, 241, 250, .35), 0 0 30px rgba(7, 241, 250, .15);
+        transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), box-shadow .4s ease;
+        animation: orgFloat 4s ease-in-out infinite;
+    }
+    .org-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .org-item:hover .org-logo {
+        transform: scale(1.12) rotate(-4deg);
+        box-shadow: 0 0 18px rgba(7, 241, 250, .7), 0 0 45px rgba(7, 241, 250, .35);
+        animation-play-state: paused;
+    }
+    /* Optional: for transparent PNGs with no white tile, glow follows the logo shape */
+    .org-logo.no-tile {
+        background: transparent;
+        box-shadow: none;
+    }
+    .org-logo.no-tile img {
+        filter: drop-shadow(0 0 8px rgba(7, 241, 250, .6));
+    }
+
+    @keyframes orgFloat {
+        0%, 100% { translate: 0 0; }
+        50%      { translate: 0 -4px; }
+    }
+
+    /* Green live dot (for present roles) */
+    .live-dot {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #22ff6a;
+        border: 2px solid #000;
+        box-shadow: 0 0 8px #22ff6a;
+        animation: livePulse 1.8s ease-out infinite;
+    }
+    @keyframes livePulse {
+        0%   { box-shadow: 0 0 0 0 rgba(34, 255, 106, .7); }
+        70%  { box-shadow: 0 0 0 10px rgba(34, 255, 106, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(34, 255, 106, 0); }
+    }
+
+    /* Inline "Currently ..." tag */
+    .live-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: 8px;
+        padding: 2px 10px;
+        font-size: 11px;
+        color: #22ff6a;
+        border: 1px solid rgba(34, 255, 106, .5);
+        border-radius: 20px;
+        background: rgba(34, 255, 106, .08);
+        vertical-align: middle;
+    }
+    .live-tag::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22ff6a;
+        animation: tagBlink 1.4s ease-in-out infinite;
+    }
+    @keyframes tagBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: .25; }
+    }
+
+    .org-info { flex: 1; min-width: 0; }
+    .org-info h4, .org-info p { margin: 0 0 6px 0; }
+
+    /* Mobile: logo on top, text below */
+    @media (max-width: 600px) {
+        .org-item { flex-direction: column; align-items: flex-start; }
+        .org-logo { flex-basis: 72px; width: 72px; height: 72px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .org-logo, .live-dot, .live-tag::before { animation: none; }
+        .org-item, .org-logo { transition: none; }
+    }
+</style>
+
+<h3 style="font-weight:bold; color:#07f1fa;">EDUCATION</h3>
+
+<!-- MSc (present) -->
+<div class="w3-container w3-margin-bottom">
+    <div class="org-item">
+        <div class="org-logo">
+            <img src="assets/img/logos/cuet.png" alt="CUET logo">
+            <span class="live-dot" title="Currently studying"></span>
+        </div>
+        <div class="org-info">
             <h4 class="w3-text-white">MSc in Electronics and Telecommunication Engineering</h4>
             <p class="w3-text-white">Chittagong University of Engineering and Technology (CUET)</p>
-            <p class="w3-text-grey">2026 – Present | AI/ML in Cybersecurity</p>
+            <p class="w3-text-grey">2026 – Present | AI/ML in Cybersecurity
+                <span class="live-tag">Currently studying</span>
+            </p>
         </div>
-        <div class="w3-container w3-margin-bottom">
-    <h4 class="w3-text-white">BSc in Electronics and Telecommunication Engineering</h4>
-    <p class="w3-text-white">Chittagong University of Engineering and Technology (CUET)</p>
-    <p class="w3-text-grey">2022 – 2026 </p>
-    <a href="https://drive.google.com/drive/folders/1O0bns6e6USQt3-VHO1FyW0W7RxLgTuq3" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="w3-button w3-round w3-teal w3-margin-top">
-        <i class="fa fa-folder-open w3-margin-right"></i>BSc Drive Link
-    </a>
+    </div>
 </div>
-        <div class="w3-container w3-margin-bottom">
+
+<!-- BSc -->
+<div class="w3-container w3-margin-bottom">
+    <div class="org-item">
+        <div class="org-logo">
+            <img src="assets/img/logos/cuet.png" alt="CUET logo">
+        </div>
+        <div class="org-info">
+            <h4 class="w3-text-white">BSc in Electronics and Telecommunication Engineering</h4>
+            <p class="w3-text-white">Chittagong University of Engineering and Technology (CUET)</p>
+            <p class="w3-text-grey">2022 – 2026</p>
+            <a href="https://drive.google.com/drive/folders/1O0bns6e6USQt3-VHO1FyW0W7RxLgTuq3"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="w3-button w3-round w3-teal w3-margin-top">
+                <i class="fa fa-folder-open w3-margin-right"></i>BSc Drive Link
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- HSC -->
+<div class="w3-container w3-margin-bottom">
+    <div class="org-item">
+        <div class="org-logo">
+            <img src="assets/img/logos/gcc.png" alt="Government City College logo">
+        </div>
+        <div class="org-info">
             <h4 class="w3-text-white">HSC in Science</h4>
             <p class="w3-text-white">Government City College, Chittagong</p>
             <p class="w3-text-grey">2018 – 2020</p>
         </div>
+    </div>
+</div>
 
-             <div class="badge-container">
-                <div class="badge-box">
-                    <h3 class="badge-title">GOOGLE SCHOLAR</h3>
-                    <div class="badge-frame">
-                    <img src="https://img.shields.io/badge/Google%20Scholar-Showkot%20Hosen-4285F4?logo=googlescholar&logoColor=white&style=for-the-badge" alt="Google Scholar Badge" style="max-height:55px;"/>
-                    </div>
-                <a href="https://scholar.google.com/citations?user=sEfam2IAAAAJ&hl=en&authuser=2" target="_blank" class="w3-button badge-btn">View My Scholar Profile</a>
-            </div>
-                
-            <div class="badge-box">
-                    <h3 class="badge-title">KAGGLE BADGE</h3>
-                    <div class="badge-frame">
-                        <img src="https://img.shields.io/badge/Kaggle-showkothosen-blue?logo=kaggle&style=for-the-badge" alt="Kaggle Badge" style="max-height:55px;"/>
-                    </div>
-                    <a href="https://www.kaggle.com/showkothosen" target="_blank" class="w3-button badge-btn">View My Kaggle Profile</a>
-                </div>
-            </div>
+<!-- Badges (unchanged) -->
+<div class="badge-container">
+    <div class="badge-box">
+        <h3 class="badge-title">GOOGLE SCHOLAR</h3>
+        <div class="badge-frame">
+            <img src="https://img.shields.io/badge/Google%20Scholar-Showkot%20Hosen-4285F4?logo=googlescholar&logoColor=white&style=for-the-badge" alt="Google Scholar Badge" style="max-height:55px;"/>
+        </div>
+        <a href="https://scholar.google.com/citations?user=sEfam2IAAAAJ&hl=en&authuser=2" target="_blank" class="w3-button badge-btn">View My Scholar Profile</a>
+    </div>
 
+    <div class="badge-box">
+        <h3 class="badge-title">KAGGLE BADGE</h3>
+        <div class="badge-frame">
+            <img src="https://img.shields.io/badge/Kaggle-showkothosen-blue?logo=kaggle&style=for-the-badge" alt="Kaggle Badge" style="max-height:55px;"/>
+        </div>
+        <a href="https://www.kaggle.com/showkothosen" target="_blank" class="w3-button badge-btn">View My Kaggle Profile</a>
+    </div>
+</div>
 <!-- =====================================================================
   PART 1 — CSS
   Paste at the END of your existing <style> block (delete the <style> tags
