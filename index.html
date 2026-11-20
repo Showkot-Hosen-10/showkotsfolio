@@ -446,16 +446,16 @@ body.light-mode .badge-frame {
 
 <!-- Mobile Top Navigation Bar -->
 <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center" style="display: flex; justify-content: space-around; font-size: 7px !important;">
-    <a href="#home" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">HOME</a>
-    <a href="#about" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">ABOUT</a>
-    <a href="#experience" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">EXP.</a>
-    <a href="#publication" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">PUB.</a>
-    <a href="#academic-service" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">ACA.</a>
-    <a href="#certifications" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">CERT.</a>
-    <a href="#projects" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">PROJ.</a>
-    <a href="#community" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">COMM.</a>
-    <a href="#co-curricular" class="w3-bar-item w3-button" style="padding: 8px 1px !important; flex: 1;">EXTRAS</a>
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center">
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+    <a href="#experience" class="w3-bar-item w3-button">EXP.</a>
+    <a href="#publication" class="w3-bar-item w3-button">PUB.</a>
+    <a href="#academic-service" class="w3-bar-item w3-button">ACA.</a>
+    <a href="#certifications" class="w3-bar-item w3-button">CERT.</a>
+    <a href="#projects" class="w3-bar-item w3-button">PROJ.</a>
+    <a href="#community" class="w3-bar-item w3-button">COMM.</a>
+    <a href="#co-curricular" class="w3-bar-item w3-button">EXTRAS</a>
   </div>
 </div>
 
@@ -482,294 +482,97 @@ body.light-mode .badge-frame {
         <p>My journey into Engineering began with a rigorous focus on algorithmic problem-solving, where I built a strong foundation in C and C++ by solving over 65+ challenges on HackerRank. This early technical discipline evolved into a deep curiosity for IoT, embedded system, Cybersecurity, leading me to master the fundamentals of Networking, Packet Tracing, and Linux Bash through the Cisco ecosystem. While navigating the complexities of early engineering, I made a strategic pivot in my third year to align my academic performance with my professional ambitions. This resulted in a significant CGPA boost, achieved while simultaneously earning the Cisco Ethical Hacker credential and developing proficiency in Python for Machine Learning.
 
 My transition into research was marked by the publication of my first co-authored paper on CNN-based satellite image classification, which laid the groundwork for my subsequent work. As a lead researcher, I have since published two additional papers as first author, focusing on the intersection of Deep Learning and security. Having recently earned the ISC2 Certified in Cybersecurity (CC) designation, I am currently specializing in Explainable AI (XAI) and LLMs for my thesis. I am driven by the goal of bridging the gap between automated security and human interpretability, and I am now seeking a PhD opportunity to develop the next generation of transparent, AI-driven defense systems.</p>
+
 <style>
-    /* =========================================================
-       1. LOGO + TEXT ROW (shared by Education and Experience)
-       ========================================================= */
-    .org-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 14px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-    .w3-container:last-child > .org-item { border-bottom: none; }
+/* ===== 1. LOGO + TEXT ROW (Education and Experience) ===== */
+.org-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);}
+.w3-container:last-child > .org-item{border-bottom:none;}
+.org-logo{position:relative;flex:0 0 56px;width:56px !important;height:56px !important;}
+.org-logo img{width:56px !important;height:56px !important;object-fit:contain;display:block;margin:0;}
+.org-info{flex:1;min-width:0;text-align:left;}
+.org-info h4{margin:0 0 2px;font-size:16px;font-weight:600;line-height:1.3;}
+.org-info p{margin:0 0 2px;font-size:14px;line-height:1.4;}
 
-    .org-logo {
-        position: relative;
-        flex: 0 0 56px;
-        width: 56px !important;
-        height: 56px !important;
-    }
-    .org-logo img {
-        width: 56px !important;
-        height: 56px !important;
-        object-fit: contain;
-        display: block;
-        margin: 0;
-    }
+/* ===== 2. SMALL TAGS ===== */
+.live-tag,.drive-tag{display:inline-flex;align-items:center;gap:6px;padding:0 8px;font-size:11px;line-height:18px;border-radius:3px;vertical-align:middle;text-decoration:none;}
+.live-tag{margin-left:8px;color:#4ade80;border:1px solid rgba(74,222,128,.35);}
+.live-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#22c55e;}
+.drive-tag{margin-top:6px;color:#07f1fa;border:1px solid rgba(7,241,250,.4);}
+.drive-tag:hover{background:rgba(7,241,250,.08);color:#07f1fa;}
+.live-dot{position:absolute;right:-3px;bottom:-3px;width:12px;height:12px;border-radius:50%;background:#22c55e;border:2px solid #000;animation:livePulse 2.4s ease-out infinite;}
+@keyframes livePulse{
+  0%{box-shadow:0 0 0 0 rgba(34,197,94,.55);}
+  70%{box-shadow:0 0 0 6px rgba(34,197,94,0);}
+  100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}
+}
 
-    .org-info { flex: 1; min-width: 0; }
-    .org-info h4 { margin: 0 0 2px 0; font-size: 16px; font-weight: 600; line-height: 1.3; }
-    .org-info p  { margin: 0 0 2px 0; font-size: 14px; line-height: 1.4; }
+/* ===== 3. EDUCATION GRID ===== */
+.edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px;padding:0 16px;}
+.edu-grid .org-item{border-bottom:none;}
+.edu-grid .edu-center{grid-column:1 / -1;justify-self:center;width:calc((100% - 32px) / 2);}
 
-    /* =========================================================
-       2. LIVE INDICATOR (green dot + status tag)
-       ========================================================= */
-    .live-dot {
-        position: absolute;
-        right: -3px;
-        bottom: -3px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #22c55e;
-        border: 2px solid #000;
-        animation: livePulse 2.4s ease-out infinite;
-    }
-    @keyframes livePulse {
-        0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, .55); }
-        70%  { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-    }
+/* ===== 4. BADGES: compact (overrides the old 340px / 320x85 / 180x50 rules) ===== */
+.badge-container.badge-row-4{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;width:100%;max-width:100%;margin:20px 0;box-sizing:border-box;
+}
+.badge-row-4 .badge-box{
+  min-width:0 !important;width:auto !important;max-width:none !important;
+  margin:0 !important;padding:10px !important;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  box-sizing:border-box;overflow:hidden;
+}
+.badge-row-4 .badge-title{font-size:11px !important;margin:0 !important;letter-spacing:.5px;}
+.badge-row-4 .badge-frame{
+  width:100% !important;height:auto !important;min-height:0 !important;
+  margin:0 !important;padding:6px !important;
+  display:flex !important;justify-content:center;align-items:center;
+  box-sizing:border-box;background:#1a1a1a;
+}
+.light-theme .badge-row-4 .badge-frame{background:#fff;}
+.badge-row-4 .badge-frame img{width:100%;height:22px;object-fit:contain;display:block;}
+.badge-row-4 .badge-btn{
+  width:100% !important;max-width:130px;height:30px !important;
+  font-size:12px !important;padding:0 8px !important;margin:0 !important;
+}
 
-    .live-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin-left: 8px;
-        padding: 0 8px;
-        font-size: 11px;
-        color: #4ade80;
-        border: 1px solid rgba(74, 222, 128, .35);
-        border-radius: 3px;
-        vertical-align: middle;
-    }
-    .live-tag::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #22c55e;
-    }
+/* ===== 5. GENERAL RESPONSIVE FIXES ===== */
+.w3-sidebar{overflow-y:auto;}
+.w3-sidebar p{text-align:center;font-size:10px;}
+.w3-sidebar .w3-bar-item{padding:10px 4px !important;}
+.skills-grid-container{width:100%;box-sizing:border-box;}
 
-    /* =========================================================
-       3. EDUCATION GRID (MSc + BSc side by side, HSC centered)
-       ========================================================= */
-    .edu-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px 32px;
-        padding: 0 16px;
-    }
-    .edu-grid .org-item { border-bottom: none; }
+/* Mobile top nav: readable and horizontally scrollable */
+#myNavbar .w3-bar{display:flex;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+#myNavbar .w3-bar-item{flex:0 0 auto !important;font-size:11px;padding:10px 12px !important;}
 
-    .edu-grid .edu-center {
-        grid-column: 1 / -1;
-        justify-self: center;
-        width: calc((100% - 32px) / 2);
-    }
-
-    /* =========================================================
-       4. BADGES (4 in one row)
-       ========================================================= */
-    .badge-container.badge-row-4 {
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        align-items: stretch;
-        width: 100%;
-    }
-    .badge-container.badge-row-4 .badge-box {
-        width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .badge-container.badge-row-4 .badge-frame img {
-        max-width: 100%;
-        height: auto;
-        max-h<style>
-    /* =========================================================
-       1. LOGO + TEXT ROW (Education and Experience)
-       ========================================================= */
-    .org-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 14px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-    .w3-container:last-child > .org-item { border-bottom: none; }
-
-    .org-logo {
-        position: relative;
-        flex: 0 0 56px;
-        width: 56px !important;
-        height: 56px !important;
-    }
-    .org-logo img {
-        width: 56px !important;
-        height: 56px !important;
-        object-fit: contain;
-        display: block;
-        margin: 0;
-    }
-
-    .org-info { flex: 1; min-width: 0; }
-    .org-info h4 { margin: 0 0 2px 0; font-size: 16px; font-weight: 600; line-height: 1.3; }
-    .org-info p  { margin: 0 0 2px 0; font-size: 14px; line-height: 1.4; }
-
-    /* =========================================================
-       2. SMALL TAGS (same size: Currently ... and Drive link)
-       ========================================================= */
-    .live-tag,
-    .drive-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 0 8px;
-        font-size: 11px;
-        line-height: 18px;
-        border-radius: 3px;
-        vertical-align: middle;
-        text-decoration: none;
-    }
-    .live-tag {
-        margin-left: 8px;
-        color: #4ade80;
-        border: 1px solid rgba(74, 222, 128, .35);
-    }
-    .live-tag::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #22c55e;
-    }
-    .drive-tag {
-        margin-top: 6px;
-        color: #07f1fa;
-        border: 1px solid rgba(7, 241, 250, .4);
-    }
-    .drive-tag:hover {
-        background: rgba(7, 241, 250, .08);
-        color: #07f1fa;
-    }
-
-    /* Green dot on the logo corner */
-    .live-dot {
-        position: absolute;
-        right: -3px;
-        bottom: -3px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #22c55e;
-        border: 2px solid #000;
-        animation: livePulse 2.4s ease-out infinite;
-    }
-    @keyframes livePulse {
-        0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, .55); }
-        70%  { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-    }
-
-    /* =========================================================
-       3. EDUCATION GRID (MSc + BSc side by side, HSC centered)
-       ========================================================= */
-    .edu-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px 32px;
-        padding: 0 16px;
-    }
-    .edu-grid .org-item { border-bottom: none; }
-    .edu-grid .edu-center {
-        grid-column: 1 / -1;
-        justify-self: center;
-        width: calc((100% - 32px) / 2);
-    }
-
-    /* =========================================================
-       4. BADGES (compact, 4 in one row)
-       ========================================================= */
-    .badge-container.badge-row-4 {
-        display: grid !important;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-    .badge-row-4 .badge-box {
-        width: auto !important;
-        max-width: none !important;
-        min-width: 0;
-        margin: 0 !important;
-        padding: 12px 10px !important;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        overflow: hidden;
-    }
-    .badge-row-4 .badge-title {
-        margin: 0 !important;
-        font-size: 11px !important;
-        letter-spacing: .5px;
-    }
-    .badge-row-4 .badge-frame {
-        margin: 0 !important;
-        padding: 4px 6px !important;
-        max-width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .badge-row-4 .badge-frame img {
-        width: auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 22px !important;
-    }
-    .badge-row-4 .badge-btn {
-        margin: 0 !important;
-        padding: 4px 12px !important;
-        font-size: 11px !important;
-        white-space: nowrap;
-    }
-
-    /* =========================================================
-       5. RESPONSIVE
-       ========================================================= */
-    @media (max-width: 992px) {
-        .badge-container.badge-row-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 768px) {
-        .edu-grid { grid-template-columns: 1fr; }
-        .edu-grid .edu-center { width: 100%; }
-    }
-    @media (max-width: 600px) {
-        .org-item { gap: 10px; }
-        .org-logo,
-        .org-logo img {
-            width: 48px !important;
-            height: 48px !important;
-            flex-basis: 48px;
-        }
-    }
-    @media (max-width: 480px) {
-        .badge-container.badge-row-4 { grid-template-columns: 1fr; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .live-dot { animation: none; }
-    }
+@media (max-width:992px){
+  .badge-container.badge-row-4{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:768px){
+  .edu-grid{grid-template-columns:1fr;}
+  .edu-grid .edu-center{width:100%;}
+}
+@media (max-width:600px){
+  #main{padding-top:44px !important;}
+  #theme-toggle{top:52px;width:40px;height:40px;}
+  #bot-wrapper{bottom:16px;right:16px;}
+  #chat-ui{width:min(280px,86vw);}
+  .org-item{gap:10px;}
+  .org-logo,.org-logo img{width:48px !important;height:48px !important;flex-basis:48px;}
+  .badge-row-4 .badge-box{padding:8px !important;}
+  .badge-row-4 .badge-title{font-size:10px !important;}
+  .badge-row-4 .badge-btn{height:28px !important;font-size:11px !important;}
+  .cert-modal-box{width:96vw;height:86vh;}
+}
+@media (max-width:340px){
+  .badge-container.badge-row-4{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  .live-dot{animation:none;}
+}
 </style>
-
 
 <!-- =========================================================
      EDUCATION
@@ -837,7 +640,6 @@ My transition into research was marked by the publication of my first co-authore
      ========================================================= -->
 <div class="badge-container badge-row-4">
 
-    <!-- Google Scholar -->
     <div class="badge-box">
         <h3 class="badge-title">GOOGLE SCHOLAR</h3>
         <div class="badge-frame">
@@ -846,7 +648,6 @@ My transition into research was marked by the publication of my first co-authore
         <a href="https://scholar.google.com/citations?user=sEfam2IAAAAJ&hl=en&authuser=2" target="_blank" rel="noopener noreferrer" class="w3-button badge-btn">View Profile</a>
     </div>
 
-    <!-- Kaggle -->
     <div class="badge-box">
         <h3 class="badge-title">KAGGLE</h3>
         <div class="badge-frame">
@@ -855,7 +656,6 @@ My transition into research was marked by the publication of my first co-authore
         <a href="https://www.kaggle.com/showkothosen" target="_blank" rel="noopener noreferrer" class="w3-button badge-btn">View Profile</a>
     </div>
 
-    <!-- ORCID -->
     <div class="badge-box">
         <h3 class="badge-title">ORCID</h3>
         <div class="badge-frame">
@@ -864,7 +664,6 @@ My transition into research was marked by the publication of my first co-authore
         <a href="https://orcid.org/0009-0007-0898-2263" target="_blank" rel="noopener noreferrer" class="w3-button badge-btn">View Profile</a>
     </div>
 
-    <!-- IEEE -->
     <div class="badge-box">
         <h3 class="badge-title">IEEE XPLORE</h3>
         <div class="badge-frame">
