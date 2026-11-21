@@ -1941,13 +1941,27 @@ My transition into research was marked by the publication of my first co-authore
   .member-item:hover{transform:translateY(-3px);}
 }
 
-/* Awards logos: no white tile either */
-#awards .org-logo img{background:none; padding:0;}
-/* Awards: keep logos on a white tile so any logo shows in both themes */
-#awards .org-logo img{background:#fff;border-radius:8px;padding:4px;box-sizing:border-box;}
-.logo-fallback.sm{width:56px;height:56px;background:#fff;border-radius:8px;font-size:11px;}
-@media (max-width:600px){.logo-fallback.sm{width:48px;height:48px;}}
+/* ===== AWARDS: logos with no white box or border ===== */
+#awards .org-logo,
+#awards .org-logo img{
+  background:none !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  border-radius:0 !important;
+}
+#awards .org-logo img{object-fit:contain;}
 
+/* Text fallback (only shows if an image fails to load) */
+#awards .logo-fallback.sm{
+  width:56px; height:56px;
+  background:none !important; border:none !important;
+  font-size:11px; color:#07f1fa;
+}
+.light-theme #awards .logo-fallback.sm{color:#00008B;}
+@media (max-width:600px){
+  #awards .logo-fallback.sm{width:48px; height:48px;}
+}
 </style>
 
 
