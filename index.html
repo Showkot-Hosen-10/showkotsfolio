@@ -1807,28 +1807,16 @@ My transition into research was marked by the publication of my first co-authore
     .cert-card { gap: 10px; padding: 10px; }
     .cert-name { font-size: 13px; }
 }
-/* ===== MEMBERSHIPS: moving logo banner (no box, 2x size) ===== */
+/* ===== MEMBERSHIPS: static logo row (no box, 2x size) ===== */
 .member-strip{
-  position:relative; overflow:hidden; padding:24px 0; margin-top:10px;
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start;
+  gap:32px 48px; padding:24px 0; margin-top:10px;
   border-top:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
-.member-track{
-  display:flex; width:max-content;
-  animation:memberScroll 28s linear infinite;
-  will-change:transform;
-}
-.member-strip:hover .member-track,
-.member-strip:focus-within .member-track,
-.member-strip.paused .member-track{animation-play-state:paused;}
-@keyframes memberScroll{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
+.member-track{display:contents;}
 
 .member-item{
-  flex:0 0 auto; width:340px; margin-right:48px;
+  flex:0 0 auto; width:340px;
   display:flex; flex-direction:column; align-items:center; gap:12px;
   text-decoration:none; transition:transform .3s ease;
 }
@@ -1853,16 +1841,14 @@ My transition into research was marked by the publication of my first co-authore
 .light-theme .member-role{color:#333 !important;}
 
 @media (max-width:600px){
-  .member-item{width:220px; margin-right:28px;}
+  .member-strip{gap:24px 20px;}
+  .member-item{width:calc(50% - 10px);}
   .member-logo{height:80px;}
   .member-name{font-size:13px;}
-  .member-track{animation-duration:22s;}
-}
-@media (prefers-reduced-motion:reduce){
-  .member-track{animation:none; flex-wrap:wrap; justify-content:center; width:auto; row-gap:24px;}
-  .member-item[aria-hidden="true"]{display:none;}
 }
 
+/* Awards logos: no white tile either */
+#awards .org-logo img{background:none; padding:0;}
 /* Awards logos: no white tile either */
 #awards .org-logo img{background:none; padding:0;}
 /* Awards: keep logos on a white tile so any logo shows in both themes */
