@@ -10,51 +10,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 <style>
-    /* ===== DESKTOP SIDEBAR: always fits the screen height, no scrollbar ===== */
+/* ===== DESKTOP SIDEBAR: compact, fits screen height, no scrollbar ===== */
 @media (min-width:601px){
   .w3-sidebar{
     display:flex !important; flex-direction:column;
     height:100vh; height:100dvh;
     overflow:hidden !important;
-    padding:6px 0;
+    padding:3px 0;
     box-sizing:border-box;
   }
 
-  /* Profile photo scales with screen height */
   .w3-sidebar > a:first-child{
     flex:0 0 auto; display:flex; justify-content:center;
-    padding:4px 0 6px !important; width:100%;
+    padding:2px 0 3px !important; width:100%;
   }
   .w3-sidebar > a:first-child img{
-    width:min(78px, 9vh) !important; height:auto;
+    width:min(70px, 8vh) !important; height:auto;
     border-radius:50%; margin:0 auto; display:block;
   }
 
-  /* Nav items share the remaining height evenly */
   .w3-sidebar .nav-item{
-    flex:1 1 0; min-height:0; max-height:58px;
+    flex:1 1 0; min-height:0; max-height:52px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:1px; padding:0 2px !important; line-height:1;
+    gap:0; padding:0 1px !important; line-height:1;
   }
-  .w3-sidebar .nav-item i{font-size:clamp(11px, 2.2vh, 17px);}
+  .w3-sidebar .nav-item i{font-size:clamp(10px, 2vh, 15px);}
   .w3-sidebar .nav-item p{
-    margin:0; font-size:clamp(6.5px, 1.15vh, 8.5px);
-    font-weight:600; letter-spacing:.2px;
+    margin:0; font-size:clamp(6px, 1.05vh, 8px);
+    font-weight:600; letter-spacing:.1px;
     text-align:center; text-align-last:center; word-break:keep-all;
   }
 }
 
-    /* ===== MOBILE NAV: one row, equal widths, no scrollbar ===== */
+   /* ===== MOBILE NAV: compact, one row, no scrollbar ===== */
 #myNavbar .w3-bar{
   display:flex; flex-wrap:nowrap; overflow:hidden; white-space:nowrap;
 }
 #myNavbar .w3-bar-item{
   flex:1 1 0 !important; min-width:0;
-  padding:11px 0 !important; text-align:center;
-  font-size:15px; line-height:1;
+  padding:8px 0 !important; text-align:center;
+  font-size:13px; line-height:1;
 }
 @media (max-width:360px){
-  #myNavbar .w3-bar-item{font-size:13px; padding:10px 0 !important;}
+  #myNavbar .w3-bar-item{font-size:11px; padding:7px 0 !important;}
+}
+@media (max-width:600px){
+  #main{padding-top:38px !important;}
+  #contact, #awards, #memberships{scroll-margin-top:42px;}
+  #theme-toggle{top:46px;}
 }
     
     p {
@@ -472,7 +475,7 @@ body.light-mode .badge-frame {
     <a href="#projects" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-tasks"></i><p>PROJECTS</p></a>
     <a href="#community" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-users"></i><p>COMMUNITY</p></a>
     <a href="#co-curricular" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-plus-square"></i><p>EXTRAS</p></a>
-    <a href="#contact" class="w3-bar-item w3-button" aria-label="Contact" title="Contact"><i class="fa fa-envelope"></i></a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-envelope"></i><p>CONTACT</p></a>
 </nav>
 
 <!-- Mobile Top Navigation Bar -->
