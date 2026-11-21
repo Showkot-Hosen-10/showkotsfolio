@@ -1042,6 +1042,26 @@ My transition into research was marked by the publication of my first co-authore
                 margin: 0 auto;
             }
         }
+
+ /* ===== AWARDS: Phoenix logo +5px ===== */
+#awards .org-logo.logo-lg{
+  flex:0 0 61px;
+  width:61px !important;
+  height:61px !important;
+}
+#awards .org-logo.logo-lg img{
+  width:61px !important;
+  height:61px !important;
+}
+#awards .org-logo.logo-lg .logo-fallback.sm{
+  width:61px; height:61px;
+}
+@media (max-width:600px){
+  #awards .org-logo.logo-lg{flex:0 0 53px; width:53px !important; height:53px !important;}
+  #awards .org-logo.logo-lg img{width:53px !important; height:53px !important;}
+  #awards .org-logo.logo-lg .logo-fallback.sm{width:53px; height:53px;}
+}
+        
     </style>
 
     <h4 style="font-weight:bold; color:#00e5ff; margin-top:40px; text-align:center;">Conferences</h4>
@@ -1541,11 +1561,11 @@ My transition into research was marked by the publication of my first co-authore
     <!-- Phoenix Summit -->
     <div class="w3-container w3-margin-bottom">
         <div class="org-item">
-            <div class="org-logo">
+            <div class="org-logo logo-lg">
                 <img src="assets/img/logos/Phoenix.png" alt="Phoenix Summit logo"
-                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="logo-fallback sm">PHOENIX</div>
-            </div>
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="logo-fallback sm">PHOENIX</div>
+        </div>
             <div class="org-info">
                 <h4 class="w3-text-white">Phoenix Summit 2026 Fellowship</h4>
                 <p class="w3-text-white">Sponsored by Flexoptix | Dhaka</p>
