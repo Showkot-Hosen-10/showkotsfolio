@@ -1470,11 +1470,14 @@ My transition into research was marked by the publication of my first co-authore
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
+
+    
 <div class="w3-content w3-padding-32" id="memberships" style="text-align:left;">
     <h3 style="font-weight:bold; color:#07f1fa; text-align:left;">MEMBERSHIPS</h3>
     <hr style="width:200px; margin-left:0;" class="w3-opacity">
 
-    <div class="member-strip">
+    <div class="member-strip" id="member-strip">
+      <div class="member-track" id="member-track">
 
         <a class="member-item" href="https://www.crane.ac.uk" target="_blank" rel="noopener noreferrer" title="CRANE AI and Cyber Security SIG">
             <div class="member-logo">
@@ -1488,7 +1491,7 @@ My transition into research was marked by the publication of my first co-authore
 
         <a class="member-item" href="https://REPLACE-WITH-YOUR-AI-SECURITY-UNIVERSITY-LINK" target="_blank" rel="noopener noreferrer" title="AI Security University">
             <div class="member-logo">
-                <img src="assets/img/logos/aisec.png" alt="AI Security University logo"
+                <img src="assets/img/logos/aisecurity-university.png" alt="AI Security University logo"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <div class="logo-fallback">AI Security University</div>
             </div>
@@ -1506,8 +1509,11 @@ My transition into research was marked by the publication of my first co-authore
             <div class="member-role">Member</div>
         </a>
 
+      </div>
     </div>
 </div>
+
+    
 <div class="w3-content w3-padding-64" id="projects" style="text-align: left;">
     <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-bottom: 25px;">PROJECTS</h3>
     <hr style="width:200px; margin-left: 0; margin-bottom: 40px;" class="w3-opacity">
@@ -1801,34 +1807,64 @@ My transition into research was marked by the publication of my first co-authore
     .cert-card { gap: 10px; padding: 10px; }
     .cert-name { font-size: 13px; }
 }
+/* ===== MEMBERSHIPS: moving logo banner (no box, 2x size) ===== */
+.member-strip{
+  position:relative; overflow:hidden; padding:24px 0; margin-top:10px;
+  border-top:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.member-track{
+  display:flex; width:max-content;
+  animation:memberScroll 28s linear infinite;
+  will-change:transform;
+}
+.member-strip:hover .member-track,
+.member-strip:focus-within .member-track,
+.member-strip.paused .member-track{animation-play-state:paused;}
+@keyframes memberScroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
 
-/* ===== MEMBERSHIPS: logo strip ===== */
-.member-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;padding:18px 0;margin-top:10px;
-  border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15);}
-.member-item{display:flex;flex-direction:column;align-items:center;gap:8px;width:170px;text-decoration:none;
-  transition:transform .25s ease;}
-.member-item:hover{transform:translateY(-4px);}
-.member-logo{width:100%;height:64px;background:#fff;border:1px solid rgba(7,241,250,.35);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;padding:8px;box-sizing:border-box;
-  transition:box-shadow .25s ease,border-color .25s ease;}
-.member-item:hover .member-logo{border-color:#07f1fa;box-shadow:0 6px 16px rgba(7,241,250,.3);}
-.member-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
-.logo-fallback{display:none;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#00008B;text-align:center;}
-.member-name{font-size:12px;font-weight:600;color:#fff;text-align:center;line-height:1.3;}
-.member-role{font-size:11px;color:#9e9e9e;text-align:center;line-height:1.3;}
+.member-item{
+  flex:0 0 auto; width:340px; margin-right:48px;
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  text-decoration:none; transition:transform .3s ease;
+}
+.member-item:hover{transform:translateY(-6px) scale(1.04);}
+.member-logo{
+  width:100%; height:128px; display:flex; align-items:center; justify-content:center;
+  background:none; border:none; padding:0;
+}
+.member-logo img{
+  max-width:100%; max-height:100%; object-fit:contain; display:block;
+  transition:filter .3s ease;
+}
+.member-item:hover .member-logo img{filter:drop-shadow(0 8px 14px rgba(7,241,250,.45));}
+.logo-fallback{display:none; align-items:center; justify-content:center; font-weight:700; font-size:22px; color:#07f1fa; text-align:center;}
+.member-name{font-size:15px; font-weight:600; color:#fff; text-align:center; line-height:1.3;}
+.member-role{font-size:13px; color:#9e9e9e; text-align:center; line-height:1.3;}
 
 .light-theme .member-strip{border-color:rgba(0,0,0,.2);}
-.light-theme .member-logo{border-color:rgba(0,0,139,.35);}
-.light-theme .member-item:hover .member-logo{border-color:#00008B;box-shadow:0 6px 16px rgba(0,0,139,.25);}
+.light-theme .member-item:hover .member-logo img{filter:drop-shadow(0 8px 14px rgba(0,0,139,.35));}
+.light-theme .logo-fallback{color:#00008B;}
 .light-theme .member-name{color:#000 !important;}
 .light-theme .member-role{color:#333 !important;}
 
 @media (max-width:600px){
-  .member-strip{gap:12px;}
-  .member-item{width:calc(50% - 8px);}
-  .member-logo{height:56px;}
+  .member-item{width:220px; margin-right:28px;}
+  .member-logo{height:80px;}
+  .member-name{font-size:13px;}
+  .member-track{animation-duration:22s;}
+}
+@media (prefers-reduced-motion:reduce){
+  .member-track{animation:none; flex-wrap:wrap; justify-content:center; width:auto; row-gap:24px;}
+  .member-item[aria-hidden="true"]{display:none;}
 }
 
+/* Awards logos: no white tile either */
+#awards .org-logo img{background:none; padding:0;}
 /* Awards: keep logos on a white tile so any logo shows in both themes */
 #awards .org-logo img{background:#fff;border-radius:8px;padding:4px;box-sizing:border-box;}
 .logo-fallback.sm{width:56px;height:56px;background:#fff;border-radius:8px;font-size:11px;}
