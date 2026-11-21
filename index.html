@@ -409,39 +409,22 @@ body.light-mode .badge-frame {
 <button id="theme-toggle" class="w3-button w3-white w3-text-black" onclick="toggleTheme()">
     <i id="theme-icon" class="fa fa-sun-o"></i>
 </button>
-
 <!-- Desktop Sidebar Navigation -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
     <a href="#home" class="w3-bar-item w3-button w3-padding-none">
-        <img src="https://i.ibb.co/1fczNTv7/Linkedin-Profile-Picture.webp" style="width:100%">
+        <img src="https://i.ibb.co/1fczNTv7/Linkedin-Profile-Picture.webp" style="width:100%" alt="Showkot Hosen">
     </a>
-    <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-home w3-xlarge"></i><p style="margin: 0;">HOME</p>
-    </a>
-    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-user w3-xlarge"></i><p style="margin: 0;">ABOUT</p>
-    </a>
-    <a href="#experience" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-briefcase w3-xlarge"></i><p style="margin: 0;">EXPERIENCES</p>
-    </a>
-    <a href="#publication" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-book w3-xlarge"></i><p style="margin: 0;">PUBLICATION</p>
-    </a>
-    <a href="#academic-service" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-university w3-xlarge"></i><p style="margin: 0;">ACADEMIC</p>
-    </a>
-    <a href="#certifications" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-certificate w3-xlarge"></i><p style="margin: 0;">CERTIFICATIONS</p>
-    </a>
-    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-tasks w3-xlarge"></i><p style="margin: 0;">PROJECTS</p>
-    </a>
-    <a href="#community" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-users w3-xlarge"></i><p style="margin: 0;">COMMUNITY</p>
-    </a>
-    <a href="#co-curricular" class="w3-bar-item w3-button w3-padding-large w3-hover-blue" style="display: flex; flex-direction: column; align-items: center;">
-        <i class="fa fa-plus-square w3-xlarge"></i><p style="margin: 0;">EXTRAS</p>
-    </a>
+    <a href="#home" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-home"></i><p>HOME</p></a>
+    <a href="#about" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-user"></i><p>ABOUT</p></a>
+    <a href="#experience" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-briefcase"></i><p>EXPERIENCE</p></a>
+    <a href="#publication" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-book"></i><p>PUBLICATION</p></a>
+    <a href="#academic-service" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-university"></i><p>ACADEMIC</p></a>
+    <a href="#certifications" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-certificate"></i><p>CERTS</p></a>
+    <a href="#awards" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-trophy"></i><p>AWARDS</p></a>
+    <a href="#memberships" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-id-card-o"></i><p>MEMBERSHIPS</p></a>
+    <a href="#projects" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-tasks"></i><p>PROJECTS</p></a>
+    <a href="#community" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-users"></i><p>COMMUNITY</p></a>
+    <a href="#co-curricular" class="w3-bar-item w3-button w3-hover-blue nav-item"><i class="fa fa-plus-square"></i><p>EXTRAS</p></a>
 </nav>
 
 <!-- Mobile Top Navigation Bar -->
@@ -453,6 +436,8 @@ body.light-mode .badge-frame {
     <a href="#publication" class="w3-bar-item w3-button">PUB.</a>
     <a href="#academic-service" class="w3-bar-item w3-button">ACA.</a>
     <a href="#certifications" class="w3-bar-item w3-button">CERT.</a>
+    <a href="#awards" class="w3-bar-item w3-button">AWARDS</a>
+    <a href="#memberships" class="w3-bar-item w3-button">MEMBER.</a>
     <a href="#projects" class="w3-bar-item w3-button">PROJ.</a>
     <a href="#community" class="w3-bar-item w3-button">COMM.</a>
     <a href="#co-curricular" class="w3-bar-item w3-button">EXTRAS</a>
@@ -1471,7 +1456,6 @@ My transition into research was marked by the publication of my first co-authore
 })();
 </script>
 
-    
 <div class="w3-content w3-padding-32" id="memberships" style="text-align:left;">
     <h3 style="font-weight:bold; color:#07f1fa; text-align:left;">MEMBERSHIPS</h3>
     <hr style="width:200px; margin-left:0;" class="w3-opacity">
@@ -1491,7 +1475,7 @@ My transition into research was marked by the publication of my first co-authore
 
         <a class="member-item" href="https://REPLACE-WITH-YOUR-AI-SECURITY-UNIVERSITY-LINK" target="_blank" rel="noopener noreferrer" title="AI Security University">
             <div class="member-logo">
-                <img src="assets/img/logos/aisecurity-university.png" alt="AI Security University logo"
+                <img src="assets/img/logos/aisec.png" alt="AI Security University logo"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <div class="logo-fallback">AI Security University</div>
             </div>
@@ -1512,7 +1496,6 @@ My transition into research was marked by the publication of my first co-authore
       </div>
     </div>
 </div>
-
     
 <div class="w3-content w3-padding-64" id="projects" style="text-align: left;">
     <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-bottom: 25px;">PROJECTS</h3>
@@ -1807,16 +1790,16 @@ My transition into research was marked by the publication of my first co-authore
     .cert-card { gap: 10px; padding: 10px; }
     .cert-name { font-size: 13px; }
 }
-/* ===== MEMBERSHIPS: static logo row (no box, 2x size) ===== */
+/* ===== MEMBERSHIPS: single-row logos (no box) ===== */
 .member-strip{
-  display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start;
-  gap:32px 48px; padding:24px 0; margin-top:10px;
+  display:flex; flex-wrap:nowrap; justify-content:center; align-items:flex-start;
+  gap:32px; padding:24px 0; margin-top:10px;
   border-top:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15);
 }
 .member-track{display:contents;}
 
 .member-item{
-  flex:0 0 auto; width:340px;
+  flex:1 1 0; min-width:0; max-width:340px;
   display:flex; flex-direction:column; align-items:center; gap:12px;
   text-decoration:none; transition:transform .3s ease;
 }
@@ -1840,15 +1823,21 @@ My transition into research was marked by the publication of my first co-authore
 .light-theme .member-name{color:#000 !important;}
 .light-theme .member-role{color:#333 !important;}
 
-@media (max-width:600px){
-  .member-strip{gap:24px 20px;}
-  .member-item{width:calc(50% - 10px);}
-  .member-logo{height:80px;}
+@media (max-width:768px){
+  .member-strip{gap:16px;}
+  .member-logo{height:90px;}
   .member-name{font-size:13px;}
+  .member-role{font-size:11px;}
+}
+@media (max-width:600px){
+  .member-strip{gap:8px; padding:16px 0;}
+  .member-logo{height:56px;}
+  .member-name{font-size:10px;}
+  .member-role{font-size:9px;}
+  .logo-fallback{font-size:11px;}
+  .member-item:hover{transform:translateY(-3px);}
 }
 
-/* Awards logos: no white tile either */
-#awards .org-logo img{background:none; padding:0;}
 /* Awards logos: no white tile either */
 #awards .org-logo img{background:none; padding:0;}
 /* Awards: keep logos on a white tile so any logo shows in both themes */
