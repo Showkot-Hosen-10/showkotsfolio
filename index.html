@@ -1470,7 +1470,55 @@ My transition into research was marked by the publication of my first co-authore
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
+<div class="w3-content w3-padding-64" id="awards" style="text-align:left;">
+    <h3 style="font-weight:bold; color:#07f1fa; text-align:left;">AWARDS &amp; RECOGNITION</h3>
+    <hr style="width:200px; margin-left:0;" class="w3-opacity">
 
+    <!-- HCSS: ongoing -->
+    <div class="w3-container w3-margin-bottom">
+        <div class="org-item">
+            <div class="org-logo">
+                <img src="assets/img/logos/hcss.png" alt="HCSS logo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="logo-fallback sm">HCSS</div>
+                <span class="live-dot" title="In progress"></span>
+            </div>
+            <div class="org-info">
+                <h4 class="w3-text-white">
+                    <a href="https://hcss.nl" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">
+                        ASEAN Cyber Security School 2026 (CSASEAN26) <i class="fa fa-external-link" style="font-size:12px;"></i>
+                    </a>
+                </h4>
+                <p class="w3-text-white">The Hague Centre for Strategic Studies (HCSS) with BINUS University and the Netherlands Embassy in Indonesia</p>
+                <p class="w3-text-grey">12 Nov – 18 Dec 2026
+                    <span class="live-tag">In progress</span>
+                </p>
+                <p class="w3-text-grey">
+                    Free-of-cost participant, supported by the Dutch Ministry of Foreign Affairs. The programme includes 20+ expert lectures, the Strategic Cyber Resilience Game, and a team challenge period. Certificates of Attendance and Participation are awarded on completion.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phoenix Summit -->
+    <div class="w3-container w3-margin-bottom">
+        <div class="org-item">
+            <div class="org-logo">
+                <img src="assets/img/logos/phoenix.png" alt="Phoenix Summit logo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="logo-fallback sm">PHOENIX</div>
+            </div>
+            <div class="org-info">
+                <h4 class="w3-text-white">Phoenix Summit 2026 Fellowship</h4>
+                <p class="w3-text-white">Sponsored by Flexoptix | Dhaka</p>
+                <p class="w3-text-grey">June 23–27, 2026</p>
+                <p class="w3-text-grey">
+                    Selected as a fellowship recipient, sponsored by Flexoptix, for the Phoenix Summit 2026 held in Dhaka. Completed hands-on DevSecOps training covering Docker, Trivy, and kube-bench for container security; Harbor as a secure artifact registry; and supply chain security concepts including SBOM, SCA, Cosign, Kyverno, and SLSA. Joined 2 days of the biggest cybersecurity event in Bangladesh.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="w3-content w3-padding-64" id="projects" style="text-align: left;">
     <h3 style="font-weight:bold; color:var(--accent, #07f1fa); margin-bottom: 25px;">PROJECTS</h3>
     <hr style="width:200px; margin-left: 0; margin-bottom: 40px;" class="w3-opacity">
@@ -1765,6 +1813,38 @@ My transition into research was marked by the publication of my first co-authore
     .cert-name { font-size: 13px; }
 }
 
+/* ===== MEMBERSHIPS: logo strip ===== */
+.member-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;padding:18px 0;margin-top:10px;
+  border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15);}
+.member-item{display:flex;flex-direction:column;align-items:center;gap:8px;width:170px;text-decoration:none;
+  transition:transform .25s ease;}
+.member-item:hover{transform:translateY(-4px);}
+.member-logo{width:100%;height:64px;background:#fff;border:1px solid rgba(7,241,250,.35);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;padding:8px;box-sizing:border-box;
+  transition:box-shadow .25s ease,border-color .25s ease;}
+.member-item:hover .member-logo{border-color:#07f1fa;box-shadow:0 6px 16px rgba(7,241,250,.3);}
+.member-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
+.logo-fallback{display:none;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#00008B;text-align:center;}
+.member-name{font-size:12px;font-weight:600;color:#fff;text-align:center;line-height:1.3;}
+.member-role{font-size:11px;color:#9e9e9e;text-align:center;line-height:1.3;}
+
+.light-theme .member-strip{border-color:rgba(0,0,0,.2);}
+.light-theme .member-logo{border-color:rgba(0,0,139,.35);}
+.light-theme .member-item:hover .member-logo{border-color:#00008B;box-shadow:0 6px 16px rgba(0,0,139,.25);}
+.light-theme .member-name{color:#000 !important;}
+.light-theme .member-role{color:#333 !important;}
+
+@media (max-width:600px){
+  .member-strip{gap:12px;}
+  .member-item{width:calc(50% - 8px);}
+  .member-logo{height:56px;}
+}
+
+/* Awards: keep logos on a white tile so any logo shows in both themes */
+#awards .org-logo img{background:#fff;border-radius:8px;padding:4px;box-sizing:border-box;}
+.logo-fallback.sm{width:56px;height:56px;background:#fff;border-radius:8px;font-size:11px;}
+@media (max-width:600px){.logo-fallback.sm{width:48px;height:48px;}}
+
 </style>
 
 
@@ -1847,16 +1927,53 @@ My transition into research was marked by the publication of my first co-authore
     </div>
 </div>
 
-<div class="w3-content w3-padding-64" id="awards" style="text-align: left;">
-    <h3 style="font-weight:bold; color:var(--accent, #07f1fa); text-align: left;">AWARDS</h3>
-    <hr style="width:200px; margin-left: 0;" class="w3-opacity">
-    <div class="w3-container">
-        <h4 style="color:var(--text-main); margin-bottom: 5px;">
-            <i class="fa fa-trophy w3-margin-right" style="color:#07f1fa;"></i>Phoenix Summit 2026 Fellowship
-        </h4>
-        <p class="w3-text-grey">
-            Selected as a fellowship recipient, sponsored by Flexoptix, for the Phoenix Summit 2026 held in Dhaka (June 23–27). Completed hands-on DevSecOps training covering Docker, Trivy, and kube-bench for container security; Harbor as a secure artifact registry; and supply chain security concepts including SBOM, SCA, Cosign, Kyverno, and SLSA and joined 2 days cybersecurity biggest event in Bangladesh.
-        </p>
+<div class="w3-content w3-padding-64" id="awards" style="text-align:left;">
+    <h3 style="font-weight:bold; color:#07f1fa; text-align:left;">AWARDS &amp; RECOGNITION</h3>
+    <hr style="width:200px; margin-left:0;" class="w3-opacity">
+
+    <!-- HCSS: ongoing -->
+    <div class="w3-container w3-margin-bottom">
+        <div class="org-item">
+            <div class="org-logo">
+                <img src="assets/img/logos/hcss.png" alt="HCSS logo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="logo-fallback sm">HCSS</div>
+                <span class="live-dot" title="In progress"></span>
+            </div>
+            <div class="org-info">
+                <h4 class="w3-text-white">
+                    <a href="https://hcss.nl" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">
+                        ASEAN Cyber Security School 2026 (CSASEAN26) <i class="fa fa-external-link" style="font-size:12px;"></i>
+                    </a>
+                </h4>
+                <p class="w3-text-white">The Hague Centre for Strategic Studies (HCSS) with BINUS University and the Netherlands Embassy in Indonesia</p>
+                <p class="w3-text-grey">12 Nov – 18 Dec 2026
+                    <span class="live-tag">In progress</span>
+                </p>
+                <p class="w3-text-grey">
+                    Free-of-cost participant, supported by the Dutch Ministry of Foreign Affairs. The programme includes 20+ expert lectures, the Strategic Cyber Resilience Game, and a team challenge period. Certificates of Attendance and Participation are awarded on completion.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phoenix Summit -->
+    <div class="w3-container w3-margin-bottom">
+        <div class="org-item">
+            <div class="org-logo">
+                <img src="assets/img/logos/phoenix.png" alt="Phoenix Summit logo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="logo-fallback sm">PHOENIX</div>
+            </div>
+            <div class="org-info">
+                <h4 class="w3-text-white">Phoenix Summit 2026 Fellowship</h4>
+                <p class="w3-text-white">Sponsored by Flexoptix | Dhaka</p>
+                <p class="w3-text-grey">June 23–27, 2026</p>
+                <p class="w3-text-grey">
+                    Selected as a fellowship recipient, sponsored by Flexoptix, for the Phoenix Summit 2026 held in Dhaka. Completed hands-on DevSecOps training covering Docker, Trivy, and kube-bench for container security; Harbor as a secure artifact registry; and supply chain security concepts including SBOM, SCA, Cosign, Kyverno, and SLSA. Joined 2 days of the biggest cybersecurity event in Bangladesh.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
